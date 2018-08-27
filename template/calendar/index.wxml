@@ -1,0 +1,25 @@
+<template name="CalendarTemplate">
+    <view class="calendar flex tb align-center">
+      <view class="flex tb">
+            <view class="top-handle fs28 flex align-center justify-center">
+                <view class="prev flex rl" bindtap="onHandleCalendar" data-handle="prev">
+                    <view class="prev-handle flex align-center justify-center">《</view>
+                </view>
+                <view class="date-area flex align-center justify-center">{{cur_year || "--"}} 年 {{cur_month || "--"}} 月</view>
+                <view class="next flex" bindtap="onHandleCalendar" data-handle="next">
+                    <view class="next-handle flex align-center justify-center">》</view>
+                </view>
+            </view>
+            <view class="weeks flex align-center">
+                <view class="flex-grow week fs28" wx:for="{{weeks_ch}}" wx:key="{{index}}" data-idx="{{index}}">{{item}}</view>
+            </view>
+            <view class="days flex wrap">
+                <view wx:if="{{hasEmptyGrid}}" class="grid flex align-center justify-center" wx:for="{{empytGrids}}" wx:key="{{index}}" data-idx="{{index}}">
+                </view>
+                <view class="grid flex align-center justify-center" wx:for="{{days}}" wx:key="{{index}}" data-idx="{{index}}">
+                    <view class="day flex align-center justify-center {{!months[item] || 'checked'}} ">{{item}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>

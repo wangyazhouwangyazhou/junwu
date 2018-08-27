@@ -1,0 +1,31 @@
+<!--pages/user/index.wxml-->
+<view class="page-user" wx:if="{{!loading}}">
+  <view class="header">
+    <image class="avatar" src="{{userInfo.avatar}}" />
+    <view class="name">{{userInfo.username}}</view>
+    <view class="uid">ID:{{userInfo.uid}}</view>
+  </view>
+  <block wx:for="{{types}}" wx:key="{{item}}">
+    <navigator url="{{item.myUrl}}" hover-class="none" wx:if="{{item.navName}}">
+      <view class="item-container">
+        <view class="{{!item.myUrl || 'item-arrow'}}">
+          <view class="item">
+            <image class="icon" src="{{item.cover}}" />
+            <text>{{item.navName}}</text>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </block>
+  <block wx:if="{{userInfo.admingroup}}">
+    <view class="item-container" catchtap="scanCode">
+      <view class="item-arrow">
+        <view class="item">
+          <image class="icon scan" src="/images/scan.png" />
+          <text>登录后台</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<view class="TAC"></view>

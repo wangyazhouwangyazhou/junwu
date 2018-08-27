@@ -1,0 +1,17 @@
+<!--index.wxml-->
+<view class="content">
+  <block wx:for="{{list}}">
+    <view style="margin: 30rpx;background-color: #fff;color:#515151">
+      <view class="flex justify-between" style="border-bottom: 2rpx solid #f3f3f3;">
+        <view style="font-size:28rpx;padding: 20rpx 30rpx;{{!item.hidden == 1 ? 'color:#8a8a8a' : ''}}">{{item.title}}</view>
+        <view><image style="width: 40rpx;height: 40rpx;height:40rpx;padding: 20rpx;" src="/images/downArrow.png" id="{{index}}" data-hidden="{{item.hidden}}" class="{{!item.hidden == 0 ? 'up' : ''}}" bindtap="change"/></view>
+      </view>
+      <view style="font-size:28rpx;padding: 20rpx 40rpx;line-height: 50rpx;" wx:if="{{item.hidden == 0}}">
+      <text>{{item.content}}</text>
+  	</view>
+    </view>
+  </block>
+</view>
+
+<view style="padding-bottom: 40rpx;"></view>
+<!-- 底部信息 -->

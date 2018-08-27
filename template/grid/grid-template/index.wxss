@@ -1,0 +1,31 @@
+
+/* grid_3 */
+.grid_3__header{
+  position: relative;
+}
+.grid_3__cover{
+  width: 314rpx;
+  height: 314rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  /* filter: brightness(40%); */
+}
+.grid_3__number{
+  position: absolute;
+  right: 20rpx;
+  bottom: 25rpx;
+  color: #eee;
+  font-size: 22rpx;
+}
+.grid_3__title{
+  padding: 20rpx 0;
+  color: #111;
+  font-size: 28rpx;
+  text-align: center;
+}
+.grid_3__time{
+  padding-bottom: 60rpx;
+  color: #a5a5a5;
+  font-size: 22rpx;
+  text-align: center;
+}

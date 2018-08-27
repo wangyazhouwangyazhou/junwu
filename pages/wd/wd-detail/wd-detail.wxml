@@ -1,0 +1,184 @@
+<import src="/template/sharewd/sharewd.wxml" />
+
+<block wx:if='{{tab==1}}'>
+ 
+<view class='wd-body'>
+  <view class='wd-title'>{{shareTitle}}</view>
+  <view style='display:flex;justify-content:flex-start;align-items:center'>
+    <image src='{{avatar == "" ? "https://jwres.feeyan.com/mp/59a666ab7W11/2018/07/qeX9dzt2TYUcDok4EQg3P8HvR6jMumAV.jpg" : avatar}}' style='width:62rpx;height:62rpx;border-radius:50%'></image>
+    <view style='margin-left:10rpx'>
+      <view style='	font-size: 25rpx;color: #46aa40;'>{{username == "" ? "军武小编" : username}}</view>
+      <view style='	font-size: 20rpx;color: #868686;'>发起提问</view>
+    </view>
+  </view>
+  <image src='{{cover}}' style='width:700rpx;height:413rpx;margin-top:20rpx;'></image>
+  <view style="margin-top: 92rpx;">
+      <view class="flex justify-between" style="margin:20rpx 0rpx;">
+        <view style="border-radius: 10rpx;background-color: #FFFFFF;border:2rpx solid #C7C7C7;padding:15rpx 20rpx;margin-left:30rpx;min-width: 150rpx">
+          <block wx:if="{{is_login}}">
+            <form bindsubmit="onTapShare" report-submit="true" data-id='{{questionId}}' data-state='{{is_praise}}'>
+              <button formType="submit" style='line-height:1.2;background:rgba(0,0,0,0);'>
+                <view class="flex">
+                  <image src="/images/answer-share.png" style="width: 37rpx;height: 37rpx;"/>
+                  <view style="font-size: 24rpx;color:#46aa40;margin:5rpx 10rpx;">邀请好友回答</view>
+                </view>
+              </button>
+            </form>
+          </block>
+          <block wx:else>
+            <button open-type='getUserInfo' bindgetuserinfo='onTapShare' data-type='4' style='line-height:1.2;background:rgba(0,0,0,0);'>
+              <view class="flex">
+                <image src="/images/answer-share.png" style="width: 37rpx;height: 37rpx;"/>
+                <view style="font-size: 24rpx;color:#46aa40;margin:5rpx 10rpx;">邀请好友回答</view>
+              </view>
+            </button>
+          </block>
+        </view>
+        <view style="border-radius: 10rpx;background-color: #FFFFFF;border:2rpx solid #C7C7C7;padding:10rpx 70rpx;margin-right:30rpx;width: 150rpx">
+          <!-- <view class="flex" bindtap="gotohome">
+            <image style="width: 30rpx;height: 35rpx;" src="/images/home.png"/>
+            <view style="font-size: 24rpx;margin:5rpx 10rpx;color:#46aa40;">回到首页</view>
+          </view> -->
+
+          <block wx:if="{{is_login}}">
+            <view class="flex" bindtap="onTapMark" style='justify-content:center;align-items:center'>
+              <image style="width: 40rpx;height: 40rpx;" src="/images/{{is_favorite ? 'icon-mark-s' : 'icon-mark'}}.png"/>
+              <view style="font-size: 24rpx;margin:5rpx 10rpx;">收藏</view>
+            </view>
+          </block>
+
+          <block wx:else>
+            <button class='button_new_style' open-type='getUserInfo' bindgetuserinfo='onTapMark' data-type='1' style='line-height:1.2;background:rgba(0,0,0,0);'>
+              <view class="flex"  style='justify-content:center;align-items:center;'>
+                <image style="width: 40rpx;height: 40rpx;" src="/images/{{is_favorite ? 'icon-mark-s' : 'icon-mark'}}.png"/>
+                <view style="font-size: 24rpx;margin:5rpx 10rpx;">收藏</view>
+              </view>
+            </button>
+          </block>
+        </view>
+      </view>
+    </view> 
+</view>
+
+  <view class='suspension'>
+    <image src='/images/comment.png' class='comment' style='margin: 0 25rpx' bindtap='gotohome'></image>
+
+    <block wx:if='{{is_login}}'>
+      <!-- <image src='/images/answer-answer.png' class='share' bindtap='showBigInput'></image> -->
+      <image src='/images/answer-answer.png' class='share' catchtap='goToAnswer' data-id='{{questionId}}'></image>
+    </block>
+
+    <block wx:else>
+      <button open-type='getUserInfo' bindgetuserinfo='goToAnswer' style='padding:0;margin:0;display:flex' data-id='{{questionId}}' hover-class='none' data-type='2'>
+        <image src='/images/answer-answer.png' class='share'></image>
+      </button>
+    </block>
+
+    <block wx:if='{{is_login}}'>
+        <image src='/images/answer-shares.png' class='comment' style='margin: 0 25rpx' bindtap='onTapShare' data-id='{{questionId}}' data-state='{{is_praise}}'></image>
+    </block>
+
+    <block wx:else>
+      <button open-type='getUserInfo' bindgetuserinfo='onTapShare' data-id='{{questionId}}' data-state='{{is_praise}}' style='background:#fff;padding:0;margin:0 25rpx' hover-class='none' data-type='3'>
+        <image src='/images/answer-shares.png' class='comment'></image>
+      </button>
+    </block>
+  </view>
+
+<view class='bar'>{{answer_count}}个回答</view>
+
+<view class='hd-con'>
+  <view class='hd-item' wx:for='{{list}}' wx:key='{{index}}' data-id='{{item.id}}' id="#{{item.id}}" bindtap='itemclick'>
+    <view class='item-head flex' style='align-items:center'>
+      <image class='item-head-img' src='{{item.avatar}}'></image>
+      <view style="margin-left:20rpx;padding-bottom:20rpx;">
+        <view class='item-head-name flex justify-between'>
+          <text>{{item.username}}</text>
+          <view>
+            <block wx:if="{{item.recommend}}">
+              <image class='item-head-top' src='/images/icon-top.png'></image>
+            </block>
+            <block wx:if="{{item.digest}}">
+              <image class='item-head-jing' src='/images/icon-jing.png'></image>
+            </block>
+          </view>
+        </view>
+        <view class='mark'>
+          <view style='color:#999999;font-size:24rpx;margin-right:20rpx' wx-if='{{item.ismodel == 1}}'>问答标兵</view>
+          <view style='color:#999999;font-size:24rpx;'>{{item.create_time}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class='item-body'>
+      <view class='item-body-desc'>{{item.text}}</view>
+      <view style='display:flex;justify-content:flex-start;margin: 12rpx 0;flex-wrap:wrap;position: relative;height:230rpx;overflow:hidden;' wx-if='{{item.piclist != ""}}'>
+        <view style='width:135rpx;height:50rpx;background:#545454;text-align:center;line-height:50rpx;font-size:24rpx;color: #ffffff;position: absolute;right:6rpx;top:0' wx:if='{{ item.piclist.length > 3}}'>共{{item.piclist.length}}张图片</view>
+        <block wx:for='{{item.piclist}}'>
+          <!-- <image src='{{item}}' style='width:230rpx;height:230rpx;margin-right:5rpx' mode='widthFix'></image> -->
+            <image src='{{item}}' style='width:230rpx;height:230rpx;margin-right:4rpx' mode='aspectFill' class='img'></image>
+        </block>
+      </view>
+    </view>
+
+    <view style='padding: 0px 15px;' class="flex justify-between">
+      <view style='color:#999999;font-size:24rpx;'>{{item.praise_count}}赞同 {{item.comment_count}}评论   </view>
+      <view style='color:#acacac;font-size:24rpx;width:63rpx;height:32rpx;border: 1rpx solid #e7e7e7;text-align:center;line-height:32rpx;border-radius:5rpx'>全文</view>
+    </view>
+  </view>
+
+</view>
+
+<!-- <view style='height:220rpx;'></view> -->
+
+<!-- <view class="bottom-bar flex {{isIphoneX ? 'fix-iphonex-button' : ''}}">
+  <view class='bottom-bt' bindtap='showBigInput' data-scrollTop="{{scrollTop}}">回答</view>
+  <image bindtap='gotowdlist' src='/images/wd-more.jpg' style="width: 57rpx;height: 60rpx;margin-left: 20rpx"></image>
+  <view bindtap="onTapMark">
+    <block wx:if='{{!is_favorite}}'>
+      <image class='bottom-more-mark' src='/images/icon-mark.png'></image>
+    </block>
+    <block wx:if='{{is_favorite}}'>
+      <image class='bottom-more-mark' src='/images/icon-mark-s.png'></image>
+    </block>
+  </view>
+</view> -->
+</block>
+
+<block wx:if='{{tab==2}}'>
+  <view class='input-con'>
+    <textarea maxlength='-1' bindinput="answerInput" placeholder='请输入...' style="width: 680rpx;"></textarea >
+  </view>
+  <view class='img-con'>
+    <view style='margin-top:20rpx;'>图片上传</view>
+    <view wx:for='{{uploadimgs}}' wx:key='{{item}}'>
+      <view class='uploadimg'>
+        <image class='uploadimg-img' src='{{item.url}}'></image>
+        <view class='uploadimg-close' data-index='{{index}}' bindtap='removeupload'>X</view>
+      </view>
+    </view>
+    <image class='uploadimg' bindtap='uploadclick' src='/images/addimg.png'></image>
+    <view style='clear:both;'></view>
+  </view>
+  <view class='ping-bt' style='margin-top: 20rpx;' bindtap='answer'>提交</view>
+  <view class='ping-bt' bindtap='inputcancel' style='background: #ccc;color:#fff;'>取消</view>
+</block>
+
+<block wx:if='{{tab==3}}'>
+  <view class='input-con'>
+    <textarea maxlength='-1' bindinput="answerInput" placeholder='请输入...'></textarea >
+  </view>
+  <view class='ping-bt' style='margin-top: 20rpx;' bindtap='answerTA'>提交</view>
+  <view class='ping-bt' bindtap='inputcancel' style='background: #ccc;color:#fff;'>取消</view>
+</block>
+<block wx:if="{{noMoreData || list == ''}}">
+  <view style='width:750rpx;text-align:center;font-size:30rpx'>到底部了~</view>
+</block>
+<block wx:else>
+  <view style='width:750rpx;background:#efefef'>
+    <image src='/images/index-loding.gif' style='width:134rpx;height:40rpx;margin:0 auto'></image>
+  </view>
+</block>
+
+<!--分享-->
+<template is="Share_2" data="{{width,height,cover,shareTitle,share_view}}"></template> 

@@ -1,0 +1,32 @@
+@import "/template/grid-item/index.wxss";
+@import "/template/grid/grid-template/index.wxss";
+
+
+.grid-template{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20rpx;
+}
+
+.grid-template > view{
+  box-sizing: border-box;
+  flex: none;
+  text-align: center;
+}
+
+.grid_wrapper{
+  box-sizing: border-box;
+  background-color: #fff;
+  padding: var(--space, 30rpx);
+}
+
+.grid_1{
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space);
+}
+
+
+.grid_3{
+  padding: 40rpx;
+}

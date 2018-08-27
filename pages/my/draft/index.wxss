@@ -1,0 +1,26 @@
+.top {
+  font-size: 30rpx;
+	color: #000000;
+  margin: 0 33rpx 14rpx 30rpx;
+  padding-top: 18rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.comment {
+  font-size: 24rpx;
+	color: #000000;
+  margin: 0 18rpx 24rpx 27rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+}
+
+.time {
+  font-size: 24rpx;
+	color: #b6b6b6;
+  padding: 0 0 23rpx 27rpx;
+}

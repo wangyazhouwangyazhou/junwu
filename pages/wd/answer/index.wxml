@@ -1,0 +1,108 @@
+<view>
+
+<block wx:if='{{type == 1}}'>
+  <block wx:for='{{contentList}}'>
+    <block wx:if='{{item.type == "txt"}}'>
+      <view class='box'>
+        <textarea type='text' maxlength='-1' bindinput='saveTitle' value='{{item.content}}' data-current="{{index}}"></textarea>
+        <view class='imgs'>
+          <image src='/images/answer-up.png' style='width:28rpx;height:28rpx;margin-right:56rpx' bindtap='order' data-id='{{index}}'></image>
+          <image src='/images/answer-more.png' style='width:36rpx;height:9rpx' bindtap='more' data-id='{{index}}'></image>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='box'>
+        <block wx:if='{{item.width > 375}}'>
+          <image src='{{item.content.url}}' style='width:100%' mode='widthFix'  class='img'></image>
+        </block>
+        <block wx:else>
+          <image src='{{item.content.url}}' style='width:{{item.width}}px;height:{{item.height}}px' class='img'></image>
+        </block>
+        <view class='imgs'>
+          <image src='/images/answer-up.png' style='width:28rpx;height:28rpx;margin-right:56rpx' bindtap='order' data-id='{{index}}'></image>
+          <image src='/images/answer-more.png' style='width:36rpx;height:9rpx' bindtap='more' data-id='{{index}}'></image>
+        </view>
+      </view>
+    </block>
+  </block>
+</block>
+
+<block wx:else>
+
+  <block wx:if='{{answerId == 0}}'>
+    <block wx:for='{{contentList}}'>
+      <block wx:if='{{item.type == "txt"}}'>
+        <view class='box'>
+          <textarea type='text' maxlength='-1' bindinput='saveTitle' value='{{item.content}}' data-current="{{index}}"></textarea>
+          <view class='imgs'>
+            <image src='/images/answer-up.png' style='width:28rpx;height:28rpx;margin-right:56rpx' bindtap='order' data-id='{{index}}'></image>
+            <image src='/images/answer-more.png' style='width:36rpx;height:9rpx' bindtap='more' data-id='{{index}}'></image>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='box'>
+          <block wx:if='{{item.width > 375}}'>
+            <image src='{{item.content.url}}' style='width:100%' mode='widthFix'  class='img'></image>
+          </block>
+          <block wx:else>
+            <image src='{{item.content.url}}' style='width:{{item.width}}px;height:{{item.height}}px' class='img'></image>
+          </block>
+          <view class='imgs'>
+            <image src='/images/answer-up.png' style='width:28rpx;height:28rpx;margin-right:56rpx' data-id='{{index}}' bindtap='order'></image>
+            <image src='/images/answer-more.png' style='width:36rpx;height:9rpx' data-id='{{index}}' bindtap='more'></image>
+          </view>
+        </view>
+      </block>
+    </block> 
+  </block>
+
+  <block wx:else>
+    <block wx:for='{{contentList}}'>
+      <block wx:if='{{item.type == "txt"}}'>
+        <view class='box'>
+          <textarea type='text' maxlength='-1' bindinput='saveTitle' value='{{item.content}}' data-current="{{index}}"></textarea>
+          <view class='imgs'>
+            <image src='/images/answer-up.png' style='width:28rpx;height:28rpx;margin-right:56rpx' bindtap='order' data-id='{{index}}'></image>
+            <image src='/images/answer-more.png' style='width:36rpx;height:9rpx' bindtap='more' data-id='{{index}}'></image>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='box'>
+          <block wx:if='{{item.width > 375}}'>
+            <image src='{{item.content.url}}' style='width:100%' mode='widthFix'  class='img'></image>
+          </block>
+          <block wx:else>
+            <image src='{{item.content.url}}' style='width:{{item.width}}px;height:{{item.height}}px' class='img'></image>
+          </block>
+          <view class='imgs'>
+            <image src='/images/answer-up.png' style='width:28rpx;height:28rpx;margin-right:56rpx' data-id='{{index}}' bindtap='order'></image>
+            <image src='/images/answer-more.png' style='width:36rpx;height:9rpx' data-id='{{index}}' bindtap='more'></image>
+          </view>
+        </view>
+      </block>
+    </block>
+  </block>
+
+</block>
+  
+  
+  <view class='up' bindtap='add'>+</view>
+  <view style='height:250rpx'></view>
+
+  <view class='position'>
+    <view class='icon-img'>
+      <view style='display:flex;justify-content: flex-strat;'>
+        <image src='/images/answer-text.png' class='icon' style='margin: 0 74rpx 0 38rpx;' bindtap='addTxt'></image>
+        <image src='/images/answer-pic.png' class='icon' bindtap='uploadPhoto'></image>
+      </view>
+      <image src='/images/answer-save.png' class='icon' style='margin-right:42rpx;' bindtap='save'></image>
+    </view>
+    <view class='btn'>
+      <view class='submit' style='background-color:#46aa40;' bindtap='submit' data-id='{{list.question_id}}'>提交</view>
+      <!-- <view class='submit' style='color:#46aa40;' bindtap='goToPosters' data-id='{{list.question_id}}'>提交并生成海报</view> -->
+    </view>
+  </view>
+</view>

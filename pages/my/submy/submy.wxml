@@ -1,0 +1,60 @@
+<block wx:if='{{tab==2}}'>
+  <view class="inputRow" bindtap="myZanClick">
+    <view style="margin: 0rpx 25rpx;" class="flex postShareTxt">
+      <block wx:if='{{zan}}'>
+        <image class='toolicon' src='/images/my-praise-s.png'></image>
+      </block>
+      <block wx:if='{{!zan}}'>
+        <image class='toolicon' src='/images/my-praise.png'></image>
+      </block>
+      <view style="margin-left: 10rpx;width: 91%;" class="flex justify-between">
+          <text class="postTxt">收到的赞</text>
+          <image src="/images/arrow.png" style="width: 40rpx; height: 40rpx;"/>
+      </view>
+    </view>
+  </view>
+  <view class="inputRow" bindtap="myPLClick">
+    <view style="margin: 0rpx 25rpx;" class="flex postShareTxt">
+      <block wx:if='{{ping}}'>
+        <image class='toolicon' src='/images/my-reply-s.png'></image>
+      </block>
+      <block wx:if='{{!ping}}'>
+        <image class='toolicon' src='/images/my-reply.png'></image>
+      </block>
+      <view style="margin-left: 10rpx;width: 91%;" class="flex justify-between">
+          <text class="postTxt">收到的评论</text>
+          <image src="/images/arrow.png" style="width: 40rpx; height: 40rpx;"/>
+      </view>
+    </view>
+  </view>
+</block>
+
+<block wx:if='{{tab == 1}}'>
+  <view class="inputRow" bindtap="myVedioClick">
+    <view style="margin: 0rpx 25rpx;" class="flex postShareTxt">
+      <image src="/images/my-mark-video.png" class="toolicon"/>
+      <view style="margin-left: 10rpx;width: 91%;" class="flex justify-between">
+          <text class="postTxt">收藏的视频</text>
+          <image src="/images/arrow.png" style="width: 40rpx; height: 40rpx;"/>
+      </view>
+    </view>
+  </view>
+  <view class='inputRow' bindtap='myWDClick'>
+    <view style="margin: 0rpx 25rpx;" class="flex postShareTxt">
+      <image src="/images/my-mark-wd.png" class="toolicon"/>
+      <view style="margin-left: 10rpx;width: 91%;" class="flex justify-between">
+          <text class="postTxt">收藏的问答</text>
+          <image src="/images/arrow.png" style="width: 40rpx; height: 40rpx;"/>
+      </view>
+    </view>
+  </view>
+  <view class='inputRow' bindtap='myArticleClick'>
+    <view style="margin: 0rpx 25rpx;" class="flex postShareTxt">
+      <image src="/images/my-mark-wz.png" class="toolicon"/>
+      <view style="margin-left: 10rpx;width: 91%;" class="flex justify-between">
+          <text class="postTxt">收藏的文章</text>
+          <image src="/images/arrow.png" style="width: 40rpx; height: 40rpx;"/>
+      </view>
+    </view>
+  </view>
+</block>

@@ -1,0 +1,18 @@
+<import src="/template/grid-item/index.wxml" />
+<import src="/template/grid/grid-template/index.wxml" />
+
+<template name="Grid">
+  <view class="grid-template">
+    <block wx:for="{{list}}" wx:key="{{item}}">
+      <template is="GridItem" data="{{...item}}"></template>
+    </block>
+  </view>
+</template>
+
+<template name="Grid_3">
+  <view class="grid_3 bgc flex wrap justify-between" wx:if="{{list}}">
+    <block wx:for="{{list}}" wx:key="{{item}}">
+      <template is="Grid_item_3" data="{{...item}}"></template>
+    </block>
+  </view>
+</template>

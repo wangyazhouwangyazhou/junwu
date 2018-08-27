@@ -1,0 +1,51 @@
+<template name="Lottery_1">
+  <view class="Lottery_1">
+    <view class="header">
+      <image class="bg" src="/images/lottery/bg.jpg" />
+    </view>
+    <view class="container">
+      <image class="cover" src="/images/lottery/cover.png" />
+      <view class="lottery-list">
+        <block wx:for="{{list}}" wx:key="{{item}}">
+          <view class="item {{item.state ? 'active' : ''}}" id="{{index}}" catchtap="onTapLottery">
+            <image class="icon-1" src="/images/lottery/icon-1.png" />
+            <image class="icon-2" src="/images/lottery/icon-2.png" />
+            <image class="icon-3" src="/images/lottery/icon-3.png" />
+            <image class="icon-4" src="/images/lottery/icon-4.png" />
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="prize">
+      <image class="prize-icon" src="/images/lottery/icon-prize.png" />
+      <scroll-view scroll-x>
+        <view class="scroll-wrapper">
+          <view class="prize-item" wx:for="{{prizeList}}" wx:key="{{item}}">
+            <image class="prize-image" src="{{item.pic}}" />
+            <view class="prize-title">{{item.title}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="rule">
+      <image class="rule-image" src="/images/lottery/icon-rule-title.png" />
+      <view class="rule-title">活动说明</view>
+      <view class="rule-content">{{info.message}}</view>
+    </view>
+    <view class="model-container" wx:if="{{result !== null}}" catchtap="onCloseModelTemplate">
+      <view class="model success" wx:if="{{result}}">
+        <image class="icon" src="/images/lottery/state-success.png" />
+        <view class="msg">{{prizeMsg}}</view>
+        <!-- <view class="btn" catchtap="onCloseModelTemplate">继续抽奖</view> -->
+        <view class="btn" catchtap="onViewDetailTemplate">查看详情</view>
+      </view>
+      <view class="model fail" wx:else>
+        <image class="icon" src="/images/lottery/state-fail.png" />
+        <view class="btn" catchtap="onCloseModelTemplate">知道了</view>
+      </view>
+    </view>
+  </view>
+</template>
+<template name="Lottery_2">
+  <view class="Lottery_2">luckyTurntable</view>
+</template>

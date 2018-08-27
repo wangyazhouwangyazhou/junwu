@@ -1,0 +1,35 @@
+<!-- <import src="/template/list/index.wxml" /> -->
+<!-- <import src="/template/video/video-item/index.wxml" /> -->
+<!-- <import src="/template/share/index.wxml" /> -->
+ <import src="/template/feed/index.wxml"/> 
+<view wx:if="{{list}}">
+  <block wx:for="{{list}}">
+     <!-- <template is="VideoItem_1_index" data="{{...item,is_share,index,tags:'播放'}}" wx:if="{{item.resource_type == 1}}"></template>  -->
+     <template is="video" data="{{item, index, maskHidden}}" /> 
+    <!-- <template is="List_1" data="{{list:[item],index,tags:'浏览'}}" wx:if="{{item.resource_type == 2}}"></template> -->
+  </block>
+</view>
+<!--当分享时隐藏video，因为video层级最高-->
+<!-- <block wx:if="{{share_view==false}}"> 
+  <video class="video_1_video" controls autoplay style="top:{{videoOffsetTop}}px" src="{{videoUrl}}" wx:if="{{videoUrl}}"></video>
+</block> -->
+  <video src="{{videoUrl}}" style="height: 420rpx;width: 705rpx;top:{{offsetTop}}px;position: absolute;margin:25rpx;" show-center-play-btn="" autoplay="true" wx:if="{{videoUrl}}" objectFit="fill"></video> 
+<!-- <view class="noMoreData" wx:if="{{noMoreData && page > 2}}"></view>
+<view class="noResult" wx:if="{{noResult}}"></view>
+<view class="TAC">
+	<image src='/images/junwu-logo.png' style='margin-top:30rpx;margin-bottom:-15rpx;width:135rpx;height:40rpx;margin-left:310rpx;'></image>
+</view> -->
+<!--分享-->
+<template is="Share_1" data="{{width,height,cover,shareTitle,share_view}}"></template> 
+
+<block wx:if="{{noMoreData}}">
+  
+</block>
+<block wx:else>
+  <view style='width:750rpx;background:#efefef'>
+    <image src='/images/index-loding.gif' style='width:134rpx;height:40rpx;margin:0 auto'></image>
+  </view>
+</block>
+<view class="TAC">
+<image src='/images/junwu-logo.png' style='margin-top:30rpx;margin-bottom:-15rpx;width:135rpx;height:40rpx;margin-left:310rpx;'></image>
+</view>

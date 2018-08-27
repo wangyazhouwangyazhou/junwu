@@ -1,0 +1,71 @@
+@import "/template/praise/index.wxss";
+
+.video_1__wrapper{
+  position: relative;
+}
+.video_1__header{
+  position: relative;
+  padding:30rpx 0rpx 10rpx 0rpx;
+  background:#fff;
+}
+.video_1__duration{
+  position: absolute;
+  right: var(--space);
+  bottom: var(--space);
+  color: #fff;
+  font-size: 22rpx;
+}
+.video_1__icon{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100rpx;
+  height: 100rpx;
+  transform: translate(-50%, -50%);
+}
+.video_1_video{
+  position: absolute;
+  left: 0;
+}
+.video_1_video,
+.video_1__cover{
+  width: 100%;
+  height: 424rpx;
+  /* filter:brightness(40%); */
+}
+.video_1__content{
+  padding: 10rpx 40rpx 0rpx 40rpx;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+.video_1__title{
+  color: #111;
+  font-size: 34rpx;
+  line-height: 52rpx;
+  /*显示两行
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2; */
+}
+.video_1__text{
+  padding-top: 15rpx;
+  color: #999;
+  font-size: 26rpx;
+  line-height: 40rpx;
+}
+.video_1__text.fold{
+  max-height: 80rpx;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.video_1__time,
+.video_1__slide{
+  padding-top: var(--space);
+  color: #a5a5a5;
+  font-size: 22rpx;
+}

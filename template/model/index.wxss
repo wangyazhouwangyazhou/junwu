@@ -1,0 +1,69 @@
+
+.Model{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
+}
+.Model__bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.Model .container{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 100;
+  transform: translate(-50%,-50%);
+}
+.Model .button{
+  width: 300rpx;
+  height: var(--button-height);
+  margin: 20rpx auto;
+  color: #FF3265;
+  font-size: 36rpx;
+  line-height: var(--button-height);
+  text-align: center;
+  border-radius: calc(var(--button-height) / 2);
+  background-color: #FFE32E;
+
+}
+
+.poll-model-template{
+  box-sizing: border-box;
+  position: relative;
+  width: 640rpx;
+  max-height: 70vh;
+  padding-bottom: 100rpx;
+  background-color: #fff;
+  border: 20rpx solid var(--model-border-color);
+}
+.poll-model-template .title{
+  color: #333;
+  font-size: 48rpx;
+  font-weight: 300;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.poll-model-template .content{
+  padding: 20rpx;
+  color: #333;
+  font-size: 28rpx;
+  line-height: 36rpx;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+
+<!--分享-->
+<template name="Share_1">
+<view class='share-bg' wx:if="{{share_view}}">
+  <view class='share-con'>
+    <image src='{{cover}}' style='border-top-right-radius: 10px;border-top-left-radius: 10px;width: 100%;' mode="widthFix"></image>
+    <view style='text-align；center;margin:20px;'>{{shareTitle}}</view>
+    <view class='share-img-con' >
+      <view style='display:flex;justify-content:center;'>
+        <view class='sharewxfriendbt'>
+          <button style='background:#fff;padding-left:0px;padding-right:0px;' open-type="share"><image src='/images/share-wx.png' style='width:55px;height:55px;'></image></button>
+          <view style='font-size:12px;margin-top:12rpx;'>分享好友</view>
+        </view>
+        <view style='margin-left:40px;' bindtap='sharewxquan'>
+          <image src='/images/share-pyq.png' style='width:72px;height:55px;'></image>
+          <view style='font-size:12px;margin-top:12rpx;'>分享朋友圈</view>
+        </view>
+        <!-- <view bindtap='sharewxquan'>
+          <image src='/images/share-haibao.png' style='width:55px;height:55px;'></image>
+          <view style='font-size:12px;margin-top:6px;'>制作海报</view>
+        </view> -->
+      </view>
+    </view>
+    <view class='share-close' bindtap='closeSharePanel'>X</view>
+  </view>
+</view>
+
+<canvas canvas-id="myCanvas" style="width:750px;height:1334px;position:absolute;top:0px;left:-2000px;"/>
+</template>

@@ -1,0 +1,315 @@
+<import src="/template/feed/index.wxml"/>
+
+<view class="topnav" style="background-color: #FFFFFF;">
+  </view>
+  <view class="topnav" style="position:fixed;top:0rpx;min-height:50rpx;">
+    <view class="flex align-center" style="text-align: center;justify-content:space-between">
+      <view class="tab flex-none" style="padding:0 20rpx" id="0" bindtap="goToIndex">
+        <text class="{{tabCurrent == 0 ? 'current' : ''}}" style='font-size:36rpx;display:block;height:60rpx;line-height:60rpx'>推荐</text>
+      </view>
+      <block wx:for="{{navs}}" wx:for-index="idx">
+        <view class="tab flex-none" style="padding:0 20rpx;" data-type="{{item.type}}" id="{{idx}}" bindtap="changeTab">
+          <text class="{{tabCurrent == idx ? 'current' : ''}} " style='font-size:36rpx;display:block;height:60rpx;line-height:60rpx'>{{item.name}}</text>
+        </view>
+      </block>
+      <image src='/images/index-input.png' style='width:40rpx;height:40rpx;margin-right:10rpx' bindtap="goToSearch" wx:if='{{search == 1}}'/> 
+    </view>
+</view>
+
+<block wx:if="{{list}}">
+  <view style='height:{{paddings}}rpx;background:#f8f8f8'></view>
+  <view bindtouchstart="startAction" bindtouchmove="moveAction" style="" >
+  <!-- <view style="{{searchShow ? 'padding-top: 96rpx;background-color: #F8F8F8;' : ''}}"></view>
+   <view class="search" bindtap="goToSearch">
+     <view class="default flex">
+       <image src="/images/icon-search.png" style="width: 40rpx; height: 40rpx;margin: 10rpx;"/><text style="font-size: 32rpx;">搜索</text> 
+    </view> 
+  </view>  -->
+
+  <block wx:if="{{banner.length > 0}}">
+    <swiper style="background-color: #EEEEEE;height: 300rpx;margin-bottom: 2px;" indicator-dots autoplay circular interval="3000" indicator-active-color="#46aa40">
+      <swiper-item wx:for="{{banner}}">
+        <navigator url="/{{item.link}}" open-type="navigate" hover-class="none">
+          <image src="{{item.url}}" style="width:750rpx;height: 300rpx;"></image>
+          <view style="position: absolute;bottom: 0rpx;left: 0rpx;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:20rpx 20rpx 40rpx 20rpx;width:750rpx;background-color:rgba(0,0,0,0.3);color:#FFFFFF;line-height: 30rpx;font-size: 33rpx;">{{item.title}}</view>
+        </navigator>
+      </swiper-item>
+    </swiper>
+  </block>
+
+  <!-- <navigator url='/pages/ence_push/ence_push'>
+    <button>ence_push</button>
+  </navigator> -->
+
+  <video src="{{videoUrl}}" style="height: 420rpx;width: 705rpx;top:{{offsetTop}}px;position: absolute;margin:25rpx;" show-center-play-btn="" autoplay="true" wx:if="{{videoUrl}}" objectFit="fill"></video>
+
+    <block wx:for="{{toplist}}">
+      <block wx:if="{{item.resource_type == 3}}">
+        <template is="ad" data="{{item, index, maskHidden}}" />
+      </block>
+      <block wx:if="{{item.resource_type == 1}}">
+        <template is="video" data="{{item, index, maskHidden}}" />
+      </block> 
+      <block wx:if="{{item.resource_type == 2}}"> 
+        <template is="article" data="{{item, index, maskHidden}}" />
+      </block> 
+      <block wx:if="{{item.resource_type == 4}}"> 
+        <template is='answer' data='{{item}}'></template> 
+      </block>
+      <block wx:if="{{item.resource_type == 5}}"> 
+        <view style='background:#fff;position: relative;'>
+          <view class='flex align-center justify-between' style='padding-top:16rpx'>
+            <view class='flex justify-start align-end'>
+              <image src='/images/index-pk.jpg' style='width:58rpx;height:32rpx;margin-bottom:6rpx'></image>
+              <view style='font-size:38rpx;color: #000000;font-weight:900;margin-left:6rpx'>军武PK赛</view>
+            </view>
+            <view style='font-size:30rpx;color: #868686;margin-right:24rpx' bindtap='goToPkList'>更多</view>
+          </view>
+          <image src='/images/index-left.png' class='index-left' bindtap='left'></image>
+          <image src='/images/index-right.png' class='index-right' bindtap='right'></image>
+
+          <swiper style='height:830rpx' circular='true' current='{{swiperNum}}'>
+            <swiper-item wx:for='{{item.pklist}}' wx:for-item="itemName">
+              <view class='comments-detail' bindtap='goToPkDetail' data-id='{{itemName.id}}'>进入专区</view>
+              <view class='pk'>
+                <view class='flex justify-between'>
+                  <image src='{{itemName.options[0].cover}}' class='pk-img'></image>
+                  <image src='{{itemName.options[1].cover}}' class='pk-img'></image>
+                  <image src='/images/VS.png' class='vs'></image>
+                </view>
+                <view class='pkback'>
+                  <view class='pkTitle'>{{itemName.title}}</view>
+                  <view class='flex justify-between' style='margin-top:12rpx;'>
+                    <text style='width:282rpx;font-size:42rpx;color:#ffffff;text-align:right'>{{itemName.options[0].title}}</text>
+                    <text style='width:279rpx;font-size:42rpx;color:#ffffff;'>{{itemName.options[1].title}}</text> 
+                  </view>
+                </view>
+              </view>
+
+              <view class='progress'>
+                <view class='left'>{{itemName.options[0].ratio}}%</view>
+                <view class='right'>{{ itemName.options[1].ratio == "0" ? "0" : 100 - itemName.options[0].ratio}}%</view>
+                <progress percent='{{ 100 - itemName.options[0].ratio }}' activeColor='#bdd5e2'  backgroundColor='#55c5ff' stroke-width='15' style='width:290rpx;'></progress>
+                <image src='/images/progresss.png' class='progress-img'></image>  
+                <progress percent='{{ itemName.options[1].ratio == "0" ? "0" : 100 - itemName.options[0].ratio}}' activeColor='#ff5555' backgroundColor='#f1b3b3' stroke-width='15' style='width:290rpx;'></progress>
+              </view>
+              <view class='progress2'>
+
+                <block wx:if='{{!is_login}}'>
+                  <button open-type='getUserInfo' bindgetuserinfo='getuser' hover-class='none' style='padding:0'>
+                    <image src='/images/{{itemName.support == itemName.options[0].id ? "blue-change" : ((itemName.support != itemName.options[0].id && itemName.support != 0) ? "gray" : "blue")}}.png' class='color'/>
+                  </button>
+                </block>
+
+                <block wx:else>
+                  <image src='/images/{{itemName.support == itemName.options[0].id ? "blue-change" : ((itemName.support != itemName.options[0].id && itemName.support != 0) ? "gray" : "blue")}}.png' bindtap='support' data-optionid='{{itemName.options[0].id}}' data-id='{{itemName.id}}' class='color'></image>
+                </block>
+
+                <block wx:if='{{!is_login}}'>
+                  <button open-type='getUserInfo' bindgetuserinfo='getuser' hover-class='none' style='padding:0'>
+                    <image src='/images/{{itemName.support == itemName.options[1].id ? "red-change" : ((itemName.support != itemName.options[1].id && itemName.support != 0) ? "gray" : "red")}}.png' class='color'/>
+                  </button>
+                </block>
+
+                <block wx:else>
+                  <image src='/images/{{itemName.support == itemName.options[1].id ? "red-change" : ((itemName.support != itemName.options[1].id && itemName.support != 0) ? "gray" : "red")}}.png' data-id='{{itemName.id}}' data-optionid='{{itemName.options[1].id }}' bindtap='support' class='color'/>
+                </block>
+              </view>
+
+              <view class='comments-box'>
+                <view style='border-right:1rpx solid #f9f9f9;width:333rpx'>
+                  <swiper style='width:300rpx;height:250rpx' vertical='true' autoplay='true' circular='true'>
+                    <swiper-item wx:for='{{itemName.options[0].comments.list}}' wx:for-item="itemNames" catchtouchmove='catchtouchmove'>
+                      <block wx:for='{{itemNames}}'> 
+                        <view class='comments'><text class='comments-name'>{{item.username + ':'}}</text>{{item.description}}</view> 
+                      </block> 
+                    </swiper-item>
+                  </swiper>
+                </view>
+                <view style='margin-left:30rpx'>
+                  <swiper style='width:300rpx;height:250rpx' vertical='true' autoplay='true' circular='true'>
+                    <swiper-item wx:for='{{itemName.options[1].comments.list}}' wx:for-item="itemNamee" catchtouchmove='catchtouchmove'>
+                      <block wx:for='{{itemNamee}}'>
+                        <view class='comments'><text class='comments-name' style='color:#ff5555'>{{item.username + ':'}}</text>{{item.description}}</view>           
+                      </block>
+                    </swiper-item>
+                  </swiper>
+                </view>
+              </view>
+
+            </swiper-item>
+          </swiper>
+        </view>
+      </block> 
+    </block>
+
+    <block wx:if="{{question.length > 0}}">
+      <view style="margin-bottom: 4rpx;background-color: #F8F8F8;margin-top:4rpx">
+        <view class="flex justify-between" style="padding: 10rpx 25rpx;align-items:flex-end" bindtap="wdlistclick">
+          <image src='/images/icon-wenda.png' style="width: 184rpx;height: 36rpx;margin-top:5rpx;"/>
+          <view style="font-size: 24rpx;color:#868686;">查看全部 ></view>
+        </view>
+        <view class="flex justify-between" style="padding: 10rpx 25rpx;">
+          <view style="width: 325rpx;" data-id='{{question[0].id}}' bindtap='wdclick'>
+            <form bindsubmit="pushFormSubmit" report-submit>
+              <button plain="true" style="border:none;text-align: left;padding:0rpx;line-height:40rpx;border-radius:0;" hover-class="none" formType="submit" >
+                <image src="{{question[0].cover}}" style="width:320rpx;height: 190rpx;"></image>
+                <view style="font-size:29rpx;padding:30rpx 8rpx;display: -webkit-box;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;background-color: #FFFFFF;height: 124rpx;">{{question[0].title}}</view>
+                <view style="border-bottom-left-radius:10rpx;border-bottom-right-radius:10rpx;background-color:#46aa40;padding: 12rpx;text-align: center;font-size: 28rpx;color:#ffffff;margin-bottom: 25rpx;">
+                  {{question[0].answerInfo}}
+                </view>
+              </button>
+            </form>
+          </view>
+          <view style="width: 4rpx;height: 380rpx;background-color: #FFFFFF;"></view>
+          <view style="width: 325rpx;" data-id='{{question[1].id}}' bindtap='wdclick'>
+            <form bindsubmit="pushFormSubmit" report-submit>
+              <button plain="true" style="border:none;text-align: left;padding:0rpx;line-height:40rpx;border-radius:0;" hover-class="none" formType="submit" >
+                <image src="{{question[1].cover}}" style="width:320rpx;height: 190rpx;"></image>
+                <view style="font-size:30rpx;padding:30rpx 8rpx;display: -webkit-box;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;background-color: #FFFFFF;height: 124rpx;">{{question[1].title}}</view>
+                <view style="border-bottom-left-radius:10rpx;border-bottom-right-radius:10rpx;background-color:#46aa40;padding: 12rpx;text-align: center;font-size: 28rpx;color:#ffffff;margin-bottom: 25rpx;">
+                  {{question[1].answerInfo}}
+                </view>
+              </button>
+            </form>
+          </view>
+        </view>
+      </view>
+    </block>
+
+  <view style='background:#fff;position: relative' wx:if='{{pklist != ""}}'>
+    <view class='flex align-center justify-between' style='padding-top:16rpx'>
+      <view class='flex justify-start align-end'>
+        <image src='/images/index-pk.jpg' style='width:58rpx;height:32rpx;margin-bottom:6rpx'></image>
+        <view style='font-size:38rpx;color: #000000;font-weight:900;margin-left:6rpx'>军武PK赛</view>
+      </view>
+      <view style='font-size:30rpx;color: #868686;margin-right:24rpx' bindtap='goToPkList'>更多</view>
+    </view>
+    <image src='/images/index-left.png' class='index-left' bindtap='left'></image>
+    <image src='/images/index-right.png' class='index-right' bindtap='right'></image>
+
+    <swiper style='height:830rpx' circular='true' current='{{swiperNum}}'>
+      <swiper-item wx:for='{{pklist}}'>
+        <view class='pk'>
+          <view class='flex justify-between'>
+            <image src='{{item.options.list[0].cover}}' class='pk-img'></image>
+            <image src='{{item.options.list[1].cover}}' class='pk-img'></image>
+            <image src='/images/VS.png' class='vs'></image>
+          </view>
+          <view class='pkback'>
+            <view class='pkTitle'>{{item.title}}</view>
+            <view class='flex justify-between' style='margin:6rpx 0;'>
+              <text style='width:282rpx;font-size:42rpx;color:#ffffff;text-align:right;'>{{item.options.list[0].title}}</text>
+              <text style='width:279rpx;font-size:42rpx;color:#ffffff;'>{{item.options.list[1].title}}</text> 
+            </view>
+          </view>
+        </view>
+
+        <view class='progress'>
+          <view class='left'>{{  item.options.list[0].ratio == "0" ? "0" : item.options.list[0].ratio }}%</view>
+          <view class='right'>{{ item.options.list[1].ratio == "0" ? "0" : 100 - item.options.list[0].ratio}}%</view>
+          <progress percent='{{100 - item.options.list[0].ratio }}' activeColor='#bdd5e2'  backgroundColor='#55c5ff' stroke-width='15' style='width:300rpx;margin-top:5rpx'></progress>
+          <image src='/images/progresss.png' class='progress-img'></image>  
+          <progress percent='{{ item.options.list[1].ratio == "0" ? "0" : 100 - item.options.list[0].ratio}}' activeColor='#ff5555' backgroundColor='#f1b3b3' stroke-width='15' style='width:300rpx;margin-top:5rpx'></progress>
+        </view>
+        <view class='progress2'>
+          <block wx:if='{{!is_login}}'>
+            <button open-type='getUserInfo' bindgetuserinfo='getuser' hover-class='none' style='padding:0'>
+              <image src='/images/{{item.support == item.options.list[0].id ? "blue-change" : ((item.support != item.options.list[0].id && item.support != 0) ? "gray" : "blue")}}.png' data-optionid='{{item.options.list[0].id}}' data-id='{{item.id}}' class='color'></image>
+            </button>
+          </block>
+
+          <block wx:else>
+            <image src='/images/{{item.support == item.options.list[0].id ? "blue-change" : ((item.support != item.options.list[0].id && item.support != 0) ? "gray" : "blue")}}.png' bindtap='support' data-optionid='{{item.options.list[0].id}}' data-id='{{item.id}}' class='color'></image>
+          </block>
+
+          <block wx:if='{{!is_login}}'>
+            <button open-type='getUserInfo' bindgetuserinfo='getuser' hover-class='none' style='padding:0'>
+              <image src='/images/{{item.support == item.options.list[1].id ? "red-change" : ((item.support != item.options.list[1].id && item.support != 0) ? "gray" : "red")}}.png' data-id='{{item.id}}' data-optionid='{{item.options.list[1].id }}' class='color'></image>           
+            </button>
+          </block>
+
+          <block wx:else>
+            <image src='/images/{{item.support == item.options.list[1].id ? "red-change" : ((item.support != item.options.list[1].id && item.support != 0) ? "gray" : "red")}}.png' data-id='{{item.id}}' data-optionid='{{item.options.list[1].id }}' bindtap='support' class='color'></image>
+          </block>
+        </view>
+
+        <view class='comments-box'>
+          <view style='border-right:1rpx solid #f9f9f9;width:333rpx'>
+            <block wx:if='{{item.options.list[0].comments.list == ""}}'>
+              <view class='none'>暂无精彩评论</view>
+            </block>
+            <block wx:else>
+              <swiper style='width:300rpx;height:250rpx;margin-right:30rpx' vertical='true' autoplay='true' circular='true'>
+                <swiper-item wx:for='{{item.options.list[0].comments.list}}' wx:for-item="itemName" catchtouchmove='catchtouchmove'>
+                  <block wx:for='{{itemName}}'>
+                    <view class='comments'><text class='comments-name'>{{item.username}}:</text>{{item.description}}</view>           
+                  </block>
+                </swiper-item>
+              </swiper>
+            </block>
+          </view>
+          <view style='margin-left:30rpx'>
+            <block wx:if='{{item.options.list[1].comments.list == ""}}'>
+              <view class='none'>暂无精彩评论</view>
+            </block>
+            <block>
+              <swiper style='width:300rpx;height:250rpx;' vertical='true' autoplay='true' circular='true'>
+                <swiper-item wx:for='{{item.options.list[1].comments.list}}' wx:for-item="itemName" catchtouchmove='catchtouchmove'>
+                  <block wx:for='{{itemName}}'>
+                    <view class='comments'><text class='comments-name' style='color:#ff5555'>{{item.username}}:</text>{{item.description}}</view>   
+                  </block>
+                </swiper-item>
+              </swiper>
+            </block>
+          </view>
+        </view>
+
+        <view class='comments-detail' bindtap='goToPkDetail' data-id='{{item.id}}'>进入专区</view>
+      </swiper-item>
+    </swiper>
+
+  </view>
+  
+    <block wx:for="{{list}}">
+      <block wx:if="{{item.resource_type == 1}}">
+        <template is="video" data="{{item, index, maskHidden}}" />
+      </block>
+      <block wx:elif="{{item.resource_type == 2}}">
+        <template is="article" data="{{item, index, maskHidden}}" />
+      </block>
+      <block wx:elif="{{item.resource_type == 4}}">
+        <template is="answer" data="{{item, index, maskHidden}}" />
+      </block>
+      <block wx:elif="{{item.resource_type == 3}}">
+        <template is="ad" data="{{item, index, maskHidden}}" />
+      </block>
+    </block>
+  </view>
+  
+  <!-- 开屏图 -->
+    <view class='openimg-bg' wx:if='{{openimgBool}}'>
+      <view class='openimg-con'>
+        <image style="width: 645rpx;height: 1030rpx;" bindtap='linkOpenimg' data-link='{{openimage.link}}' src='{{openimage.url}}'></image>
+        <image style="width: 95rpx;height: 54rpx;position: absolute;top:10rpx;right:10rpx" bindtap='closeOpenimg' src='/images/open-cancel.png'></image>
+      </view>
+    </view>
+
+</block>
+<block wx:else>
+  <view class='load-con'>
+    <image src='/images/loading.gif' style='width:150rpx;height:200rpx;'></image>
+  </view>
+</block>
+
+<block wx:if="{{noMoreData}}">
+  <view style='width:750rpx;text-align:center;font-size:30rpx'>到底部了~</view>
+</block>
+<block wx:else>
+  <view style='width:750rpx;background:#efefef'>
+    <image src='/images/index-loding.gif' style='width:134rpx;height:40rpx;margin:0 auto'></image>
+  </view>
+</block>
+
+<!--分享
+<template is="Share_1" data="{{width,height,cover,shareTitle,share_view}}"></template>-->

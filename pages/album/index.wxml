@@ -1,0 +1,10 @@
+<view>
+  <view style='display:flex;background:#f8f8f8;margin-bottom:4rpx;justify-content:space-between;flex-wrap:wrap'>
+    <view style='width: 372rpx;margin-bottom:40rpx' wx:for="{{list}}" >
+      <navigator url='/{{item.link}}' hover-class='none'>
+        <image src='{{item.cover}}' style='width: 372rpx;height: 221rpx;'/>
+        <view style='color: #000000;font-size:30rpx;text-align: center;margin-top:20rpx'>{{item.title}}</view>
+      </navigator>
+    </view>
+  </view>
+</view>

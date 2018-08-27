@@ -1,0 +1,27 @@
+<import src="/template/list/index.wxml" />
+<view class="flex-page">
+  <scroll-view scroll-y>
+    <view class="address-wrapper" bindtap="selectAddress">
+      <block wx:if="{{userAddress.userName}}">
+        <view class="address-item item-arrow flex" catchtap="goToAddress">
+          <view class="left flex tb justify-between flex-none">
+            <view class="username">{{userAddress.userName}}</view>
+            <view class="default">默认</view>
+          </view>
+          <view class="right flex tb justify-between">
+            <view class="tel">{{userAddress.telNumber}}</view>
+            <view class="address">{{userAddress.provinceName}}{{userAddress.cityName}}{{userAddress.countyName}}{{userAddress.detailInfo}}</view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="address-item item-arrow" catchtap="goToAddress">
+          <view>选择收货地址</view>
+        </view>
+      </block>
+    </view>
+    <template is="LotteryList" data="{{list,noBtn:true}}"></template>
+    <view class="TAC"></view>
+  </scroll-view>
+  <view class="btn-prize" catchtap="getPrize">确认领取</view>
+</view>

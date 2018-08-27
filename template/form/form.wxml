@@ -1,0 +1,40 @@
+<!--pages/template/form/form.wxml-->
+<template name="form">
+   <form class="form-wrapper" bindsubmit="formSubmit">
+      <view class="form-mesg">
+        <textarea
+            class="textarea"
+            name="checkInMsg"
+            placeholder="{{placeholder || '说点什么吧'}}"
+            bindinput="checkTextCount"
+            maxlength="{{maxLenText || -1}}"
+            value=""
+            placeholder-style="font-size:36rpx;color:#999;"
+        />
+        <view class="textarea-counter tips" wx:if="{{maxLenText}}" style="{{textCount >= maxLenText ? textCountStyle : ''}}">{{textCount}}/{{maxLenText}}</view>
+      </view>
+      <view class="weui-uploader">
+        <view class="weui-uploader__hd">
+            <view class="weui-uploader__title">图片上传</view>
+            <view class="weui-uploader__info tips" wx:if="{{maxLenImage}}">{{imageCount}}/{{maxLenImage}}</view>
+        </view>
+        <view class="weui-uploader__bd">
+            <view class="weui-uploader__files" id="uploaderFiles">
+                <block wx:for-items="{{uploadList}}" wx:key="{{index}}">
+                    <view class="weui-uploader__file">
+                        <image class="weui-uploader__img" src="{{item.url}}" mode="aspectFill"  bindtap="previewImage" id="{{item.url}}"/>
+                        <view class="del-buttom" data-url="{{item.url}}" bindtap="delImage">X</view>
+                    </view>
+                </block>
+            </view>
+            <view class="weui-uploader__input-box" wx:if="{{uploadList.length<9}}">
+                <view class="weui-uploader__input" bindtap="chooseImage"></view>
+            </view>
+        </view>
+      </view>
+      <view class="form-btn" style="padding-bottom:40rpx">
+        <button class="form-submit" formType="submit" loading="{{buttonLoad}}" disabled="{{buttonDisable}}" type="primary">{{buttonName || '提交'}}</button>
+        <button class="form-cancel" type="default" catchtap="onCancelForm">取消</button>
+      </view>
+  </form>
+</template>

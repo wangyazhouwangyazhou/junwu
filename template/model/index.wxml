@@ -1,0 +1,12 @@
+<template name="PollModel">
+  <view class="Model">
+    <view class="Model__bg" catchtap="onCloseModelTemplate"></view>
+    <view class="container">
+      <scroll-view class="poll-model-template">
+        <view class="title">{{modelTitle || '投票规则'}}</view>
+        <view class="content"><text>{{ruleData}}</text></view>
+      </scroll-view>
+      <view class="button" catchtap="onCloseModelTemplate">{{ModelBtnText || '关闭'}}</view>
+    </view>
+  </view>
+</template>

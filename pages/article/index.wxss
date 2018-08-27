@@ -1,0 +1,89 @@
+@import "/template/praise/index.wxss";
+@import "/template/video/index.wxss";
+@import "/template/share/index.wxss";
+
+page{
+  background-color: #efefef;
+}
+.article{
+  padding: 44rpx var(--space);
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.article .title{
+  color: #000000;
+  font-size: 40rpx;
+  line-height: 60rpx;
+  font-weight: bold;
+}
+
+.article .date{
+  color: #868686;
+  font-size: 24rpx;
+  line-height: 48rpx;
+}
+
+.article .info{
+  height: 72prx;
+  padding-top: 45rpx;
+}
+
+.article .btn{
+  padding: 0 30rpx;
+  height: 56rpx;
+  border-radius: 25rpx;
+  background-color: var(--main-color);
+  color: #fff;
+  font-size: 30rpx;
+  line-height: 56rpx;
+  text-align: center;
+}
+.article .btn.collected{
+  background-color: var(--border-color);
+}
+
+.article .content{
+  padding-top: 30rpx;
+}
+
+.articlep {
+  width:385rpx;
+  height:75rpx;
+  position: absolute;
+  left: 185rpx;
+  top: -78rpx;
+}
+
+.comment {
+  width: 77rpx;
+  height: 77rpx;
+  position: relative;
+}
+
+.share {
+  width: 254rpx;
+  height: 90rpx;
+  margin: 0 25rpx;
+}
+
+.suspension {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 44rpx;
+  left: 0;
+  width: 750rpx;
+}
+
+.commentNum {
+	background-color: #ff0000;
+	border-radius: 10rpx;
+  padding: 4rpx 9rpx;
+  position: absolute;
+  top: 0;
+  right: 130rpx;
+  font-size: 16rpx;
+	color: #ffffff;
+}

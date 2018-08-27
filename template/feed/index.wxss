@@ -1,0 +1,10 @@
+button::after{
+  border: none;
+}
+
+.videoCover {
+  height: 422rpx;
+  background-color: red;
+  position: relative;
+  margin-top: 4rpx;
+}

@@ -1,0 +1,95 @@
+@import "/template/grid/index.wxss";
+/* @import "/template/nav/index.wxss"; */
+
+page {
+  background-color: #efefef;
+}
+
+button::after{
+  border: none;
+}
+
+.load-con{
+  position: fixed;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  text-align: center
+}
+
+.load-con image{
+  margin: 0 auto;
+  padding-top: 370rpx;
+}
+
+.nav {
+  overflow-x: scroll;
+}
+
+.nav .tab {
+  position: relative;
+  margin: 0rpx 30rpx;
+  padding: 28rpx 0rpx;
+  font-size: 33rpx;
+  line-height: 29rpx;
+}
+
+.current {
+  color: #46aa40;
+}
+
+.nav .current:after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 15rpx;
+  left:0;
+  right:0;
+  margin: 0 auto;
+  border-bottom: 4rpx solid #46aa40;
+  width:50%;
+}
+
+.orderNav {
+  padding-bottom: 20rpx;
+}
+
+.orderNav .tab {
+  padding-right: 5rpx;
+  position: relative;
+}
+
+.orderNav .tab:before {
+  content: "";
+  position: absolute;
+  height: 2rpx;
+  width: 104%;
+  top: 50rpx;
+  left: 0;
+  background-color: #c0c0c0;
+  z-index: 0;
+}
+
+.bottomNav{
+  height: calc(100vh - var(--bottom-nav-height));
+}
+.class-con{
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+.class-item{
+  flex: 1;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.class-item-select{
+  flex: 1;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #4CAF50;
+  color: #4CAF50;
+}

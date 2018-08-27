@@ -1,0 +1,68 @@
+page {
+  background: #fff;
+}
+
+.title {
+  width: 526rpx;
+	font-size: 47rpx;
+	color: #000000;
+  margin: 0 auto;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.introduce {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 40rpx;
+  align-items: center;
+}
+
+.boxs {
+  margin-left: 10rpx;
+}
+
+.name {
+  font-size: 31rpx;
+	color: #000000;
+}
+
+.answer {
+  font-size: 22rpx;
+	color: #000000;
+}
+
+.comment {
+  font-size: 30rpx;
+	color: #5d5d5d;
+}
+
+.box {
+  width: 670rpx;
+  line-height: 44rpx;
+  margin-top: 20rpx;
+  padding: 0 40rpx;
+}
+
+.img {
+  margin: 0 auto;
+}
+
+.footer {
+   display: flex;
+   justify-content: space-around;
+   padding: 40rpx 0;
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 750rpx;
+   border-top: 1rpx solid #b5b5b5;
+   background: #fff;
+}
+
+.icontxt {
+  font-size: 24rpx;
+	color: #000000;
+}

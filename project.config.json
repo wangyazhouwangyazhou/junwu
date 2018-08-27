@@ -1,0 +1,313 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.93",
+	"appid": "wx8a50e2a7fd942838",
+	"projectname": "%E5%86%9B%E6%AD%A6%E6%AC%A1%E4%BD%8D%E9%9D%A2%E7%B2%BE%E9%80%89",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 43,
+			"list": [
+				{
+					"id": -1,
+					"name": "wd-detail",
+					"pathName": "pages/wd/wd-detail/wd-detail",
+					"query": "id=2"
+				},
+				{
+					"id": -1,
+					"name": "my",
+					"pathName": "pages/my/my",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "submy",
+					"pathName": "pages/my/submy/submy",
+					"query": "id=2"
+				},
+				{
+					"id": -1,
+					"name": "wd-hd",
+					"pathName": "pages/wd/wd-hd/wd-hd",
+					"query": "id=2"
+				},
+				{
+					"id": 4,
+					"name": "问答回答详情",
+					"pathName": "pages/wd/wd-hd/wd-hd",
+					"query": "id=72&qid=18"
+				},
+				{
+					"id": -1,
+					"name": "我的页面",
+					"pathName": "pages/my/my",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "回答问题",
+					"pathName": "pages/wd/wd-detail/wd-detail",
+					"query": "id=2"
+				},
+				{
+					"id": 7,
+					"name": "问答详情",
+					"pathName": "pages/wd/wd-detail/wd-detail",
+					"query": "id=1659"
+				},
+				{
+					"id": -1,
+					"name": "问答列表",
+					"pathName": "pages/wd/wd",
+					"query": "id=17"
+				},
+				{
+					"id": 9,
+					"name": "问答详情",
+					"pathName": "pages/wd/wd-hd/wd-hd",
+					"query": "id=19"
+				},
+				{
+					"id": -1,
+					"name": "专题页",
+					"pathName": "pages/topic/topic-list/index",
+					"query": "id=4"
+				},
+				{
+					"id": -1,
+					"name": "提问页面",
+					"pathName": "pages/wd/question",
+					"query": "id=4"
+				},
+				{
+					"id": -1,
+					"name": "提问页面",
+					"pathName": "pages/wd/question",
+					"query": "id=4"
+				},
+				{
+					"id": -1,
+					"name": "常见问题",
+					"pathName": "pages/faq/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "编辑用户信息",
+					"pathName": "pages/my/edit",
+					"query": ""
+				},
+				{
+					"id": 15,
+					"name": "视频详情",
+					"pathName": "pages/video/video-detail/index",
+					"query": "id=1348",
+					"scene": "1031"
+				},
+				{
+					"id": -1,
+					"name": "评论页",
+					"pathName": "pages/reply/index",
+					"query": "id=1348"
+				},
+				{
+					"id": 17,
+					"name": "文章详情",
+					"pathName": "pages/article/index",
+					"query": "id=3698"
+				},
+				{
+					"id": -1,
+					"name": "全部评论",
+					"pathName": "pages/reply/all",
+					"query": "id=1348"
+				},
+				{
+					"id": -1,
+					"name": "搜索页面",
+					"pathName": "pages/search/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "专题列表",
+					"pathName": "pages/topic/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的预约",
+					"pathName": "pages/my/order/index",
+					"query": "id=1659"
+				},
+				{
+					"id": -1,
+					"name": "专题汇总",
+					"pathName": "pages/topic/list",
+					"query": "id=1659"
+				},
+				{
+					"id": -1,
+					"name": "专题列表页",
+					"pathName": "pages/topic/topic-list/index",
+					"query": "id=18"
+				},
+				{
+					"id": -1,
+					"name": "wd-phone",
+					"pathName": "pages/my/phone/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "节目",
+					"pathName": "pages/topic/index",
+					"query": ""
+				},
+				{
+					"id": 26,
+					"name": "霍金",
+					"pathName": "pages/article/index",
+					"query": "id=1480&from=mp",
+					"scene": "1037",
+					"referrerInfo": {
+						"appId": "2222",
+						"extraData": "222"
+					}
+				},
+				{
+					"id": 27,
+					"name": "专辑",
+					"pathName": "pages/album/index",
+					"query": "id=109&tit=诺曼底登陆",
+					"scene": "1001"
+				},
+				{
+					"id": 28,
+					"name": "分享",
+					"pathName": "pages/share/index",
+					"query": "id=3378&type=1",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "列表",
+					"pathName": "pages/topic/list",
+					"query": ""
+				},
+				{
+					"id": 30,
+					"name": "123",
+					"pathName": "pages/video/video-detail/index",
+					"query": "id=1470"
+				},
+				{
+					"id": 31,
+					"name": "评论",
+					"pathName": "pages/reply/index",
+					"query": "id=123&type=3&aid=1480",
+					"scene": "1001"
+				},
+				{
+					"id": 32,
+					"name": "评论2",
+					"pathName": "pages/reply/replyList",
+					"query": "id=331&aid=1480",
+					"scene": "1001"
+				},
+				{
+					"id": 33,
+					"name": "视频",
+					"pathName": "pages/video/video-detail/index",
+					"query": "id=3335",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "芳华",
+					"pathName": "pages/article/index",
+					"query": "id=3206",
+					"scene": "1001"
+				},
+				{
+					"id": 35,
+					"name": "文章分享页面",
+					"pathName": "pages/share/index",
+					"query": "id=3324&type=1"
+				},
+				{
+					"id": -1,
+					"name": "ence_push",
+					"pathName": "pages/ence_push/ence_push",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "草稿箱",
+					"pathName": "pages/my/draft/index",
+					"query": ""
+				},
+				{
+					"id": 38,
+					"name": "问答详情",
+					"pathName": "pages/wd/wd-detail/wd-detail",
+					"query": "id=1979"
+				},
+				{
+					"id": 39,
+					"name": "回答",
+					"pathName": "pages/wd/answer/index",
+					"query": "id=19"
+				},
+				{
+					"id": 40,
+					"name": "海报页面",
+					"pathName": "pages/wd/posters/index",
+					"query": "id=1941"
+				},
+				{
+					"id": -1,
+					"name": "截图猜冠军",
+					"pathName": "pages/reply/all",
+					"query": "id=3563"
+				},
+				{
+					"id": -1,
+					"name": "PK",
+					"pathName": "pages/pk/index",
+					"query": ""
+				},
+				{
+					"id": 43,
+					"name": "PK-detail",
+					"pathName": "pages/pk/detail",
+					"query": "id=3991"
+				}
+			]
+		}
+	}
+}

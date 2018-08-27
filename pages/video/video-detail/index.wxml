@@ -1,0 +1,145 @@
+<import src="/template/praise/index.wxml" />
+<import src="/template/video/index.wxml" />
+<import src="/template/share/index.wxml" />
+<import src="/template/reply/index.wxml" />
+<import src="/template/reply/list.wxml" /> 
+
+<view hidden="{{isShow}}">
+  <view class="videoCover" style="padding:0rpx;height: 422rpx;width: 100%;;width: 100%">
+    <block wx:if="{{maskHidden}}">
+      <video id="video" src="{{url}}" style="height: 422rpx;width: 100%;" show-center-play-btn="" autoplay="{{autoplay}}" objectFit="contain" bindtimeupdate='update' bindpause='pause'>
+        <cover-view wx:if="{{hiddenVideoShow}}">
+          <cover-image src="{{cover}}" style="width: 100%;height: 422rpx;" bindtap="playVideo"/>
+          <cover-image src="/images/play.png" style="width: 80rpx;height: 80rpx;position: absolute; top:171rpx;left:335rpx;" bindtap="playVideo"/>
+        </cover-view>
+      </video>
+    </block>
+    <block wx:else>
+      <view style="height: 422rpx;width: 100%;">
+        <image src="{{cover}}" style="width: 100%;height: 422rpx;"/>
+        <image src="/images/play.png" style="width: 80rpx;height: 80rpx;position: absolute; top:171rpx;left:335rpx;"/>
+      </view>
+    </block>
+  </view>
+
+  <view style="font-size: 30rpx;padding:23rpx;background-color: #fff;margin-bottom: 4rpx;">{{shareTitle}}</view>
+  <view style="font-size: 24rpx;padding:25rpx;background-color: #fff;margin-bottom: 4rpx;color:#868686;">
+    <view>影片时长：{{shareTime}}</view>
+    <view style="margin-top: 31rpx;">{{shareDesc}}</view>
+    <view style="margin-top: 41rpx;">
+      <view class="flex justify-between" style="margin:0rpx 87rpx 20rpx 87rpx;">
+        <view style="border-radius: 10rpx;background-color: #FFFFFF;border:2rpx solid #C7C7C7;padding:10rpx 34rpx;min-width: 120rpx;">
+        
+          <block wx:if="{{is_login}}">
+            <form bindsubmit="onTapPraise" report-submit="true" data-id='{{id}}' data-state='{{is_praise}}'>
+              <button formType="submit" style='line-height:1.2;background:rgba(0,0,0,0);'>
+                <view class="flex">
+                  <image src="/images/{{is_praise ? 'icon-praise_s' : 'icon-praise'}}.png" style="width: 31rpx;height: 36rpx;"/>
+                  <view style="font-size: 26rpx;color:#46aa40;margin:5rpx 10rpx;">{{praise_count || 0}}</view>
+                </view>
+              </button>
+            </form>
+          </block>
+
+          <block wx:else>
+            <button class='button_new_style' open-type='getUserInfo' bindgetuserinfo='getuser' data-type='6' style='line-height:1.2;background:rgba(0,0,0,0);'>
+              <view class="flex" style='justify-content:center'>
+                <image src="/images/{{is_praise ? 'icon-praise_s' : 'icon-praise'}}.png" style="width: 31rpx;height: 36rpx;"/>
+                <view style="font-size: 26rpx;color:#46aa40;margin:5rpx 10rpx;">{{praise_count || 0}}</view>
+              </view>
+            </button>
+          </block>
+        </view>
+        <view style="border-radius: 10rpx;background-color: #FFFFFF;border:2rpx solid #C7C7C7;padding:10rpx 34rpx;min-width: 120rpx;">
+          <block wx:if="{{is_login}}">
+            <view class="flex" bindtap="onTapMark">
+              <image style="width: 40rpx;height: 40rpx;" src="/images/{{is_favorite ? 'icon-mark-s' : 'icon-mark'}}.png"/>
+              <view style="font-size: 24rpx;margin:5rpx 10rpx;">收藏</view>
+            </view>
+          </block>
+
+          <block wx:else>
+            <button class='button_new_style' open-type='getUserInfo' bindgetuserinfo='getuser' data-type='1' style='line-height:1.2;background:rgba(0,0,0,0);'>
+            <view class="flex" bindtap="onTapMark">
+                <image style="width: 40rpx;height: 40rpx;" src="/images/{{is_favorite ? 'icon-mark-s' : 'icon-mark'}}.png"/>
+                <view style="font-size: 24rpx;margin:5rpx 10rpx;">收藏</view>
+              </view>
+            </button>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class='suspension'>
+      <image src='/images/comment.png' class='comment' bindtap='gotohome'></image>
+
+      <block wx:if='{{is_login}}'>
+        <image src='/images/shares.png' class='share' bindtap='onTapShare' data-id='{{id}}'></image>
+      </block>
+
+      <block wx:else>
+        <button open-type='getUserInfo' bindgetuserinfo='getuser' style='background:#fff;padding:0;margin:0 25rpx' hover-class='none' data-type='2' data-id='{{id}}'>
+          <image src='/images/shares.png' class='share'></image>
+        </button>
+      </block>
+
+      <block wx:if='{{is_login}}'>
+          <image src='/images/comments.png' class='comment' bindtap='pageToReply'></image>
+      </block>
+
+      <block wx:else>
+        <button open-type='getUserInfo' bindgetuserinfo='getuser' style='background:#fff;padding:0;margin:0 25rpx' hover-class='none' data-type='3'>
+          <image src='/images/comments.png' class='comment'></image>
+        </button>
+      </block>
+
+      <text class='commentNum'>{{commentCount}}</text>
+      <!-- <image src='/images/video.png' class='articlep' wx:if='{{showImg}}'></image> -->
+    </view>
+
+  </view>
+      <view style='	font-size: 36rpx;color: #000000;text-align:center;background:#fff;border-bottom: 4rpx solid #f8f8f8;padding-bottom:10rpx'>评论区 ({{commentCount}})
+    </view>
+
+  <template is="ReplyList" data="{{digestList, totalList, id, commentCount,imglist,is_login}}"></template>  
+
+  <view>
+    <template is="imgs" data="{{share_record}}"></template>
+  </view> 
+
+  <!-- <view style="font-size: 30rpx;background-color: #fff;" wx:if="{{tag_relatelist.length > 0}}">
+    <template is="Video_2" data="{{tag_relatelist,title}}"></template>
+  </view> -->
+
+  <view class="TAC">
+  	<image src='/images/junwu-logo.png' style='margin-top:30rpx;margin-bottom:-15rpx;width:135rpx;height:40rpx;margin-left:310rpx;'></image>
+  </view>
+  <!-- <view style="padding-bottom: 150rpx;"></view> -->
+
+
+<!-- <template is="Reply" data="{{is_favorite, is_share, isIphoneX, id, commentCount, isShow,is_login}}"></template>  -->
+<!--分享-->
+<!-- <template is="Share_1" data="{{width,height,cover,shareTitle,share_view,maskHidden}}"></template> -->
+</view>
+<view wx:if="{{isReply}}">
+  <form bindsubmit="onSubmitForm" report-submit>
+    <view style="width: 750rpx;height: 669rpx;background-color: #fff;position: absolute;top:0;left: 0;">
+      <textarea placeholder="发表你的观点" style="margin: 26rpx;border: 2rpx solid #575757;height: 545rpx;width:658rpx;background-color: #FFFFFF;border-radius: 10rpx;padding:20rpx;font-size: 30rpx;color:#999999;" name="description" maxlength="400"/>
+      <view style='display:flex;justify-content:flex-start'>
+        <view  class='uploadimg' wx:if="{{!uploadimgs == ''}}"> 
+          <image src='{{uploadimgs}}' style='width: 198rpx;height: 203rpx'>
+            <view class='uploadimg-close' data-index='0' bindtap='removeupload'>X</view>
+          </image>
+        </view> 
+
+        <view style='	width: 198rpx;height: 203rpx;background-color: #ffffff;border-radius: 10rpx;border: solid 2rpx #575757;line-height:203rpx;text-align:center;margin-left:26rpx' bindtap='uploadPicture'>
+          <view style='font-size: 42px;color:#ccc'>+</view>
+        </view> 
+      </view>
+
+    </view>
+    <view style="position: fixed;bottom: 50rpx;width:100%;" class='footer'>
+      <view class='rem' bindtap='hideForm'>取消</view>
+      <button type="primary" formType="submit" disabled="{{disabled}}" class='btn'> 提交 </button>
+    </view>
+  </form> 
+</view>

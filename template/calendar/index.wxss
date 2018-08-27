@@ -1,0 +1,73 @@
+page{
+    --year-color: #666;
+    --week-color: #999;
+    --day-color: #333;
+}
+.calendar{
+    padding: 0 30rpx;
+    background-color: #fff;
+}
+
+.calendar .fs24 {
+  font-size: 24rpx;
+}
+.calendar .fs28 {
+  font-size: 28rpx;
+}
+.calendar .fs32 {
+  font-size: 32rpx;
+}
+.calendar .fs36 {
+  font-size: 36rpx;
+}
+
+.calendar .top-handle {
+  color: var(--year-color);
+    height: 80rpx;
+}
+.calendar .prev {
+    text-align: right;
+    height: 80rpx;
+}
+.calendar .next {
+    height: 80rpx;
+}
+.calendar .prev-handle {
+    width: 80rpx;
+    height: 100%;
+}
+.calendar .next-handle {
+    width: 80rpx;
+    height: 100%;
+}
+.calendar .date-area {
+    width: 50%;
+    height: 80rpx;
+    text-align: center;
+}
+.calendar .weeks {
+    height: 50rpx;
+    color: var(--week-color);
+    line-height: 50rpx;
+}
+.calendar .week {
+    text-align: center;
+}
+.calendar .days {
+    height: 500rpx;
+}
+.calendar .grid {
+    width: calc(100% / 7);
+}
+.calendar .day {
+    box-sizing: border-box;
+    width: 60rpx;
+    height: 60rpx;
+    color: var(--day-color);
+    font-size: 26rpx;
+    border-radius: 50%;
+}
+.calendar .checked{
+    color: #fff;
+    background-color: var(--main-color)
+}

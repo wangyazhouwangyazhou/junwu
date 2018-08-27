@@ -1,0 +1,24 @@
+page{
+  background: #fff;
+}
+
+.postTxt {
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.inputRow {
+  background-color: #fff;
+  padding: 30rpx 0;
+  padding-left: 20rpx;
+  padding-right: 5rpx;
+  border-top: 2rpx solid #f3f3f3;
+}
+
+.item-content-read{
+  float:left;
+  margin-left:10rpx;
+  color:#bbb;
+}

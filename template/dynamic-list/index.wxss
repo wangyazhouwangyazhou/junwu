@@ -1,0 +1,50 @@
+
+.dynamic-wrapper{
+  padding: 25rpx 20rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+
+  --grid-width: 160rpx;
+}
+
+.dynamic-avatar{
+  width: 88rpx;
+  height: 88rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+.dynamic-name{
+  color: #333;
+  font-size: 28rpx;
+  line-height: 44rpx;
+}
+.dynamic-date{
+  color: #929292;
+  font-size: 24rpx;
+}
+.dynamic-content{
+  padding-top: 20rpx;
+  color: #333;
+  font-size: 32rpx;
+  line-height: 42rpx;
+}
+
+.dynamic-pic-list{
+  width: calc(var(--grid-width) * 3.5);
+  padding-top: 20rpx;
+  padding-bottom: 30rpx;
+}
+.dynamic-grid{
+  box-sizing: border-box;
+  width: var(--grid-width);
+  height: var(--grid-width);
+  padding-right: 10rpx;
+  padding-bottom: 10rpx;
+}
+.dynamic-pic-list.grid-2{
+  width: calc(var(--grid-width) * 2.5);
+}
+.dynamic-pic-list.grid-1 image{
+  width: calc(var(--grid-width) * 2.5);
+  height: calc(var(--grid-width) * 2.5);
+}

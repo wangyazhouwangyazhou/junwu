@@ -1,0 +1,306 @@
+<import src="/template/feed/index.wxml"/>
+
+<block wx:if="{{versionCheck == 0}}">
+  <view style="margin: 10rpx 20rpx;">
+    <view class="flex" style="position: relative;background-color: #FFF;height:55rpx;border-radius:30rpx;padding:5rpx;width:700rpx;border:2rpx solid #46aa40;" bindtap="goToSearch">
+      <view style="background-color: #46aa40;width: 160rpx;line-height:65rpx;border-radius:30rpx;position:absolute;top:0rpx;left:-5rpx;z-index:9999;" class="flex">
+        <image src="/images/video-search.png" style="width: 40rpx; height: 40rpx;margin: 10rpx 15rpx;"/>
+        <text style="font-size: 32rpx;color:#FFF;">搜索</text>
+      </view>
+    </view>
+  </view>
+
+  <swiper style="height: 400rpx;" indicator-dots autoplay circular interval="3000" indicator-active-color="#46aa40">
+    <form bindsubmit="pushFormSubmit" report-submit>
+      <swiper-item wx:for="{{bannerList}}">  
+        <navigator url="/{{item.link}}" open-type="navigate" hover-class="none">
+          <button form-type="submit" hover-class="none" plain='true' style="border:none;border-radius:0;width:750rpx;height:400rpx;padding: 0 0;">
+            <image src="{{item.url}}" style="width:750rpx;height: 400rpx;"></image>
+          </button>
+        </navigator> 
+      </swiper-item>
+    </form>
+  </swiper>
+
+  <view style="margin-top: 4rpx;background-color: #FFFFFF;">
+    <view style="padding: 30rpx 35rpx 10rpx 35rpx;">
+      <image src="/images/video-digest.png" style='width:173rpx;height:36rpx;'></image>
+    </view>
+    <view class="nav" style="height: 84rpx;">
+      <view class="flex align-center">
+          <block wx:for="{{typeList}}">
+            <view class="{{tabCurrent == index ? 'current' : ''}} tab flex-none" data-tid="{{item.id}}" id="{{index}}" bindtap="changeTab">
+              {{item.name}}
+            </view>
+          </block>
+      </view>
+    </view>
+    
+    <view class="digestNav">
+      <form bindsubmit="pushFormSubmit" report-submit>
+        <swiper next-margin="93rpx" style="height: 440rpx;" current="{{current}}">
+          <swiper-item wx:for="{{videoList}}">
+            <view class="flex">
+              <block wx:for="{{item}}">
+                <navigator url="/{{item.link}}" open-type="navigate" hover-class="none" style="margin-right: 9rpx;"  hover-class="none">
+                  <button form-type="submit" hover-class="none" plain='true' style="border:none;border-radius:0;padding: 0 0;">
+                      <image src="{{item.cover}}" style="width: 212rpx;height: 280rpx;"></image>
+                       <view style="width:212rpx"> 
+                        <view style="text-align:left;font-size: 26rpx;line-height:40rpx;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;margin: 40rpx 13rpx 40rpx 17rpx;">{{item.title}}</view>
+                       </view> 
+                  </button>
+                </navigator>
+              </block> 
+            </view>
+          </swiper-item>
+        </swiper>
+      </form>
+    </view>
+  </view>
+
+  <view style='background:#fff;' wx:for="{{topList}}">
+    <view style='display:flex;justify-content:space-between;height:87rpx;background:#fff;margin-top:4rpx;align-items:flex-end'>
+      <view style='color:#000;font-size: 36rpx;margin-left:35rpx;font-weight: 800;margin-bottom:20rpx'>{{item.title}}</view>
+      <view style='color: #26211c;;font-size: 24rpx;margin-right:34rpx;margin-bottom:20rpx' bindtap='more' data-id='{{item.id}}'>查看更多></view>
+    </view>
+
+    <view style='display:flex;;flex-wrap: wrap;justify-content:space-between'>
+      <view wx:for="{{item.itemlist}}">
+        <form bindsubmit="pushFormSubmit" report-submit>
+          <navigator url='/{{item.link}}' style='display:inline-block;' hover-class="none">
+              <button form-type="submit" hover-class="none" plain='true' style="border:none;border-radius:0;;padding: 0 0;width: 372rpx;">
+                <image src='{{item.cover}}' style='width: 372rpx;height: 221rpx;'/>
+                <view style='font-size: 29rpx;color: #000000;text-align: center;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;line-height:36rpx;margin:28rpx 36rpx 32rpx 17rpx'>{{item.title}}</view>
+              </button>
+          </navigator>
+        </form>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- <view style="margin-top: 4rpx;background-color: #FFFFFF;">
+    <view style="padding: 30rpx 35rpx 0rpx 35rpx;" class="flex justify-between">
+      <image src="/images/video-new.png" style='width:173rpx;height:36rpx;'></image>
+      <view style="font-size: 24rpx;color:#868686;margin: auto 0;">
+        <navigator url="/pages/my/order/index" hover-class="none">我的预约></navigator>
+      </view>
+    </view>
+    <view class="orderNav">
+      <swiper next-margin="102rpx" style="height: 430rpx;">
+        <swiper-item wx:for="{{orderList}}">
+          <view class="flex">
+            <block wx:for="{{item}}" wx:for-index="key">
+              <view class="tab">
+                <view style="text-align: center;margin: 30rpx 40rpx 10rpx 40rpx;font-size: 30rpx;background-color: #FFF;position: relative;">
+                  {{item.publish_time}}
+                </view>
+                <view style="width: 212rpx;height: 280rpx;">
+                  <image src="{{item.cover}}" style="width: 212rpx;height: 280rpx;"/>
+                </view>
+                <view style="text-align: center;padding:20rpx 0rpx;">
+                  <block wx:if="{{item.is_subscribe == 1}}">
+                    <form bindsubmit="subscribeSubmit" id="{{index}}" data-key="{{key}}" data-pid="{{item.id}}" data-status="{{item.is_subscribe}}" report-submit>
+                      <button style="font-size: 24rpx;border-radius: 10rpx;background-color: #efefef;margin:0 auto;padding: 2rpx 10rpx;color:#46aa40;width:135rpx;line-height: 36rpx;" class="flex" hover-class="none" formType="submit" >
+                        <image src="/images/video-order-success.png" style="width:19rpx;height:15rpx;margin:8rpx;"></image>
+                        <view>已预约</view>
+                      </button>
+                    </form>
+                  </block>
+                  <block wx:elif="{{item.is_subscribe == 0}}">
+                    <form bindsubmit="subscribeSubmit" id="{{index}}" data-key="{{key}}" data-pid="{{item.id}}" data-status="{{item.is_subscribe}}" report-submit>
+                      <button style="font-size: 24rpx;border-radius: 10rpx;background-color: #efefef;margin:0 auto;padding: 2rpx 10rpx;color:#46aa40;width:115rpx;line-height: 36rpx;" class="flex" hover-class="none" formType="submit" >
+                        <image src="/images/video-icon-order.png" style="width:15rpx;height:19rpx;margin:8rpx;"></image>
+                        <view>预约</view>
+                      </button>
+                    </form>
+                  </block>
+                  <block wx:else>
+                    <view style="font-size: 24rpx;border-radius: 10rpx;text-align:center;background-color: #efefef;margin:0 auto;padding: 2rpx 10rpx;color:#46aa40;width:125rpx;line-height: 36rpx;">
+                        敬请期待
+                    </view>
+                  </block>
+                </view>
+              </view>
+            </block>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view> -->
+
+  <view style='background-color: #FFFFFF;margin-top:4rpx'>
+    <view style="padding: 28rpx 35rpx 40rpx 35rpx;align-items:flex-end" class="flex justify-between">
+      <image src="/images/video-zhuanti.png" style='width:178rpx;height:39rpx;'></image>
+      <text style='	font-size: 24rpx;color: #26211c;margin-bottom:-2rpx' bindtap='lookmore'>查看更多></text>
+    </view>
+
+
+    <form bindsubmit="pushFormSubmit" report-submit>
+      <swiper next-margin="93rpx" style="height: 440rpx;" current="{{current}}">
+        <swiper-item wx:for="{{handpickList}}">
+          <view class="flex">
+            <block wx:for="{{item}}">
+              <navigator open-type="navigate" hover-class="none" style="margin-right: 9rpx;" url='/pages/topic/topic-list/index?id={{item.id}}&tit={{item.title}}'>
+                <button plain="true" style="border:none;height: 440rpx;text-align: left;padding:0rpx;;border-radius:0;" hover-class="none" formType="submit">
+                  <image src="{{item.cover}}" style="width: 212rpx;height: 280rpx;"></image>
+                  <view style="text-align:center;width:212rpx">
+                    <view style="font-size: 26rpx;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;line-height:40rpx;margin-top:4rpx;text-align:left;margin: 40rpx 13rpx 40rpx 17rpx;">{{item.title}}</view>
+                  </view>
+                </button>
+              </navigator>
+            </block>
+          </view>
+        </swiper-item>
+      </swiper>
+    </form> 
+  </view>
+
+  <!-- <view style="margin-top: 4rpx;background-color: #FFFFFF;">
+    <view style="padding: 30rpx 35rpx 0rpx 35rpx;" class="flex justify-between">
+      <image src="/images/video-topic.png" style='width:181rpx;height:36rpx;'></image>
+      <view style="font-size: 24rpx;color:#868686;margin: auto 0;">
+        <navigator url="/pages/topic/list" hover-class="none">查看全部></navigator>
+      </view>
+    </view>
+    <view style="margin-top: 35rpx;" class="flex wrap">
+      <view style="width: {{topList[0].width}}rpx;height: {{topList[0].height}}rpx;margin-right: {{topList[0].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[0].cover}}) no-repeat;background-size:{{topList[0].width}}rpx {{topList[0].height}}rpx;background-color: #efefef;">
+        <navigator style="margin:{{topList[0].top || 30}}rpx 0rpx;" url="/pages/topic/topic-list/index?id={{tname[0].id}}" hover-class="none">
+            <view>{{tname[0].title}}</view>
+            <view>{{tname[0].resource_count}}篇内容</view>
+        </navigator>
+      </view>
+      <view style="width: {{topList[1].width}}rpx;height: {{topList[1].height}}rpx;margin-right: {{topList[1].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[1].cover}}) no-repeat;background-size:{{topList[1].width}}rpx {{topList[1].height}}rpx;background-color: #efefef;">
+        <navigator style="margin:{{topList[1].top || 30}}rpx 0rpx;" url="/pages/topic/topic-list/index?id={{tname[1].id}}" hover-class="none">
+            <view>{{tname[1].title}}</view>
+            <view>{{tname[1].resource_count}}篇内容</view>
+        </navigator>
+      </view>
+      <view style="width: {{topList[2].width}}rpx;height: {{topList[2].height}}rpx;margin-right: {{topList[2].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[2].cover}}) no-repeat;background-size:{{topList[2].width}}rpx {{topList[2].height}}rpx;background-color: #efefef;">
+        <navigator style="margin:{{topList[2].top || 30}}rpx 0rpx;" url="/pages/topic/topic-list/index?id={{tname[2].id}}" hover-class="none">
+            <view>{{tname[2].title}}</view>
+            <view>{{tname[2].resource_count}}篇内容</view>
+        </navigator>
+      </view>
+      <view style="width: {{topList[3].width}}rpx;height: {{topList[3].height}}rpx;margin-right: {{topList[3].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[3].cover}}) no-repeat;background-size:{{topList[3].width}}rpx {{topList[3].height}}rpx;background-color: #efefef;">
+        <navigator style="margin:{{topList[3].top || 30}}rpx 0rpx;" url="/pages/topic/topic-list/index?id={{tname[3].id}}" hover-class="none">
+            <view>{{tname[3].title}}</view>
+            <view>{{tname[3].resource_count}}篇内容</view>
+        </navigator>
+      </view>
+      <view style="width: 307rpx;height: {{topList[4].height}}rpx;margin-right: {{topList[4].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[4].cover}}) no-repeat;background-size:307rpx {{topList[4].height}}rpx;background-color: #efefef;">
+        <navigator style="margin:{{topList[4].top || 30}}rpx 0rpx;" url="/pages/topic/topic-list/index?id={{tname[4].id}}" hover-class="none">
+            <view>{{tname[4].title}}</view>
+            <view>{{tname[4].resource_count}}篇内容</view>
+        </navigator>
+      </view>
+      <view style="width: {{topList[5].width}}rpx;height: {{topList[5].height}}rpx;margin-right: {{topList[5].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[5].cover}}) no-repeat;background-size:{{topList[5].width}}rpx {{topList[5].height}}rpx;background-color: #efefef;">
+        <navigator style="margin:{{topList[5].top || 30}}rpx 0rpx;" url="/pages/topic/topic-list/index?id={{tname[5].id}}" hover-class="none">
+            <view>{{tname[5].title}}</view>
+            <view>{{tname[5].resource_count}}篇内容</view>
+        </navigator>
+      </view>
+      <view style="width: {{topList[6].width}}rpx;height: {{topList[6].height}}rpx;margin-right: {{topList[6].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[6].cover}}) no-repeat;background-size:{{topList[6].width}}rpx {{topList[6].height}}rpx;background-color: #efefef;">
+        <navigator style="margin:{{topList[6].top || 30}}rpx 0rpx;" url="/pages/topic/topic-list/index?id={{tname[6].id}}" hover-class="none">
+            <view>{{tname[6].title}}</view>
+            <view>{{tname[6].resource_count}}篇内容</view>
+        </navigator>
+      </view>
+      <view style="width: {{topList[7].width}}rpx;height: {{topList[7].height}}rpx;margin-right: {{topList[7].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[7].cover}}) no-repeat;background-size:{{topList[7].width}}rpx {{topList[7].height}}rpx;background-color: #efefef;">
+        <navigator style="margin:{{topList[7].top || 30}}rpx 0rpx;" url="/pages/topic/topic-list/index?id={{tname[7].id}}" hover-class="none">
+            <view>{{tname[7].title}}</view>
+            <view>{{tname[7].resource_count}}篇内容</view>
+        </navigator>
+      </view>
+      <view style="width: {{topList[8].width}}rpx;height: {{topList[8].height}}rpx;margin-right: {{topList[8].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[8].cover}}) no-repeat;background-size:{{topList[8].width}}rpx {{topList[8].height}}rpx;background-color: #efefef;">
+        <navigator style="margin:{{topList[8].top || 30}}rpx 0rpx;" url="/pages/topic/topic-list/index?id={{tname[8].id}}" hover-class="none">
+            <view>{{tname[8].title}}</view>
+            <view>{{tname[8].resource_count}}篇内容</view>
+        </navigator>
+      </view>
+      <view style="width: 166rpx;height: {{topList[9].height}}rpx;margin-right: {{topList[9].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[9].cover}}) no-repeat;background-size:166rpx {{topList[9].height}}rpx;background-color: #efefef;">
+        <navigator style="margin:{{topList[9].top || 30}}rpx 0rpx;" url="/pages/topic/topic-list/index?id={{tname[9].id}}" hover-class="none">
+            <view>{{tname[9].title}}</view>
+            <view>{{tname[8].resource_count}}篇内容</view>
+        </navigator>
+      </view>
+      <view style="width: {{topList[10].width}}rpx;height: {{topList[10].height}}rpx;margin-right: {{topList[10].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[10].cover}}) no-repeat;background-size:{{topList[10].width}}rpx {{topList[10].height}}rpx;background-color: #efefef;">
+        <navigator style="margin:{{topList[10].top || 30}}rpx 0rpx;" url="/pages/topic/topic-list/index?id={{tname[10].id}}" hover-class="none">
+            <view>{{tname[10].title}}</view>
+            <view>{{tname[10].resource_count}}篇内容</view>
+        </navigator>
+      </view>
+      <view style="width: {{topList[11].width}}rpx;height: {{topList[11].height}}rpx;margin-right: {{topList[11].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[11].cover}}) no-repeat;background-size:{{topList[11].width}}rpx {{topList[11].height}}rpx;background-color: #efefef;">
+        <navigator style="margin:{{topList[11].top || 30}}rpx 0rpx;" url="/pages/topic/topic-list/index?id={{tname[11].id}}" hover-class="none">
+            <view>{{tname[11].title}}</view>
+            <view>{{tname[11].resource_count}}篇内容</view>
+        </navigator>
+      </view>
+      <view style="width: 307rpx;height: {{topList[12].height}}rpx;margin-right: {{topList[12].distance}}rpx;color:#FFF;font-size:24rpx;text-align: center;margin-bottom:4rpx;background: url({{topList[12].cover}}) no-repeat;background-size:307rpx {{topList[12].height}}rpx;background-color: #efefef;">
+        <navigator url="/pages/topic/list" hover-class="none" style="margin:30rpx 0rpx;">
+          <view>点击查看</view>
+          <view>更多专题</view>
+        </navigator>
+      </view>
+    </view>
+  </view> -->
+
+  <view style='background:#fff;' wx:for="{{bottomList}}">
+    <view style='display:flex;justify-content:space-between;height:87rpx;background:#fff;margin-top:4rpx;align-items:flex-end'>
+      <view style='color:#000;font-size: 36rpx;margin-left:35rpx;font-weight: 800;margin-bottom:20rpx'>{{item.title}}</view>
+      <view style='color: #26211c;;font-size: 24rpx;margin-right:34rpx;margin-bottom:20rpx' bindtap='more' data-id='{{item.id}}'>查看更多></view>
+    </view>
+
+    <view style='display:flex;;flex-wrap: wrap;justify-content:space-between'>
+      <view wx:for="{{item.itemlist}}">
+        <form bindsubmit="pushFormSubmit" report-submit>
+          <navigator url='/{{item.link}}' style='display:inline-block;' hover-class="none">
+              <button form-type="submit" hover-class="none" plain='true' style="border:none;border-radius:0;;padding: 0 0;width: 372rpx;">
+                <image src='{{item.cover}}' style='width: 372rpx;height: 221rpx;'/>
+                <view style='font-size: 29rpx;color: #000000;text-align: center;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;line-height:36rpx;margin:28rpx 36rpx 32rpx 17rpx'>{{item.title}}</view>
+              </button>
+          </navigator>
+        </form>
+      </view>
+    </view>
+
+  </view>
+
+  <view>
+    <view style='	width: 100%;height: 80rpx;background-color: #fff;margin:4rpx 0;'>
+      <image src='/images/video-video.png' style='width:173rpx;height:35rpx;padding: 22rpx 0 0 35rpx'/>
+    </view>
+    <block wx:for="{{list}}">
+      <template is="video" data="{{item, index, maskHidden}}" />
+    </block>
+  </view>
+  <video src='{{videoUrl}}' autoplay style='width: 705rpx;height: 422rpx;position:absolute;top:{{offsetTop + 12}}px;left:25rpx' wx:if="{{video}}"></video>
+
+  <block wx:if="{{noMoreData}}">
+    <view style='width:750rpx;text-align:center;font-size:30rpx'>到底部了~</view>
+  </block>
+  <block wx:else>
+    <view style='width:750rpx;background:#efefef'>
+      <image src='/images/index-loding.gif' style='width:134rpx;height:40rpx;margin:0 auto'></image>
+    </view>
+  </block>
+  
+  <view class="TAC">
+    <image src='/images/junwu-logo.png' style='margin-top:60rpx;margin-bottom:-15rpx;width:135rpx;height:40rpx;margin-left:310rpx;'></image>
+  </view>
+
+</block>
+<block wx:else>
+  <view class="flex wrap" style="margin-top: 60rpx;font-size: 30rpx;">
+    <block wx:for="{{reviewList}}">
+    <navigator style="width: 300rpx;margin:35rpx;" url="/pages/topic/topic-list/index?id={{item.id}}" hover-class="none">
+      <view style="text-align: center;">
+        <image src="{{item.cover}}" style="width: 300rpx;height: 300rpx;border-radius:10rpx;"/>
+      </view>
+      <view style="margin-top: 10rpx;text-align: center;">{{item.resource_count}}</view>
+    </navigator>
+    </block>
+  </view>
+</block>
+
+

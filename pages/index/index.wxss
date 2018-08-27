@@ -1,0 +1,409 @@
+@import "/template/list/index.wxss";
+@import "/template/search/index.wxss";
+@import "/template/share/index.wxss";
+@import "/pages/wd/wd.wxss";
+
+page{
+  position: relative;
+}
+
+button::after{
+  border: none;
+}
+
+.search {
+  border-top: 2rpx solid #E2E2E2;
+}
+
+.vs {
+  width: 247rpx;
+  height: 117rpx;
+  position: absolute;
+  left: 269rpx;
+  top: 92rpx;
+}
+
+.index-left {
+  width: 40rpx;
+  height: 70rpx;
+  position: absolute;
+  left: 30rpx;
+  top: 180rpx;
+  z-index: 1000;
+}
+
+.index-right {
+  width: 40rpx;
+  height: 70rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 180rpx;
+  z-index: 1000;
+}
+
+.search .default {
+  line-height: 78rpx;
+  background-color: #FFFFFF;
+  border-radius: 10rpx;
+  margin:10rpx 20rpx;
+  color: #7d7d7d;
+  font-size: 28rpx;
+  width:710rpx;
+}
+
+.topnav {
+  overflow-x: scroll;
+  background-color: #F8F8F8;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  width: 100%;
+}
+
+.topnav .tab {
+  position: relative;
+
+  padding: 25rpx 10rpx 25rpx 0rpx;
+  font-size: 36rpx;
+  line-height: 29rpx;
+}
+
+.current {
+  color:#46aa40;
+  border-bottom: 2px solid #46aa40;
+}
+
+.topnav .current:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  right: 0;
+  top: 0rpx;
+  width: 0;
+  height: 0;
+}
+
+.load-con{
+  position: fixed;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+.load-con image{
+  margin: 0 auto;
+  padding-top: 370rpx;
+}
+.fixed-tool{
+  box-sizing: border-box;
+  position: fixed;
+  right: 30rpx;
+  bottom: 100rpx;
+  z-index: 99;
+  
+}
+.tool {
+  box-sizing: border-box;
+  width: 94rpx;
+  height: 94rpx;
+  margin-top: 20rpx;
+  padding: 20rpx;
+  border-radius: 50%;
+  background-color: #999;
+  color: #fff;
+}
+
+/* .swiper-wrapper {
+  display: block;
+  width: 100%; */
+  /* height: 260rpx; */
+/* } */
+/* .swiper-item { */
+  /* width: 100%; */
+  /* height: 260rpx; */
+/* } */
+/* .swiper-cover {
+  width: 100%;
+  height: 100%;
+} */
+
+.nav-wrapper {
+  height: 100rpx;
+  margin-top: 20rpx;
+  color: #fcfcfc;
+  font-size: 24rpx;
+  background-color: #333;
+}
+.nav-cover {
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: 2rpx;
+}
+
+.share-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 20rpx;
+  width: 180rpx;
+  height: 50rpx;
+  margin: 0 auto;
+  padding-left: 45rpx;
+  padding-right: 0;
+  border-radius: 25rpx;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-left: 4rpx solid #004F39;
+  border-right: 4rpx solid #004F39;
+}
+.share-wrapper::before,
+.share-wrapper::after {
+  box-sizing: border-box;
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  width: 25rpx;
+  height: 50rpx;
+  border-radius: 50rpx 0 0 50rpx;
+  border-top: 5rpx solid #004F39;
+  border-bottom: 5rpx solid #004F39;
+}
+.share-wrapper::before {
+  left: 0;
+  border-left: 5rpx solid #004F39;
+}
+
+.share-wrapper::after {
+  right: 0;
+  border-radius: 0 50rpx  50rpx 0;
+  border-right: 5rpx solid #004F39;
+}
+
+.share-cover {
+  box-sizing: border-box;
+  position: absolute;
+  left: 5rpx;
+  top: 5rpx;
+  width: 40rpx;
+  height: 40rpx;
+  padding: 8rpx;
+  border-radius: 50%;
+  background-color: #00684B;
+}
+.share-text {
+  width: 100%;
+  color: #FCFCFC;
+  font-size: 24rpx;
+}
+.update-item{
+  display: inline-block;
+  padding-right: 3rpx;
+  padding-top: 10rpx;
+}
+.update-item-black{
+  position: absolute;
+   background: rgba(0, 0, 0, 0.4); 
+  width: 100%;
+  height: 100%;
+}
+.wd-head image{
+  width:50rpx;
+  height:50rpx;
+  float: left;
+}
+.wd-more{
+  color: #999;
+  float: right;
+}
+.wd-body{
+  display: flex;
+  margin-top: 20rpx;
+}
+.wd-item-l{
+  flex: 1;
+  margin-right: 10rpx;
+  background:#eee;
+  padding-bottom: 30rpx;
+}
+.wd-item-r{
+  flex: 1;
+  margin-left: 10rpx;
+  background:#eee;
+  padding-bottom: 30rpx;
+}
+.wd-title{
+  margin: 25rpx 0rpx 35rpx 0rpx;
+  overflow:hidden; 
+  text-overflow:ellipsis; 
+  word-break: break-all;
+  -webkit-line-clamp: 3;  
+  -webkit-box-orient: vertical;  
+  display: -webkit-box;
+  color: #333;
+  font-size: 28rpx;
+  height: 120rpx;
+  padding:0rpx 24rpx;
+}
+.wd-bt{
+  margin: 0 auto;
+  width: 179rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  background: #46aa40;
+  font-size:28rpx;
+  color: #fff;
+  text-align: center;
+  padding: 6rpx 0rpx;
+  border-radius: 10rpx;
+}
+.maincon{
+  margin-top: -120rpx;
+  display: block;
+}
+.maincon-blur{
+  margin-top: -120rpx;
+  display: block;
+  filter: blur(10rpx);
+}
+.openimg-bg{
+  position: fixed;
+  top: 0rpx;
+  right: 0rpx;
+  left: 0rpx;
+  bottom: 0rpx;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+.openimg-con{
+  position: fixed;
+  top: 30rpx;
+  left: 53rpx;
+}
+.openimg-img2{
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 auto;
+  margin-top: 40rpx;
+}
+
+.pk {
+  padding: 16rpx 26rpx 0 26rpx;
+  position: relative;
+}
+
+.pk-img {
+  width: 347rpx;
+  height: 361rpx;
+}
+
+.pkback {
+  width: 697rpx;
+	height: 109rpx;
+	background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 26rpx;
+  bottom: 0;
+}
+
+.progress {
+  padding: 0 26rpx;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 4rpx
+}
+
+.progress2 {
+  padding: 0 26rpx;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  margin: 20rpx 0;
+}
+
+.progress-img {
+  width:176rpx;
+  height:150rpx;
+  position: absolute;
+  left: 290rpx;
+  top: -55rpx;
+}
+
+.color {
+  width: 138rpx;
+  height: 38rpx;
+}
+
+.comments {
+  /* width: 294rpx; */
+  height: 63rpx;
+  font-size: 24rpx;
+	color: #000000;
+  margin-bottom: 15rpx;
+  overflow:hidden; 
+  text-overflow:ellipsis; 
+  word-break: break-all;
+  -webkit-line-clamp: 2;  
+  -webkit-box-orient: vertical;  
+  display: -webkit-box;
+}
+
+.comments-name {
+  color: #55c5ff;
+}
+
+.comments-box {
+  display: flex;
+  justify-content: center;
+  width: 750rpx;
+  margin: 0 auto;
+}
+
+.comments-detail {
+  width: 262rpx;
+	height: 40rpx;
+	border-radius: 10rpx;
+	border: solid 2rpx #000000;
+  font-size: 24rpx;
+	color: #000000;
+  line-height: 40rpx;
+  text-align: center;
+  position: absolute;
+  left: 244rpx;
+  bottom: 20rpx;
+}
+
+.left {
+  font-size: 26rpx;
+	color: #000000;
+  position: absolute;
+  left: 220rpx;
+  bottom: 0rpx;
+}
+
+.right {
+  font-size: 26rpx;
+	color: #000000;
+  position: absolute;
+  right: 220rpx;
+  bottom: 0rpx;
+}
+
+.none {
+  width: 300rpx;
+  text-align: center;
+  font-size: 24rpx;
+}
+
+.pkTitle {
+  font-size:38rpx;
+  color:#ffffff;
+  text-align:center;
+  width: 698rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}

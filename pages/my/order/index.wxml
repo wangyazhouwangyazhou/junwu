@@ -1,0 +1,21 @@
+<view style="margin-top: 4rpx;padding: 10rpx 0rpx;background-color: #f8f8f8;font-size:30rpx;" class="flex justify-around"> 
+	<view style="color:{{tabCurrent == 0 ? '#46aa40' : ''}};" data-tabCurrent="0" bindtap="changeTab">已预约</view>
+	<view style="color:{{tabCurrent == 1 ? '#46aa40' : ''}};" data-tabCurrent="1" bindtap="changeTab">已上线</view>
+</view>
+<view style="margin-top: 4rpx;margin-bottom:4rpx;background-color: #f8f8f8;padding:0rpx 6rpx;" class="flex wrap">
+	<block wx:for="{{list}}">
+		<block wx:if="{{tabCurrent == 1}}">
+			<view style="padding: 25rpx 6rpx;border-bottom: 4rpx solid #efefef;" data-vid="{{item.id}}" bindtap="goToDetail">
+				<image src="{{item.cover}}" style="width: 235rpx;height: 310rpx;background-color:#efefef;"></image>
+				<view style="margin-top: 24rpx;text-align: center;font-size:30rpx;">{{item.title}}</view>
+			</view>
+		</block>
+		<block wx:if="{{tabCurrent == 0}}">
+			<view style="padding: 25rpx 6rpx;border-bottom: 4rpx solid #efefef;">
+				<image src="{{item.cover}}" style="width: 235rpx;height: 310rpx;background-color:#efefef;"></image>
+				<view style="margin-top: 24rpx;text-align: center;font-size:30rpx;">{{item.title}}</view>
+				<view style="margin-top: 5rpx;text-align: center;font-size:24rpx;color:#868686">{{item.publish_time}}</view>
+			</view>
+		</block>
+	</block>
+</view>

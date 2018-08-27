@@ -1,0 +1,18 @@
+<template name="TopNav">
+  <view class="top-nav-template">
+    <block wx:for="{{navs}}" wx:key="{{item}}">
+      <view class="tab {{item.id == tabCurrent ? 'current' : ''}}" id="{{item.id}}" catchtap="onTabNavTemplate">{{item.name}}</view>
+    </block>
+  </view>
+</template>
+
+<template name="BottomNav">
+  <view class="bottom_nav__wrapper flex justify-between">
+    <block wx:for="{{list}}" wx:key="{{item}}">
+      <view class="bottom_nav__item flex align-center justify-center flex-gorw {{!item.current || 'current'}}" data-url="{{item.url}}" catchtap="onTapRedirectTo">
+        <image class="bottom_nav__icon" mode="aspectFit" src="{{item.current ? item.iconSelect : item.icon}}" binderror="" bindload=""></image>
+        <view>{{item.name}}</view>
+      </view>
+    </block>
+  </view>
+</template>

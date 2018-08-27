@@ -1,0 +1,51 @@
+@import "/template/list/index.wxss";
+page > view{
+    --main-color: #e63531;
+}
+.address-wrapper {
+    margin-bottom: 30rpx;
+    padding: 30rpx;
+    background: #fff;
+}
+
+.address-item {
+    padding-right: 40rpx;
+    color: #333;
+    font-size: 30rpx;
+    line-height: 44rpx;
+    text-align: left;
+}
+
+.address-item .left {
+    width: 120rpx;
+    height: 100rpx;
+}
+
+.address-item .username {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.address-item .default {
+    box-sizing: border-box;
+    width: 80rpx;
+    height: 44rpx;
+    font-size: 24rpx;
+    line-height: 40rpx;
+    text-align: center;
+    color: var(--main-color);
+    border-radius: 4rpx;
+    border: 2rpx solid var(--main-color);
+}
+
+.btn-prize{
+    color: #fff;
+    line-height: 100rpx;
+    text-align: center;
+    background-color: var(--main-color);
+}
+
+
+
+

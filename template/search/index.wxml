@@ -1,0 +1,25 @@
+<import src="/template/list/index.wxml" />
+<import src="/template/video/video-item/index.wxml" />
+
+<template name="Search">
+  <view class="search-wrapper flex justify-center align-center" wx:if="{{!searchModel}}">
+    <view class="search-input flex-grow flex justify-center align-center" catchtap="onTapSearchBox">
+       <image class="search-icon" src="/images/search.png"></image> 
+      <view style='color:#fff;'>{{placeholder}}</view>
+    </view>
+  </view>
+  <view class="search-page" wx:else>
+    <view class="search-wrapper flex justify-center align-center">
+      <input class="search-input flex-grow" type="text" focus bindinput="onInput" placeholder="{{placeholder}}" bindtap="onTapSearchBox"/>
+      <view class="search-cancel" catchtap="onTapCancelSearch">取消</view>
+    </view>
+    <view class="search-scroll" scroll-y bindscrolltolower="onLoadMoreSearch">
+      <block wx:for="{{list}}" wx:key="{{item}}">
+        <template is="VideoItem_1" data="{{...item,tags:'播放'}}" wx:if="{{item.resource_type == 1}}"></template>
+        <template is="List_1" data="{{list:[item],tags:'浏览'}}" wx:if="{{item.resource_type == 2}}"></template>
+      </block>
+      <video class="video_1_video" controls autoplay style="top:{{videoOffsetTop - 15}}px" src="{{videoUrl}}" wx:if="{{videoUrl}}"></video>
+      <view class="noResult" wx:if="{{noSearchResult}}"></view>
+    </view>
+  </view>
+</template>

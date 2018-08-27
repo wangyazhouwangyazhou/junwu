@@ -1,0 +1,39 @@
+<form bindsubmit="onSubmitForm" report-submit wx:if="{{type == 2}}">
+  <view style="width: 750rpx;height: 669rpx;background-color: #fff;position: absolute;top:0;left: 0;">
+    <textarea placeholder="发表你的观点" style="margin: 26rpx;border: 2rpx solid #575757;height: 545rpx;width:658rpx;background-color: #FFFFFF;border-radius: 10rpx;padding:20rpx;font-size: 30rpx;color:#999999;" name="description" maxlength="400"/>
+    <view style='display:flex;display:flex;justify-content:flex-start;'>
+      <view  class='uploadimg' wx:if="{{!uploadimgs == ''}}"> 
+        <image src='{{uploadimgs}}' style='width: 198rpx;height: 203rpx'>
+          <view class='uploadimg-close' data-index='0' bindtap='removeupload'>X</view>
+        </image>
+      </view> 
+
+      <view style='	width: 198rpx;height: 203rpx;background-color: #ffffff;border-radius: 10rpx;border: solid 2rpx #575757;line-height:203rpx;text-align:center;margin-left:26rpx' bindtap='uploadPicture'>
+        <view style='font-size: 42px;color:#ccc;'>+</view>
+      </view> 
+
+    </view>
+  </view>
+  <view class='footer'>
+    <view class='cancel' bindtap='hideForm'>取消</view>
+    <button type="primary" formType="submit" disabled="{{disabled}}" class='bth-index'> 提交 </button>
+  </view>
+</form> 
+
+<form bindsubmit="onSubmitForm" report-submit wx:if="{{type == 1}}">
+  <view style="width: 750rpx;height: 669rpx;background-color: #fff;position: absolute;top:0;left: 0;">
+    <textarea placeholder="@{{replay}} " style="margin: 26rpx;border: 2rpx solid #575757;height: 545rpx;width:658rpx;background-color: #FFFFFF;border-radius: 10rpx;padding:20rpx;font-size: 30rpx;color:#999999;" name="description" maxlength="400"/>
+  </view>
+  <view style="position: fixed;bottom: 0rpx;width:100%;">
+    <button type="primary" formType="submit"  disabled="{{disabled}}" style="margin: 30rpx 30rpx;padding:20rpx;line-height:35rpx;"> 提交 </button>
+  </view>
+</form>
+
+<form bindsubmit="onSubmitForm" report-submit wx:if="{{type == 3}}">
+  <view style="width: 750rpx;height: 669rpx;background-color: #fff;position: absolute;top:0;left: 0;">
+    <textarea placeholder="回复楼主" style="margin: 26rpx;border: 2rpx solid #575757;height: 545rpx;width:658rpx;background-color: #FFFFFF;border-radius: 10rpx;padding:20rpx;font-size: 30rpx;color:#999999;" name="description" maxlength="400"/>
+  </view>
+  <view style="position: fixed;bottom: 0rpx;width:100%;">
+    <button type="primary" formType="submit" disabled="{{disabled}}" style="margin: 30rpx 30rpx;padding:20rpx;line-height:35rpx;" bindtap='replylou'> 提交 </button>
+  </view>
+</form>

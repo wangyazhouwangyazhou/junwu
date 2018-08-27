@@ -1,0 +1,8 @@
+<import src="/template/list/index.wxml" />
+
+<scroll-view class="full-scroll" scroll-y bindscrolltolower="onLoadMoreData">
+  <template is="BannerList" data="{{list}}"></template>
+  <view class="noResult" wx:if="{{noResult}}"></view>
+  <view class="noMoreData" wx:if="{{loadAllData && page > 2}}"></view>
+  <view class="TAC"></view>
+</scroll-view>

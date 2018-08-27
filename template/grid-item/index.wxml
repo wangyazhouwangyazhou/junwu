@@ -1,0 +1,20 @@
+<template name="GridItem">
+  <view class="grid-item-template" id="{{optionid}}" catchtap="onGridItemTemplate">
+    <view class="image-container">
+      <image class="grid-item-image" src="{{cover}}" />
+      <!-- <view class="tags-top"></view> -->
+    </view>
+    <view class="desc-container">
+      <view class="top">
+        <!-- <text class="order font-color">编号{{displayorder}}</text> -->
+        <text class="title">{{title}}</text>
+      </view>
+      <view class="bottom">
+        <view class="tickets">
+          已获得<text class="font-color">{{joinnum}}票</text>
+        </view>
+        <view class="btn">为他投票</view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,33 @@
+<view style='background:#efefef;height:100vh' wx:if="{{bangding}}">
+  <view class='top'>
+    <image src='{{avatar}}' class='top-image'/>
+    <view class='username'>{{username}}</view>
+    <!-- <view class='app'>绑定手机号同步APP数据</view> -->
+  </view>
+
+  <view class='bottom'>
+    <view class='iphone'>
+      <input type='number' class='phone' placeholder='手机号' maxlength="11" bindinput="bindButtonTap" placeholder-class='plclass' value='{{value}}'/>
+      <button class='code' style='background-color: #46aa40;color:#fff' bindtap='code' disabled='{{disabled}}'>{{phoneCode}}<text wx:if="{{phoneCode <= 60}}">s</text></button>
+    </view>
+    <view class='proving'>
+      <view class='imgbox'>
+        <image src='/images/suo.png'/>
+      </view>
+      <input type='number' class='codes' placeholder='验证码' placeholder-class='plclass' bindinput="getcode"/>
+    </view>
+  </view>
+
+  <view class='OK' bindtap='ok' >确认绑定</view>
+
+  <view class='text'>绑定手机号前请您仔细阅读我们的<text></text>
+  <navigator url="/pages/article/index?id=2188" open-type="navigate">《用户服务协议》</navigator>
+  </view>
+</view> 
+
+<view wx:if="{{xiugai}}">
+  <view style='	width: 750rpx;height: 110rpx;background-color: #ffffff;border:1px solid #efefef;display:flex;justify-content:space-between; align-items:center'>
+    <view style='font-size: 34rpx;color: #000000;margin-left:28rpx'>已绑定手机</view>
+    <view style='font-size: 34rpx;color: #868686;margin-right:28rpx'>{{iphone}}</view>
+  </view>
+</view>

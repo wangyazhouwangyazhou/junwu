@@ -1,0 +1,19 @@
+<view class="weui-msg" wx:if="{{!loading}}">
+    <view class="weui-msg__icon-area">
+        <icon type="{{icon}}" size="93"></icon>
+    </view>
+    <view class="weui-msg__text-area">
+        <view class="weui-msg__title">{{msg}}</view>
+    </view>
+    <view class="weui-msg__opr-area">
+        <view class="weui-btn-area" wx:if="{{button}}">
+            <view bindtap="confirmLogin">
+                <button class="weui-btn" type="primary" >确认</button>
+            </view>
+            <view style="margin-top:40rpx" bindtap="gotoUrl">
+                <button class="weui-btn" type="default">取消</button>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="TAC"></view>

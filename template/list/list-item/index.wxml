@@ -1,0 +1,22 @@
+
+<template name="ListItem_1">
+    <view class="listitem_1 flex" id="{{id}}" data-index="{{index}}" catchtap="onTapTemplateItem">
+      <image class="cover flex-none" src="{{list[0]}}" />
+      <view class="content flex-grow flex tb justify-between">
+        <view class="title">{{title}}</view>
+        <view class="tag">{{view_count}}评论</view>
+      </view>
+    </view>
+</template>
+
+<template name="ListItem_2">
+  <view class="listitem_2 flex tb bottom-line" id="{{id}}" data-index="{{index}}" catchtap="onTapTemplateItem">
+    <view class="title">{{title}}</view>
+    <view class="img-container flex justify-between">
+      <block wx:for="{{list}}" wx:key="{{item}}}">
+        <image class="smallcover flex-none" src="{{item}}" />
+      </block>
+    </view>
+    <view class="tag">{{view_count}}评论</view>
+  </view>
+</template>

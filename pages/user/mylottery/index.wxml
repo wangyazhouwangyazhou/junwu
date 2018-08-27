@@ -1,0 +1,7 @@
+<import src="/template/list/index.wxml" />
+<scroll-view class="full-scroll" scroll-y bindscrolltolower="onLoadMoreData">
+  <template is="LotteryList" data="{{list}}"></template>
+  <view class="noMoreData" wx:if="{{loadAllData && page > 2}}"></view>
+  <view wx:if="{{noResult}}" class="noResult"></view>
+  <view class="TAC"></view>
+</scroll-view>

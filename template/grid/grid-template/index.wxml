@@ -1,0 +1,12 @@
+
+<template name="Grid_item_3">
+  <view class="grid_3__item" id="{{id || sid}}" catchtap="onTapTemplateItem">
+    <view class="grid_3__header">
+      <image class="grid_3__cover" src="{{cover}}"></image>
+      <!--个视频-->
+      <view class="grid_3__number" wx:if="{{resource_count}}">{{resource_count}}</view>
+    </view>
+    <view class="grid_3__title">{{title}}</view>
+    <view class="grid_3__time" wx:if="{{update_time}}">{{update_time}}更新</view>
+  </view>
+</template>

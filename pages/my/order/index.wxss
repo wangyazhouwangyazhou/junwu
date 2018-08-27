@@ -1,0 +1,6 @@
+@import "/template/grid/index.wxss";
+/* @import "/template/nav/index.wxss"; */
+
+page {
+  background-color: #efefef;
+}

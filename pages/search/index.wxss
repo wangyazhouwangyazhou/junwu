@@ -1,0 +1,20 @@
+button::after{
+	border: none;
+}
+
+.search {
+	border-top: 2rpx solid #E2E2E2;
+	background-color: #FFFFFF;
+}
+
+.search .default {
+	line-height: 60rpx;
+	border: 2rpx solid #E2E2E2;
+	border-radius: 10rpx;
+	margin:10rpx 0rpx 10rpx 20rpx;
+	padding:5rpx 0rpx 5rpx 30rpx;
+	color: #7d7d7d;
+	font-size: 28rpx;
+	position: relative;
+	width:590rpx;
+}

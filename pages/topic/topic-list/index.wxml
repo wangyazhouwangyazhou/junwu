@@ -1,0 +1,29 @@
+<import src="/template/feed/index.wxml"/>
+
+<!-- <scroll-view scroll-y bindscrolltolower="onLoadMoreData"> -->
+<image src='{{banner}}' style='width:100%;height: 201rpx;' wx:if="{{banner}}"></image>
+<view class="topicDesc" wx:if="{{content}}">{{content}}</view>
+
+<block wx:for="{{list}}">
+   <block wx:if="{{item.resource_type == 1}}">
+      <template is="video" data="{{item, index, maskHidden}}" />
+   </block>
+   <block wx:elif="{{item.resource_type == 2}}">
+     <template is="article" data="{{item, index, maskHidden}}" />
+   </block>
+   <block wx:elif="{{item.resource_type == 0}}">
+     <template is="question" data="{{item, index, maskHidden}}" />
+   </block>
+ </block>
+
+<block wx:if="{{noMoreData}}">
+  <view style='width:750rpx;text-align:center;font-size:30rpx'>到底部了~</view>
+</block>
+<block wx:else>
+  <view style='width:750rpx;background:#efefef'>
+    <image src='/images/index-loding.gif' style='width:134rpx;height:40rpx;margin:0 auto'></image>
+  </view>
+</block>
+
+<video src="{{videoUrl}}" style="height: 420rpx;width: 700rpx;top:{{offsetTop}}px;position: absolute;margin:25rpx;" show-center-play-btn="" autoplay="true" wx:if="{{videoUrl}}" objectFit="fill"></video>
+

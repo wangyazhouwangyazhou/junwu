@@ -1,0 +1,6 @@
+<import src="/pages/lottery/lottery-template/index.wxml" />
+
+<template is="Lottery_1" data="{{list,info,prizeList,result,prizeMsg}}"></template>
+<view class="TAC"></view>
+
+

@@ -1,0 +1,56 @@
+<view wx:if="{{!value == ''}}">
+  <view class='head'>
+    <image src='{{avatar ? avatar : "/images/my_imags.png"}}' class='portrait'></image>
+    <view style="margin-top:10px;">{{username ? username : '游客132456'}}</view>
+    <image src='/images/{{draft ? "my-Draft-s" : "my-Draft"}}.png' class='draft' bindtap='goToDraft'></image>
+  </view>  
+
+  <view style='background:#fff;padding-bottom:10px;width:100%;position:relative' class="flex justify-around">
+    <image src='/images/my-sc.png' bindtap='mymarkClick' style='width:220rpx;height:220rpx;'></image>
+    <text style='color: #7b7b7b;font-size:24rpx;position: absolute;left:76rpx;bottom:50rpx'>我的收藏</text>
+    <image src="/images/my-msg.png" bindtap='myMsgClick' style='width:220rpx;height:220rpx;'>
+      <view style="display:block;background:#d33737;border-radius:50%;width:24rpx;height:24rpx;top:0rpx;left:470rpx;position:absolute;" wx:if="{{flag}}"></view>
+    </image>
+    <text style='color: #7b7b7b;font-size:24rpx;position: absolute;left:330rpx;bottom:50rpx'>消息中心</text>
+    <button open-type="contact" style='width:220rpx;background:rgba(0,0,0,0);padding-left:0px;padding-right:0px;'> 
+      <image src='/images/my-lxjw.png' style='width:220rpx;height:220rpx;'></image> 
+      <text style='color: #7b7b7b;font-size:24rpx;position: absolute;left:60rpx;bottom:16rpx'>联系军武</text>
+    </button>
+  </view>
+
+  <view style='background:#fff;padding-bottom:10px;width:100%;position:relative' class="flex justify-around">
+    <image src='/images/my-revise.png' bindtap='myReviseClick' style='width:220rpx;height:220rpx;'></image>
+    <text style='color: #7b7b7b;font-size:24rpx;position: absolute;left:76rpx;bottom:50rpx'>修改信息</text>
+    <image src="/images/my-phone.png" bindtap='myPhoneClick' style='width:220rpx;height:220rpx;position:relative;'>
+    </image>
+    <text style='color: #7b7b7b;font-size:24rpx;position: absolute;left:326rpx;bottom:50rpx'>绑定手机</text>
+    <image src='/images/my-question.png' style='width:220rpx;height:220rpx;' bindtap='myQuestionClick'></image> 
+    <text style='color: #7b7b7b;font-size:24rpx;position: absolute;left:577rpx;bottom:50rpx'>常见问题</text> 
+  </view>
+
+
+  <navigator url="/pages/article/index?id=2188" open-type="navigate" style="text-align: left;color:#bdc3c7;margin: 20rpx;font-size: 28rpx;text-decoration:underline" hover-class="none">服务协议</navigator>
+
+  <view style="text-align: left;color:#bdc3c7;margin: 20rpx;font-size: 28rpx;text-decoration:underline" bindtap="onTapScanCode" wx:if="{{admingroup == 1}}">登录后台</view>
+    
+  <view class="TAC" style='position:fixed;bottom:10rpx;'>
+  <image src='/images/junwu-logo.png' style='position:fixed;left:50%;bottom:70rpx;width:135rpx;height:40rpx;margin-left:-68rpx;'></image>
+
+</view>
+
+<view hidden="{{faqContent}}" class="spec-menu-content">
+  <view style="text-align: right;margin: 10rpx 30rpx;color: #fff;">X</view>
+  <scroll-view scroll-y>
+    <view style="margin: 0rpx 40rpx;">
+      
+    </view>
+  </scroll-view>
+</view>
+
+<view class="mask" style="background-color: rgba(0,0,0,0);" hidden="{{maskHidden}}" bindtap="closeDiv"></view> 
+</view>
+
+<view style='position:relative' wx:if="{{value == ''}}">
+  <image src='/images/my_back.png' style='width:750rpx;height:100vh'></image>
+  <button style='	width: 290rpx;height: 70rpx;color: #46aa40;font-size:39rpx;line-height:70rpx;text-aling:center;margin: 0 auto 27rpx auto;position:absolute;bottom:40rpx;left:230rpx' open-type='getUserInfo' bindgetuserinfo='onGotUserInfo'>登录</button>
+</view>

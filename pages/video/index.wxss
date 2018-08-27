@@ -1,0 +1,17 @@
+@import "/template/video/index.wxss";
+
+page {
+  --bg-color: #fff;
+  background-color: var(--bg-color);
+}
+
+.page-video{
+  padding-bottom: var(--bottom-nav-height);
+}
+
+.nav-fixed{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}

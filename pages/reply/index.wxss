@@ -1,0 +1,48 @@
+page {
+  background-color: #fff;
+}
+.uploadimg{
+
+  padding: 0 20rpx;
+}
+.uploadimg image{
+  position: relative
+}
+.uploadimg-close{
+  font-size: 30rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40rpx;
+  height: 40rpx;
+  background: #ccc;
+  color: #fff;
+  line-height: 40rpx;
+  text-align: center;
+}
+.cancel {
+  width: 320rpx;
+  text-align: center;
+  line-height: 70rpx;
+  height: 70rpx;
+  background: #cccccc;
+  font-size: 36rpx;
+  color: #fff;
+  border-radius: 10rpx;
+  margin-left: 30rpx;
+}
+
+.bth-index {
+  width: 320rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-right: 30rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 50rpx;
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+}

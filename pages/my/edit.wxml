@@ -1,0 +1,34 @@
+<block wx:if="{{editUsername}}">
+  <view class="inputRow">
+    <view style="margin: 0rpx 25rpx;" class="flex postShareTxt">
+      <input value="{{username}}" focus style="font-size: 28rpx;" bindconfirm="conFirmUsernameEdit"/>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <form bindsubmit="onSubmitForm" report-submit>
+  <view class="inputRow" bindtap="editAvatar">
+    <view style="margin: 0rpx 25rpx;" class="flex postShareTxt">
+      <view style="margin-left: 10rpx;width: 100%;" class="flex justify-between">
+          <text class="postTxt" style="line-height: 140rpx;width: 430rpx;">头像</text>
+          <image src="{{avatar}}" style="width: 140rpx; height: 140rpx;border-radius: 50%;"/>
+          <view style="line-height: 140rpx;height: 140rpx;">
+            <image src="/images/arrow.png" style="width: 40rpx; height: 40rpx;display: inline-block;vertical-align: middle;"/>
+          </view>
+      </view>
+    </view>
+  </view>
+  <view class="inputRow" bindtap="editUsername">
+    <view style="margin: 0rpx 25rpx;" class="flex postShareTxt">
+      <view style="margin-left: 10rpx;width: 100%;" class="flex justify-between">
+          <text class="postTxt" style="width: 420rpx;">昵称</text>
+          <text class="postTxt">{{username}}</text>
+          <image src="/images/arrow.png" style="width: 40rpx; height: 40rpx;"/>
+      </view>
+    </view>
+  </view>
+  <view style="position: fixed;bottom: 0rpx;background-color: #fff;width:100%;">
+    <button type="primary" formType="submit" style="margin: 30rpx 30rpx;"> 保存 </button>
+  </view>
+  </form>
+</block>

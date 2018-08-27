@@ -1,0 +1,39 @@
+<import src="/template/list/list-item/index.wxml" />
+
+<template name="BannerList">
+  <block wx:for="{{list}}" wx:key="{{item}}">
+    <view class="banner-item-template" id="{{item.id}}" catchtap="selectBannerList">
+      <image class="banner" src="{{item.cover}}" />
+      <view class="content">
+        <view class="info">
+          <view class="title">{{item.title}}</view>
+          <view class="joinnum">参与人数：{{item.joinnum}}人</view>
+        </view>
+        <view class="item-arrow"></view>
+      </view>
+    </view>
+  </block>
+</template>
+
+<template name="LotteryList">
+  <block wx:for="{{list}}" wx:key="{{item}}">
+    <view class="lottery-item-template flex" id="{{id}}" catchtap="selectNew">
+      <view class="left flex-none">
+        <image src="{{item.pic}}" />
+      </view>
+      <view class="right flex tb justify-between">
+        <view class="title">{{item.title}}</view>
+        <view class="time">{{item.create_in}}</view>
+      </view>
+      <view hidden="{{noBtn}}" class="btn-prize" id="{{index}}" data-sort="{{item.sort}}" wx:if="{{!item.status}}" catchtap="getPrize">领取奖励</view>
+      <view hidden="{{noBtn}}" class="btn-prize gray-bg" wx:else>已领取</view>
+    </view>
+  </block>
+</template>
+
+<template name="List_1">
+  <block wx:for="{{list}}" wx:key="{{item}}">
+    <template is="ListItem_1" data="{{...item,index,list:item.thumbnails,tags}}" wx:if="{{item.thumbnails.length !== 3}}"></template>
+    <template is="ListItem_2" data="{{...item,index,list:item.thumbnails,tags}}" wx:if="{{item.thumbnails.length === 3}}"></template>
+  </block>
+</template>

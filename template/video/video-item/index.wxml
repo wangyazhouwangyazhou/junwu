@@ -1,0 +1,54 @@
+<import src="/template/praise/index.wxml" />
+
+<template name="VideoItem_1">
+  <view class="video_1__item">
+    <view class="video_1__header" id="{{id}}" data-url="{{url}}" catchtap="onTapVideoPlay" style="padding: 0px;">
+      <image mode="scaleToFill" class="video_1__cover" src="{{cover}}"></image>
+      <image mode="aspectFill" class="video_1__icon" src="/images/video/icon-play.png"></image>
+      <view class="video_1__duration">{{date}}</view>
+    </view>
+    <view class="video_1__content" id="{{id}}" catchtap="{{message ? '' : noTap ? '' : 'onTapVideoDetail'}}" style="border: 0rpx solid #fff;">
+      <view id="{{id}}" catchtap="{{noTap || 'onTapVideoDetail'}}">
+        <view class="video_1__title">{{title}}</view>
+        <view class="video_1__text {{!flod || 'fold'}}" wx:if="{{message}}">{{message}}</view>
+      </view>
+      <view class="flex justify-between" wx:if="{{message}}">
+        <view class="video_1__time flex-grow">{{view_count}} {{tags}}</view>
+        <!-- <view class="video_1__time flex-grow">{{create_in}}</view> -->
+        <view class="video_1__slide flex align-center flex-none" data-index="{{index}}" catchtap="onTapExtendText"  wx:if="{{flod === 1 || flod === 0}}">
+          <view class=" {{flod ? 'arrow-down' : 'arrow-up'}}"></view>
+          <view>{{flod === 1 ? '展开' : '收起'}}</view>
+        </view>
+      </view>
+      <view style="margin-top:10px;">
+        <template is="Praise" data="{{title,message,duration,is_praise,cover,id,is_favorite,is_share,praise_count}}" wx:if="{{is_praise != null}}"></template>
+        </view>
+    </view>
+  </view>
+</template>
+
+
+<!-- 首页专用，去掉了简介和展开 -->
+<template name="VideoItem_1_index">
+  <view class="video_1__item">
+    <view class="video_1__header" id="{{id}}" data-url="{{url}}" catchtap="onTapVideoPlay">
+      <image mode="scaleToFill" class="video_1__cover" src="{{cover}}"></image>
+      <image mode="aspectFill" class="video_1__icon" src="/images/video/icon-play.png"></image>
+      <view class="video_1__duration">{{date}}</view>
+    </view>
+    <view class="video_1__content" id="{{id}}" catchtap="{{message ? '' : noTap ? '' : 'onTapVideoDetail'}}">
+      <view id="{{id}}" catchtap="{{noTap || 'onTapVideoDetail'}}">
+        <view class="video_1__title">{{title}}</view>
+      </view>
+      <view class="flex justify-between" wx:if="{{message}}">
+        <view class="video_1__time flex-grow">{{view_count}} {{tags}}</view>
+        <!-- <view class="video_1__time flex-grow">{{create_in}}</view> -->
+        <view class="video_1__slide flex align-center flex-none" data-index="{{index}}" catchtap="onTapExtendText"  wx:if="{{flod === 1 || flod === 0}}">
+        </view>
+      <!-- </view>
+      <view style="margin-top:10px;"> -->
+        <template is="Praise" data="{{title,message,duration,is_praise,cover,id,is_favorite,is_share,praise_count}}" wx:if="{{is_praise != null}}"></template>
+        </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,144 @@
+ <template name="ReplyList">
+  <block wx:if="{{digestList.length > 0 || totalList.length > 0}}">
+    <block wx:if="{{digestList.length > 0}}">
+
+      <view style="font-size: 30rpx;padding:25rpx;background-color: #fff;margin-bottom: 4rpx;padding:12rpx 12rpx 12rpx 0rpx;" class="flex">
+        <image src="/images/right-arrow.png" style="width: 24rpx;height: 24rpx;padding-right: 10rpx;margin-top:8rpx;"/>
+        <!-- <view>精彩评论（{{digestList.length}}）</view> -->
+        <view>精彩评论</view>
+      </view>
+
+      <block wx:for="{{digestList}}">
+        <view style="font-size: 30rpx;padding:25rpx;background-color: #fff;margin-bottom: 4rpx">
+          <view style="margin: 25rpx 0 4rpx 0;" class="flex">
+            <image src="{{item.avatar}}" style="width: 62rpx;height: 62rpx;border-radius: 50%;margin-top:18rpx"/>
+            <view class="flex justify-between" style="width: 620rpx;padding-left: 16rpx;">
+              <view style="margin-top: 10rpx;">
+                <view style="font-size: 30rpx;">{{item.username}}</view>
+                <view style="font-size: 24rpx;color:#868686;">{{item.create_time}}</view>
+              </view>
+
+              <block wx:if="{{is_login}}">
+                <view class="flex" style="margin-top: 10rpx;align-items:center" data-type="digest" id="{{index}}" bindtap="commentPraise">
+                  <view style="font-size: 30rpx;color:{{item.is_praise == 1 ? '#46aa40;' : '#868686'}};padding-right: 8rpx;">{{item.praise_count}}</view>
+                  <image src="/images/{{item.is_praise == 1 ? 'icon-praise_s' : 'icon-praise'}}.png" style="width: 31rpx;height: 36rpx;"/>
+                </view>
+              </block>
+              <block wx:else>
+                <button class='button_new_style' open-type='getUserInfo' bindgetuserinfo='getuser' data-type='4'  id="{{index}}">
+                  <view class="flex" style="margin-top: 10rpx;align-items:center" data-type="digest" id="{{index}}">
+                    <view style="font-size: 30rpx;color:{{item.is_praise == 1 ? '#46aa40;' : '#868686'}};padding-right: 8rpx;">{{item.praise_count}}</view>
+                      <image src="/images/{{item.is_praise == 1 ? 'icon-praise_s' : 'icon-praise'}}.png" style="width: 31rpx;height: 36rpx;"/>
+                  </view>
+                </button>
+              </block>
+              
+            </view>
+          </view>
+          <view style="margin:25rpx 0 25rpx 0;font-size: 30rpx;width:700rpx;">{{item.description}}</view>
+          <image src='{{item.cover}}' style='height:{{item.image_info.height}}rpx;width:{{item.image_info.width}}rpx;' data-img='{{item.original_cover}}' bindtap='previewImage'></image>
+
+            <block wx:if="{{is_login}}">
+              <view style='background-color: #efefef;height: 32rpx;font-size: 26rpx;line-height: 32rpx;text-align:center;color: #46aa40;margin-top:20rpx;display:inline-block' bindtap='reply' data-id='{{item.id}}' data-aid='{{id}}' data-replyname='{{item.username}}'>
+              <block wx:if="{{item.reply_count > 0}}">共{{item.reply_count}}条回复></block>
+              <block wx:else>回复> </block></view>
+            </block>
+
+            <block wx:else>
+              <button class='button_new_style' style='display:inline-block' open-type='getUserInfo' bindgetuserinfo='getuser' data-type='5'  id="{{index}}"  data-id='{{item.id}}' data-aid='{{id}}' data-replyname='{{item.username}}'>
+              <view style='background-color: #efefef;height: 32rpx;font-size: 26rpx;line-height: 32rpx;text-align:center;color: #46aa40;margin-top:20rpx;display:inline-block'>
+                <block wx:if="{{item.reply_count > 0}}">共{{item.reply_count}}条回复></block>
+                <block wx:else>回复> </block></view>
+              </button>
+            </block>
+        </view>
+      </block>
+    </block>
+
+    <block wx:if="{{totalList.length > 0}}">
+
+      <view style="font-size: 30rpx;padding:25rpx;background-color: #fff;border-bottom: 4rpx solid #f8f8f8;padding:12rpx 12rpx 12rpx 0rpx;" class="flex">
+        <image src="/images/right-arrow.png" style="width: 24rpx;height: 24rpx;padding-right: 10rpx;margin-top:8rpx;"/>
+        <!-- <view>全部评论（{{commentCount}}）</view> -->
+        <view>全部评论</view>
+      </view>
+
+      <block wx:for="{{totalList}}">
+        <view style="font-size: 30rpx;padding:25rpx;background-color: #fff;border-bottom: 4rpx solid #f8f8f8;">
+          <view style="margin: 25rpx 0 4rpx 0;" class="flex">
+            <image src="{{item.avatar}}" style="width: 62rpx;height: 62rpx;border-radius: 50%;margin-top:18rpx"/>
+            <view class="flex justify-between" style="width: 620rpx;padding-left: 16rpx;">
+              <view style="margin-top: 10rpx;">
+                <view style="font-size: 30rpx;">{{item.username}}</view>
+                <view style="font-size: 24rpx;color:#868686;">{{item.create_time}}</view>
+              </view>
+
+              <block wx:if="{{is_login}}">
+                <view class="flex" style="margin-top: 10rpx;align-items:center" data-type="total" id="{{index}}" bindtap="commentPraise">
+                  <view style="font-size: 30rpx;color:{{item.is_praise == 1 ? '#46aa40;' : '#868686'}};padding-right: 8rpx;">{{item.praise_count}}</view>
+                  <image src="/images/{{item.is_praise == 1 ? 'icon-praise_s' : 'icon-praise'}}.png" style="width: 31rpx;height: 36rpx;"/>
+                </view>
+              </block>
+              <block wx:else>
+                <button class='button_new_style' open-type='getUserInfo' bindgetuserinfo='getuser' data-type='4'  id="{{index}}">
+                  <view class="flex" style="margin-top: 10rpx;align-items:center" data-type="total" id="{{index}}">
+                    <view style="font-size: 30rpx;color:{{item.is_praise == 1 ? '#46aa40;' : '#868686'}};padding-right: 8rpx;">{{item.praise_count}}</view>
+                      <image src="/images/{{item.is_praise == 1 ? 'icon-praise_s' : 'icon-praise'}}.png" style="width: 31rpx;height: 36rpx;"/>
+                  </view>
+                </button>
+              </block>
+
+            </view>
+          </view>
+          
+          <view style="margin:25rpx 0 25rpx 0;font-size: 30rpx;width:700rpx;">{{item.description}}</view>
+
+            <block wx:for="{{imglist}}" wx-if="{{item.id == par.id}}" wx:for-item="par">
+              <image src='{{par.url}}' style='height:{{par.height}}rpx;width:{{par.width}}rpx;' data-img='{{par.original_cover}}' bindtap='previewImage'/>
+            </block>
+
+            <block wx:if="{{is_login}}">
+              <view style='background-color: #efefef;height: 32rpx;font-size: 26rpx;line-height: 32rpx;text-align:center;color: #46aa40;margin-top:20rpx;display:inline-block' bindtap='reply' data-id='{{item.id}}' data-aid='{{id}}' data-replyname='{{item.username}}'>
+              <block wx:if="{{item.reply_count > 0}}">共{{item.reply_count}}条回复></block>
+              <block wx:else>回复> </block></view>
+            </block>
+
+            <block wx:else>
+              <button class='button_new_style' style='display:inline-block' open-type='getUserInfo' bindgetuserinfo='getuser' data-type='5'  id="{{index}}"  data-id='{{item.id}}' data-aid='{{id}}' data-replyname='{{item.username}}'>
+              <view style='background-color: #efefef;height: 32rpx;font-size: 26rpx;line-height: 32rpx;text-align:center;color: #46aa40;margin-top:20rpx;display:inline-block'>
+                <block wx:if="{{item.reply_count > 0}}">共{{item.reply_count}}条回复></block>
+                <block wx:else>回复> </block></view>
+              </button>
+            </block>
+ 
+
+            </view>     
+
+      </block>
+      <block wx:if="{{is_login}}">
+        <view style="font-size: 30rpx;padding:25rpx;background-color: #fff;margin-bottom: 4rpx;padding:12rpx;color:#46aa40;text-align: center;" bindtap="viewAllComment" data-type='7'>
+        查看全部评论 >
+        </view>
+      </block>
+      <block wx:else>
+        <button  class='button_new_style' open-type='getUserInfo' bindgetuserinfo='getuser' data-type='7' id="{{index}}" style='background:#fff;line-height:40rpx;border-radius:0'>
+          <view style="font-size: 30rpx;padding:25rpx;background-color: #fff;margin-bottom: 4rpx;padding:12rpx;color:#46aa40;text-align: center;" bindtap="viewAllComment" data-type='7'>
+        查看全部评论 >
+          </view>
+        </button>
+      </block>
+    </block>
+  </block>
+</template>
+
+
+<template name="imgs">
+  <view style='padding:20rpx 30rpx;	width: 690rpx;background-color: #ffffff;border-top:1rpx solid #f8f8f8;border-bottom:1rpx solid #f8f8f8'>
+    <view style='font-size: 23rpx;color:#000'>已有<text style='color:#46aa40;font-size: 30rpx;'>{{share_record.count}}人</text>分享</view>
+    <view style='display:flex;justify-content:flex-start;flex-wrap:wrap;margin-top:23rpx'>
+      <block wx:for="{{share_record.list}}">
+        <image src='{{item}}' style='width:50rpx;height:50rpx;border-radius:50%;margin-bottom:10rpx;margin-right:6rpx'></image>
+      </block>
+    </view>
+  </view>
+</template>

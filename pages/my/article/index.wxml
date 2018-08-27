@@ -1,0 +1,53 @@
+<import src="/template/list/index.wxml" />
+<import src="/template/video/video-item/index.wxml" />
+<import src="/template/share/index.wxml" />
+<view wx:if="{{list}}">
+   <block wx:for="{{list}}" wx:key="{{item}}">
+    <!-- <template is="VideoItem_1_index" data="{{...item,is_share,index,tags:'播放'}}" wx:if="{{item.resource_type == 1}}"></template> -->
+    <!-- <template is="List_1" data="{{list:[item],index,tags:'浏览'}}" wx:if="{{item.resource_type == 2}}" bindtap='a'></template> -->
+    <view >
+      <!-- <form report-submit=""> -->
+      <view style="background-color: #F8F8F8;padding:10px 12px 0px 12px;margin-bottom: 2px;position: relative;display:flex">
+        <!-- <button class="flex" form-type="submit" hover-class="none" plain="" style="border:none;height: 100px;text-align: left;padding:0px;border-radius:0;"> -->
+          <view>
+            <image src="{{item.cover}}" style="width: 120px;height: 85px;padding-right: 10px;" data-id = "{{item.id}}" bindtap='todetail'/>
+            
+          </view>
+         <view style="font-size:30rpx;padding:24rpx 18rpx;display: -webkit-box;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;height: 124rpx;" data-id = "{{item.id}}" bindtap='todetail'>{{item.title}}</view>
+              
+        <!-- </button> -->
+      </view>
+      <!-- </form> -->
+    </view>
+        <view style='color:#868686;font-size: 26rpx;display:flex;justify-content:flex-end;margin-top:-40rpx;padding-right:20rpx;position: relative;z-index:1000'>
+              <view style="color:#868686;font-size: 26rpx">{{item.comment_count}}评论</view>
+              <view style='display:flex;padding-top:20rpx;margin-left:4rpx'>
+                <image src='/images/how.png' class='imags' style='width:54rpx; height:26rpx;margin-right:4rpx' wx:if="{{item.isfire == 1 ? true : fase}}"/>
+                <image src='/images/long.png' class='imags' style='width:54rpx; height:26rpx;margin-right:4rpx' wx:if="{{item.isdeep == 1 ? true : fase}}"/>
+                <image src='/images/new.png' class='imags' style='width:54rpx; height:26rpx;margin-right:4rpx' wx:if="{{item.ishot == 1 ? true : fase}}"/>
+                <image src='/images/icon-top.png' class='imags' style='width:54rpx; height:26rpx' wx:if="{{item.istop == 1 ? true : fase}}"/>
+              </view>
+        </view>
+  </block> 
+</view>
+<!--当分享时隐藏video，因为video层级最高-->
+<block wx:if="{{share_view==false}}"> 
+  <video class="video_1_video" controls autoplay style="top:{{videoOffsetTop}}px" src="{{videoUrl}}" wx:if="{{videoUrl}}"></video>
+</block>
+<view class="noMoreData" wx:if="{{noMoreData && page > 2}}"></view>
+<view class="noResult" wx:if="{{noResult}}"></view>
+
+<block wx:if="{{noMoreData}}">
+  <view style='width:750rpx;text-align:center;font-size:30rpx' wx:if="{{total> 15}}">到底部了~</view>
+</block>
+<block wx:else>
+  <view style='width:750rpx;background:#efefef'>
+    <image src='/images/index-loding.gif' style='width:134rpx;height:40rpx;margin:0 auto'></image>
+  </view>
+</block>
+
+<view class="TAC">
+	<image src='/images/junwu-logo.png' style='margin-top:30rpx;margin-bottom:-15rpx;width:135rpx;height:40rpx;margin-left:310rpx;'></image>
+</view>
+<!--分享-->
+<!-- <template is="Share_1" data="{{width,height,cover,shareTitle,share_view}}"></template>  -->

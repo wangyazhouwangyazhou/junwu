@@ -1,0 +1,110 @@
+.top{
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 0.1rpx;
+}
+.top-image{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  margin: 88rpx auto 0 auto;
+}
+.username{
+	font-size: 45rpx;
+	color: #000000;
+  margin-top: 38rpx;
+}
+.app{
+	font-size: 27rpx;
+	color: #8d8d8d;
+  margin-top: 18rpx;
+  padding-bottom: 36rpx;
+}
+.phone{
+  width: 367rpx;
+	height: 80rpx;
+	background-color: #cbcbcb;
+	border-radius: 6rpx 0px 0px 6rpx;
+	border: solid 1rpx #bcbcbc;
+  margin-right: 4rpx;
+}
+.iphone{
+  display: flex;
+  justify-content: center;
+  margin-top: 66rpx;
+}
+.plclass{
+  color: #fff;
+  font-size: 32rpx;
+}
+.code{
+  width: 159rpx;
+	height: 84rpx;
+	background-color: #46aa40;
+	border-radius: 0px 6rpx 6rpx 0px;
+  font-size: 26rpx;
+	color: #ffffff;
+  line-height: 84rpx;
+  text-align: center;
+  padding: 0;
+}
+.proving{
+  margin-top: 26rpx;
+  display: flex;
+  justify-content: center;
+}
+.imgbox{
+	width: 94rpx;
+	height: 80rpx;
+	background-color: #cbcbcb;
+	border-radius: 6rpx 0px 0px 6rpx;
+	border: solid 1rpx #bcbcbc;
+  margin-right: 4rpx; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imgbox image{
+  width: 37rpx;
+	height: 45rpx;
+}
+
+.codes{
+  width: 433rpx;
+	height: 80rpx;
+	background-color: #cbcbcb;
+	border-radius: 0px 6rpx 6rpx 0px;
+	border: solid 1rpx #bcbcbc;
+}
+
+.OK{
+  width: 357rpx;
+	height: 65rpx;
+  line-height: 65rpx;
+  text-align: center;
+	background-color: #46aa40;
+	border-radius: 10rpx;
+  font-size: 42rpx;
+	color: #ffffff;
+  margin-top: 102rpx;
+  margin-left: 197rpx;
+}
+
+.text{
+	font-size: 24rpx;
+	color: #000000;
+  text-align: center;
+  margin-top: 213rpx;
+}
+.text navigator{
+	font-size: 24rpx;
+	color: #46aa40;
+  border-bottom: 1px solid #46aa40;
+  display: inline-block;
+}
+
+input{
+  font-size: 32rpx;
+  color: #000;
+  padding-left: 20rpx;
+}

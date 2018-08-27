@@ -1,0 +1,47 @@
+page {
+  background-color: #f6f6f6;
+}
+
+
+.inputRow {
+  background-color: #fafafa;
+  padding: 15rpx 50rpx;
+  border-bottom: 2rpx solid #f3f3f3;
+  border-top: 2rpx solid #f3f3f3;
+  font-size: 30rpx;
+}
+
+.uploadimg{
+  position: relative;
+  float:left;
+  margin-right:25rpx;
+  margin-top:25rpx;
+  width:160rpx;
+  height:160rpx;
+}
+
+.uploadimg-img {
+  width:160rpx;
+  height:160rpx;
+}
+
+.uploadimg-close {
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+  color: #fff;
+  padding:2rpx 10rpx;
+  background: #ccc;
+}
+
+.ping-bt {
+  margin: 30rpx auto;
+  text-align: center;
+  background: #47aa40;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #fff;
+  width: 90%;
+  border-radius: 10rpx;
+}
+

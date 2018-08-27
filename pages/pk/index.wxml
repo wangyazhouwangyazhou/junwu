@@ -1,0 +1,78 @@
+<view wx:for='{{list}}' style='border-bottom: 1rpx solid #efefef;'>
+  <view class='pk'>
+    <view class='flex justify-between'>
+      <image src='{{item.options.list[0].cover}}' class='pk-img'></image>
+      <image src='{{item.options.list[1].cover}}' class='pk-img'></image>
+      <image src='/images/VS.png' class='vs'></image>
+    </view>
+    <view class='pkback'>
+      <view class='pkTitle'>{{item.title}}</view>
+      <view class='flex justify-between' style='margin-top:12rpx;'>
+        <view style='width:279rpx;font-size:42rpx;color:#ffffff;text-align:right;'>{{item.options.list[0].title}}</view>
+        <view style='width:279rpx;font-size:42rpx;color:#ffffff;'>{{item.options.list[1].title}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='progress'>
+    <view class='left'>{{item.options.list[0].ratio}}%</view>
+    <view class='right'>{{ item.options.list[1].ratio == "0" ? "0" : 100 - item.options.list[0].ratio}}%</view>
+    <progress percent='{{100 - item.options.list[0].ratio}}' activeColor='#bdd5e2' backgroundColor='#55c5ff' stroke-width='15' style='width:290rpx;margin-top:4rpx'></progress>
+    <image src='/images/progresss.png' class='progress-img'></image> 
+    <progress percent='{{ item.options.list[1].ratio == "0" ? "0" : 100 - item.options.list[0].ratio}}' activeColor='#ff5555' backgroundColor='#f1b3b3' stroke-width='15' style='width:290rpx;margin-top:4rpx'></progress>
+  </view>
+  <view class='progress2'>
+
+    <block wx:if='{{!is_login}}'>
+      <button open-type='getUserInfo' bindgetuserinfo='getuser' hover-class='none' style='padding:0'>
+        <image src='/images/{{item.support == item.options.list[0].id ? "blue-change" : ((item.support != item.options.list[0].id && item.support != 0) ? "gray" : "blue")}}.png' data-optionid='{{item.options.list[0].id}}' data-id='{{item.id}}' class='color'></image>
+      </button>
+    </block>
+
+    <block wx:else>
+      <image src='/images/{{item.support == item.options.list[0].id ? "blue-change" : ((item.support != item.options.list[0].id && item.support != 0) ? "gray" : "blue")}}.png' bindtap='support' data-optionid='{{item.options.list[0].id}}' data-id='{{item.id}}' class='color'></image>
+    </block>
+
+    <block wx:if='{{!is_login}}'>
+      <button open-type='getUserInfo' bindgetuserinfo='getuser' hover-class='none' style='padding:0'>
+        <image src='/images/{{item.support == item.options.list[1].id ? "red-change" : ((item.support != item.options.list[1].id && item.support != 0) ? "gray" : "red")}}.png' data-id='{{item.id}}' data-optionid='{{item.options.list[1].id }}' class='color'></image>           
+      </button>
+    </block>
+
+    <block wx:else>
+      <image src='/images/{{item.support == item.options.list[1].id ? "red-change" : ((item.support != item.options.list[1].id && item.support != 0) ? "gray" : "red")}}.png' data-id='{{item.id}}' data-optionid='{{item.options.list[1].id }}' bindtap='support' class='color'></image>
+    </block>
+  </view>
+
+  <view class='comments-box'>
+    <view style='border-right:1rpx solid #f9f9f9'>
+      <block wx:if='{{item.options.list[0].comments.list[0][0]}}'>
+        <view class='comments'>
+          <text class='comments-name'>{{item.options.list[0].comments.list[0][0].username + ':'}}</text>
+          {{item.options.list[0].comments.list[0][0].description}}
+        </view>
+      </block>
+      <block wx:else>
+        <view class='comments'>
+          <view>暂无精彩评论。</view>
+        </view>
+      </block>
+    </view>
+    
+    <view style='padding-left:20rpx;'>
+      <block wx:if='{{item.options.list[0].comments.list[1][0]}}'>
+        <view class='comments' style='width:320rpx'>
+          <text class='comments-name' style='color:#ff5555;'>{{item.options.list[1].comments.list[0][0].username + ':'}}</text>
+          {{item.options.list[1].comments.list[0][0].description}}</view>
+      </block>
+      <block wx:else>
+        <view class='comments'>
+          <view>暂无精彩评论。</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class='comments-detail' bindtap='goToPkDetail' data-id='{{item.id}}'>进入专区</view>
+</view>
+

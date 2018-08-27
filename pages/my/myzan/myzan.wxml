@@ -1,0 +1,9 @@
+<view class="inputRow" wx:for='{{list}}'  data-vid='{{item.id}}' data-link='{{item.link}}' data-id='{{index}}' data-read="{{item.is_read}}" data-type='{{item.type}}' bindtap='itemclick'>
+   <view style="margin: 0rpx 25rpx;" class="flex postShareTxt">
+     <view style="margin-left: 10rpx;width: 100%;" class="flex justify-between">
+        <text class="postTxt {{item.is_read==1 ? 'item-content-read' : 'item-content'}}">{{item.content}}</text>
+        <image src="/images/arrow.png" style="width: 40rpx; height: 40rpx;"/>
+     </view>
+   </view>
+</view>
+<view style="border-bottom: 2rpx solid #f3f3f3;"></view>

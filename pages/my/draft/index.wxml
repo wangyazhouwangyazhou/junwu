@@ -1,0 +1,7 @@
+<block wx:for='{{list}}'>
+  <view style='background:#fff' bindtap='goToDetail' data-id='{{item.id}}'>
+    <view class='top'>{{item.question.title}}</view>
+    <view class='comment'>{{item.text}}</view>
+    <view class='time'>储存于{{item.update_time}}</view>
+  </view>
+</block>

@@ -1,0 +1,40 @@
+/* template/share/index.wxss */
+
+.share-bg{
+  background: rgba(0,0,0,0.6);
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left:0px;
+  right: 0px;
+  z-index: 9999;
+}
+.share-con{
+  position: absolute;
+  top: 15%;
+  margin-left: 8%;
+  width: 84%;
+  text-align: center;
+  background: #fff;
+  border-radius:10px;
+  padding-bottom:20px;
+}
+.share-close{
+  position:absolute;
+  left:50%;
+  margin-top:50px;
+  width:30px;
+  height:30px;
+  background:#fff;
+  border-radius:30px;
+  line-height:30px;
+  margin-left:-15px;
+}
+.sharewxfriendbt{
+  padding-left: 0px;
+  padding-right: 0px;
+  line-height: 1.5;
+  overflow: visible;
+  background-color: rgba(0,0,0,0);
+
+}

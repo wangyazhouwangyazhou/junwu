@@ -1,0 +1,29 @@
+<template name="Praise">
+  <view class="praise flex align-center justify-end" style="margin:16rpx;">
+  <!--分享-->
+    <image class="praise-cover" src="/images/icon-share2.png" wx:if="{{is_share}}" catchtap='onTapShare' data-cover='{{cover}}' data-id='{{id}}' data-title='{{title}}' data-message='{{message}}' data-duration='{{duration}}'></image>
+    <view style='width:16px;'></view>
+    <!--收藏-->
+    <form bindsubmit="onTapMark" report-submit="true" data-id='{{id}}' data-state='{{is_favorite}}'>
+      <button formType="submit" style='line-height:1.2;padding-left:0px; padding-right:0px;background:rgba(0,0,0,0);'>
+      <view style='display:flex;' >
+      <image class="praise-cover current" src="/images/icon-mark-s.png" wx:if="{{is_favorite}}"></image>
+      <image class="praise-cover" src="/images/icon-mark.png" wx:else></image>
+      </view>
+      </button>
+    </form>
+    <view style='width:13px;'></view>
+    <!--点赞-->
+    <form bindsubmit="onTapPraise" report-submit="true" data-id='{{id}}' data-state='{{is_praise}}'>
+      <button formType="submit" style='line-height:1.2;padding-left:0px; padding-right:0px;background:rgba(0,0,0,0);'>
+      <view style='display:flex;'>
+      <image class="praise-cover current" src="/images/icon-praise_s.png" wx:if="{{is_praise}}"></image>
+      <image class="praise-cover" src="/images/icon-praise.png" wx:else></image>
+      <view class="praise-text">{{praise_count || 0}} ++  20</view>
+      </view>
+      </button>
+    </form>
+  
+  </view>
+
+</template>

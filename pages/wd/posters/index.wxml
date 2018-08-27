@@ -1,0 +1,51 @@
+<view style='margin-bottom:250rpx;position:relative'>
+  <image src='{{cover}}' style='width: 734rpx;height: 437rpx;margin:8rpx 8rpx 40rpx 8rpx'></image>
+  <view class='title'>{{tiile}}</view>
+  <view>{{tiile}}</view>
+  <image src='/images/poster-top.png' style='width: 644rpx;height: 50rpx;margin:37rpx auto 30rpx auto'></image>
+  <view class='introduce'>
+    <image src='{{userInfo.avatar}}' style='width: 68rpx;height: 68rpx;border-radius: 50%'></image>
+    <view class='boxs'>
+      <view class='name'>{{userInfo.username}}</view>
+      <view class='answer'>在军武小程序中回答了这个问题</view>
+    </view>
+  </view>
+  <!-- <scroll-view style='padding:40rpx;height:800rpx' scroll-y> -->
+    <block wx:for='{{contentList}}'>
+      <block wx:if='{{item.type == "txt"}}'>
+        <view class='box'>
+          <view class='comment'>{{item.content}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='box'>
+          <block wx:if='{{item.width > 375}}'>
+            <image src='{{item.content.url}}' style='width:100%' mode='widthFix'  class='img'></image>
+          </block>
+          <block wx:else>
+            <image src='{{item.content.url}}' style='width:{{item.width}}px;height:{{item.height}}px' class='img'></image>
+          </block>
+        </view>
+      </block>
+    </block>
+  <!-- </scroll-view> -->
+  <!-- <image src='http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg' style='width:150rpx;height:150rpx;margin:-75rpx auto 0 auto'></image> -->
+  <view class='footer'>
+    <view>
+      <button style='background:#fff;padding:0' hover-class='none' open-type='share'>
+        <image src='/images/share-wx.png' style='width:64rpx;height:64rpx;margin:0 auto'></image>
+        <view class='icontxt'>分享给好友</view>
+      </button>
+    </view>
+    <view bindtap='sharewxquan'>
+      <image src='/images/share-pyq.png' style='width:84rpx;height:64rpx;margin:0 auto'></image>
+      <view class='icontxt' style='margin-top:16rpx'>分享朋友圈</view>
+    </view>
+    <view bindtap='sharewxquan'>
+      <image src='/images/posters.png' style='width:64rpx;height:64rpx;margin:0 auto'></image>
+      <view class='icontxt' style='margin-top:16rpx'>保存到相册</view>
+    </view>
+  </view>
+
+ <canvas canvas-id="myCanvas" style="width:750px;height:{{Chief}}px;position:absolute;top:{{0-Chief}}px;left:-2000px;"/>
+</view>

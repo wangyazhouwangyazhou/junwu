@@ -1,0 +1,9 @@
+<import src="/template/video/index.wxml" />
+
+<!--news.wxml-->
+<view class="page-video">
+  <template is="Video_1" data="{{list,videoOffsetTop,videoUrl}}"></template>
+  <view class="noMoreData" wx:if="{{noMoreData && page > 2}}"></view>
+  <view class="noResult" wx:if="{{noResult}}"></view>
+  <view class="TAC"></view>
+</view>

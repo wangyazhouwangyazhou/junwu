@@ -1,0 +1,18 @@
+<!-- <block wx:for="{{list}}">
+	<view style="position: relative;margin-bottom: 4rpx;" data-id="{{item.id}}" bindtap="goToDetail">
+		<image src="{{item.cover}}" style="width: 750rpx;height: 201rpx;"/>
+		<view style="position: absolute;bottom: 0;left: 0;background-color: rgba(0,0,0,0.5);text-align: right;padding: 15rpx 0rpx;font-size:30rpx;color:#fff;width: 750rpx;">
+			<text style="margin-right: 40rpx;">{{item.resource_count}}</text>
+		</view>
+	</view>
+</block> -->
+
+
+<view>
+  <view style='display:flex;background:#f8f8f8;margin-bottom:4rpx;flex-wrap:wrap'>
+    <view style='width:235rpx;margin:24rpx 8rpx 40rpx 8rpx' bindtap='goToDetail' data-type='{{item.type}}' wx:for="{{list}}" data-id='{{item.id}}' data-tit='{{item.title}}'>
+      <image src='{{item.cover}}' style='	width: 235rpx;height: 310rpx;'/>
+      <view style='color: #000000;font-size:30rpx;text-align: center;margin-top:24rpx'>{{item.title}}</view>
+    </view>
+  </view>
+</view>

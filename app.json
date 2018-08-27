@@ -1,0 +1,75 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/index/webView",
+    "pages/admin/login",
+    "pages/pk/index",
+    "pages/pk/detail",
+    "pages/list/index",
+    "pages/topic/index",
+    "pages/topic/list",
+    "pages/topic/topic-list/index",
+    "pages/article/index",
+    "pages/user/index",
+    "pages/user/mylottery/index",
+    "pages/user/mylottery/getprize/index",
+    "pages/lottery/index",
+    "pages/video/index",
+    "pages/video/video-detail/index",
+    "pages/my/my",
+    "pages/my/edit",
+    "pages/my/marklist/index",
+    "pages/wd/wd",
+    "pages/wd/answer/index",
+    "pages/wd/posters/index",
+    "pages/wd/wd-detail/wd-detail",
+    "pages/wd/wd-hd/wd-hd",
+    "pages/wd/question",
+    "pages/my/mywd/mywd",
+    "pages/my/submy/submy",
+    "pages/my/myzan/myzan",
+    "pages/my/order/index",
+    "pages/my/phone/index",
+    "pages/my/article/index",
+    "pages/my/draft/index",
+    "pages/faq/index",
+    "pages/reply/index",
+    "pages/reply/replyList",
+    "pages/reply/all",
+    "pages/search/index",
+    "pages/album/index",
+    "pages/share/index",
+    "pages/ence_push/ence_push"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "军武次位面",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "borderStyle": "white",
+    "color": "#B0B0B0",
+    "selectedColor": "#46aa40",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/video/icon-home.png",
+        "selectedIconPath": "/images/video/icon-home-select.png"
+      },
+      {
+        "pagePath": "pages/topic/index",
+        "text": "专题",
+        "iconPath": "/images/video/icon-topic.png",
+        "selectedIconPath": "/images/video/icon-topic-select.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/images/video/icon-my.png",
+        "selectedIconPath": "/images/video/icon-my-select.png"
+      }
+    ]
+  }
+}

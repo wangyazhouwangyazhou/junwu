@@ -1,0 +1,58 @@
+<view wx:if="{{all}}">
+
+  <block wx:if='{{!list.share_pic}}'>
+    <view style='position:relative;height:562rpx'>
+      <image src='/images/picc.png' class='' style='position:absolute;left:27rpx;top:50rp;width:696rpx;height:562rpx'/>
+      <view class=''>
+        <view class='comment'>{{list.title}}</view>
+        <view class='detail'>{{list.description}}</view>
+      </view>
+    </view> 
+  </block>
+
+  <block wx:else>
+    <image src='{{list.share_pic}}' class='newBg'></image>
+    <view class='newcomment'>{{list.title}}</view>
+  </block>
+
+  <view class='one' bindtap='sharewxquan' data-img='{{list.cover}}' data-tit='{{list.title}}' data-summary='{{list.summary}}' data-share_desc='{{list.share_desc}}'>
+    <image src='/images/share-pengyouquan.png' style='width:60rpx;height:60rpx;margin-left:78rpx;margin-top:10rpx;'/>
+    <text class='one-share'>分享朋友圈</text>
+  </view>
+  <button class='two' open-type="share">
+    <image src='/images/share-haoyou.png' style='width:60rpx;height:50rpx;margin-left:78rpx;margin-top:10rpx;'/>
+    <text class='two-share'>分享给好友</text>
+  </button>
+</view>
+
+<view wx:if="{{answer}}">
+
+  <block wx:if='{{list.share_pic == ""}}'>
+    <view>
+      <image src='/images/share-backs.png' class='img'/>
+    </view>
+    <view class='position2'>
+      <view class='comment2'>{{list.title}}</view>
+      <image src='{{list.cover}}' class='img2'/>
+    </view> 
+  </block>
+
+  <block wx:else>
+    <view class='top-position'>
+      <image src='{{list.share_pic}}' class='newBg'></image>
+      <view class='newcomment'>{{list.title}}</view>
+      <image src='/images/play.png' class='play'></image>
+    </view>
+  </block>
+
+  <view class='one' bindtap='sharewxquan' data-id='{{list.id}}' data-img='{{list.cover}}' data-tit='{{list.title}}' data-message='{{list.message}}'>
+    <image src='/images/share-pengyouquan.png' style='width:60rpx;height:60rpx;margin-left:78rpx;margin-top:10rpx;'/>
+    <text class='one-share'>分享朋友圈</text>
+  </view>
+  <button class='two' open-type="share">
+    <image src='/images/share-haoyou.png' style='width:60rpx;height:50rpx;margin-left:78rpx;margin-top:10rpx;'/>
+    <text class='two-share'>分享给好友</text>
+  </button> 
+</view>
+
+ <canvas canvas-id="myCanvas" style="width:750px;height:1000px;position:absolute;top:0px;left:-2000px;"/>

@@ -1,0 +1,29 @@
+
+<view class='body-con'>
+  <view class='item' wx:for='{{list}}' wx:key='{{index}}' data-id='{{item.id}}' bindtap='wditemclick'>
+    <view style='flex: 1;'>
+      <image class='img' src='{{item.cover}}'></image>
+    </view>
+     <view style='flex: 3;padding-left: 16px;'>
+      <view class='desc'>{{item.title}}</view>
+      <view class='time-con'>
+        <view style='float: left;'>{{item.create_time}}</view>
+        <view style='float: right;'>{{item.answer_count}}个回答</view>
+        <image wx:if='{{item.status==2}}' src='/images/icon-suo.png' style='float:right;width:80rpx;height:30rpx;margin-top:3px;margin-right:6px;'></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+<block wx:if="{{noMoreData}}">
+  <view style='width:750rpx;text-align:center;font-size:30rpx'  wx:if="{{total> 15}}">到底部了~</view>
+</block>
+<block wx:else>
+  <view style='width:750rpx;background:#efefef'>
+    <image src='/images/index-loding.gif' style='width:134rpx;height:40rpx;margin:0 auto'></image>
+  </view>
+</block>
+
+<view class="TAC">
+<image src='/images/junwu-logo.png' style='margin-top:30rpx;margin-bottom:-15rpx;width:135rpx;height:40rpx;margin-left:310rpx;'></image>
+</view>

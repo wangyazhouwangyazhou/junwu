@@ -1,0 +1,57 @@
+<block wx:if="{{digestList.length > 0}}">
+	<view class="flex justify-center" style="background-color: #f8f8f8;padding:10rpx;margin-bottom: 4rpx;">
+		<image src="/images/right-arrow.png" style="width: 24rpx;height: 24rpx;margin-right:10rpx;margin-top:15rpx;"/>
+		<view style="font-size: 36rpx;">精彩评论</view>
+		<image src="/images/right-arrow.png" style="width: 24rpx;height: 24rpx;margin-left:10rpx;margin-top:15rpx;transform: rotate(180deg);"/>
+	</view>
+
+	<block wx:for="{{digestList}}">
+	    <view style="font-size: 30rpx;padding:25rpx;background-color: #F8F8F8;margin-bottom: 4rpx;">
+	        <view style="margin: 25rpx 0 25rpx 0;margin-bottom: 4rpx;" class="flex">
+	          <image src="{{item.avatar}}" style="width: 62rpx;height: 62rpx;border-radius: 50%;margin-top:16rpx"/>
+	          <view class="flex justify-between" style="width: 660rpx;padding-left: 16rpx;">
+	            <view style="margin-top: 10rpx;">
+	              <view style="font-size: 30rpx;">{{item.username}}</view>
+	              <view style="font-size: 24rpx;color:#868686;">{{item.create_time}}</view>
+	            </view>
+	            <view class="flex" style="margin-top: 10rpx;" data-type="digest" id="{{index}}" bindtap="commentPraise">
+	              <view style="font-size: 30rpx;color:#868686;padding-right: 8rpx;">{{item.praise_count}}</view>
+	              <image src="/images/{{item.is_praise ? 'icon-praise_s' : 'icon-praise'}}.png" style="width: 31rpx;height: 36rpx;"/>
+	            </view>
+	          </view>
+	        </view>
+	       	<view style="margin:25rpx 0 25rpx 0;font-size: 30rpx;width:710rpx;">{{item.description}}</view>
+          <image src='{{item.cover}}' style='width:{{item.image_info.width}}rpx;height:{{item.image_info.height}}rpx;' bindtap='previewImage' data-img='{{item.original_cover}}'></image>
+          <view style='background-color: #efefef;height: 32rpx;font-size: 26rpx;line-height: 32rpx;text-align:center;color: #46aa40;margin-top:20rpx;display:inline-block' bindtap='reply' data-id='{{item.id}}' data-aid='{{id}}' data-replyname='{{item.username}}' wx:if="{{item.reply_count == 0}}">回复></view>  
+          <view style='background-color: #efefef;height: 32rpx;font-size: 26rpx;line-height: 32rpx;text-align:center;color: #46aa40;margin-top:20rpx;display:inline-block' bindtap='reply' data-id='{{item.id}}' data-aid='{{id}}' data-replyname='{{item.username}}' wx:if="{{item.reply_count > 0}}">共{{item.reply_count}}条回复></view>  
+          </view>
+	</block>
+</block>
+
+<view class="flex justify-center" style="background-color: #f8f8f8;padding:10rpx;margin-bottom: 4rpx;">
+	<image src="/images/right-arrow.png" style="width: 24rpx;height: 24rpx;margin-right:10rpx;margin-top:15rpx;"/>
+	<view style="font-size: 36rpx;">全部评论</view>
+	<image src="/images/right-arrow.png" style="width: 24rpx;height: 24rpx;margin-left:10rpx;margin-top:15rpx;transform: rotate(180deg);"/>
+</view>
+
+<block wx:for="{{list}}">
+<view style="font-size: 30rpx;padding:25rpx;background-color: #F8F8F8;margin-bottom: 4rpx;">
+  <view style="margin: 25rpx 0 25rpx 0;margin-bottom: 4rpx;" class="flex">
+    <image src="{{item.avatar}}" style="width: 62rpx;height: 62rpx;border-radius: 50%;margin-top:16rpx"/>
+    <view class="flex justify-between" style="width: 660rpx;padding-left: 16rpx;">
+      <view style="margin-top: 10rpx;">
+        <view style="font-size: 30rpx;">{{item.username}}</view>
+        <view style="font-size: 24rpx;color:#868686;">{{item.create_time}}</view>
+      </view>
+      <view class="flex" style="margin-top: 10rpx;" data-type="total" id="{{index}}" bindtap="commentPraise">
+        <view style="font-size: 30rpx;color:#868686;padding-right: 8rpx;">{{item.praise_count}}</view>
+        <image src="/images/{{item.is_praise ? 'icon-praise_s' : 'icon-praise'}}.png" style="width: 31rpx;height: 36rpx;"/>
+      </view>
+    </view>
+  </view>
+  <view style="margin:25rpx 0 25rpx 0;font-size: 30rpx;width:710rpx;">{{item.description}}</view>
+  <image src='{{item.cover}}' style='width:{{item.image_info.width}}rpx;height:{{item.image_info.height}}rpx;' bindtap='previewImage' data-img='{{item.original_cover}}'></image>
+  <view style='background-color: #efefef;height: 32rpx;font-size: 26rpx;line-height: 32rpx;text-align:center;color: #46aa40;margin-top:20rpx;display:inline-block' bindtap='reply' data-id='{{item.id}}' data-aid='{{id}}' data-replyname='{{item.username}}' wx:if="{{item.reply_count == 0}}">回复></view>  
+    <view style='background-color: #efefef;height: 32rpx;font-size: 26rpx;line-height: 32rpx;text-align:center;color: #46aa40;margin-top:20rpx;display:inline-block' bindtap='reply' data-id='{{item.id}}' data-aid='{{id}}' data-replyname='{{item.username}}' wx:if="{{item.reply_count > 0}}">共{{item.reply_count}}条回复></view>  
+  </view>
+</block>

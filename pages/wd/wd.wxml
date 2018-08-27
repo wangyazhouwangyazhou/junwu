@@ -1,0 +1,22 @@
+<view class='body-con'>
+  <view class='item' wx:for='{{list}}' wx:key='{{index}}' data-id='{{item.id}}' bindtap='wditemclick'>
+    <view class="flex">
+      <image class='img' src='{{item.cover}}'></image>
+      <view style="width: 400rpx;margin-left:30rpx;position: relative;">
+        <view class='desc'>
+          <text>{{item.title}}</text>
+        </view>
+        <image wx:if='{{item.status==2}}' src='/images/icon-suo.png' style='width:80rpx;height:30rpx;margin-top:3px;margin-right:6px;'></image>
+        <view class="time-con" style="position: absolute;bottom: 0rpx;left: 0rpx;font-size: 24rpx;">
+          {{item.create_time}}
+        </view>
+        <view class="time-con" style="position: absolute;bottom: 0rpx;right: 0rpx;font-size: 24rpx;">
+          {{item.answer_count}}个回答
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<image class='question' bindtap='gotoQuestion' src='/images/question.png'></image>
+<view style="padding: 30rpx;"></view>

@@ -1,0 +1,17 @@
+<template name="DynamicList">
+  <block wx:for="{{list}}" wx:key="{{item}}">
+    <view class="dynamic-wrapper flex">
+      <image class="dynamic-avatar flex-none" src="{{item.avatar}}" />
+      <view style="width: 100%;">
+        <view class="dynamic-name">{{item.nickname}}</view>
+        <view class="dynamic-content">{{item.message}}</view>
+        <view class="dynamic-pic-list flex wrap {{item.piclist.length == 1 ? 'grid-1' : item.piclist.length != 4 ||'grid-2'}}">
+          <block wx:for="{{item.piclist}}" wx:for-item="pic" wx:key="{{pic}}">
+            <image class="dynamic-grid" src="{{pic}}" data-src="{{pic}}" data-list="{{item.piclist}}" catchtap="previewImage" mode="{{item.piclist.length == 1 ? 'aspectFit' : 'aspectFill'}}"/>
+          </block>
+        </view>
+        <view class="dynamic-date" mode="center">{{item.create}}</view>
+      </view>
+    </view>
+  </block>
+</template>

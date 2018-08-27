@@ -1,0 +1,137 @@
+<view>
+  <view class='pk' bindtap='pk'>
+    <view class='flex justify-between'>
+      <image src='{{options.list[0].cover}}' class='pk-img'></image>
+      <image src='{{options.list[1].cover}}' class='pk-img'></image>
+      <image src='/images/VS.png' class='vs'></image>
+    </view>
+    <view class='pkback'>
+      <view class='pkTitle'>{{pk.title}}</view>
+      <view class='flex justify-between' style='margin-top:12rpx;'>
+        <view style='width:279rpx;font-size:42rpx;color:#ffffff;text-align:right'>{{options.list[0].title}}</view>
+        <view style='width:279rpx;font-size:42rpx;color:#ffffff'>{{options.list[1].title}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='progress' bindtap='pk'>
+    <view class='left'>{{ options.list[0].ratio == 0 ?  0 : options.list[0].ratio}}%</view>
+    <view class='right'>{{ options.list[1].ratio == 0 ? 0 : 100 - options.list[0].ratio}}%</view>
+    <progress percent='{{ 100 - options.list[0].ratio }}' activeColor='#bdd5e2' backgroundColor='#55c5ff' stroke-width='15' style='width:290rpx;margin-top:4rpx'></progress>
+    <image src='/images/progresss.png' class='progress-img'></image> 
+    <progress percent='{{ options.list[1].ratio == "0" ? "0" : 100 - options.list[0].ratio}}' activeColor='#ff5555' backgroundColor='#f1b3b3' stroke-width='15' style='width:290rpx;margin-top:4rpx'></progress>
+  </view>
+  <view class='progress2'>
+    <block wx-if='{{is_login}}'>
+      <image src='/images/{{supportnum == option1 ? "detail-blue-change" : ((supportnum != option1 && supportnum != 0) ? "detail-gray" : "detail-blue")}}.png' bindtap='support' data-optionid='{{option1}}' data-id='{{pk.id}}' class='color'></image>
+    </block>
+    <block wx:else>
+      <button open-type='getUserInfo' bindgetuserinfo='getuser' hover-class='none' data-type='3' data-optionid='{{option1}}' data-id='{{pk.id}}'>
+        <image src='/images/{{supportnum == option1 ? "detail-blue-change" : ((supportnum != option1 && supportnum != 0) ? "detail-gray" : "detail-blue")}}.png' data-id='{{pk.id}}' data-optionid='{{option2}}' class='color' />
+      </button>
+    </block>
+
+    <block wx-if='{{is_login}}'>
+      <image src='/images/{{supportnum == option2 ? "detail-red-change" : ((supportnum != option2 && supportnum != 0) ? "detail-gray" : "detail-red")}}.png' data-id='{{pk.id}}' data-optionid='{{option2}}' bindtap='support' class='color'></image>
+    </block>
+    <block wx:else>
+      <button open-type='getUserInfo' bindgetuserinfo='getuser' hover-class='none' data-type='3' data-optionid='{{option1}}' data-id='{{pk.id}}'>
+        <image src='/images/{{supportnum == option2 ? "detail-red-change" : ((supportnum != option2 && supportnum != 0) ? "detail-gray" : "detail-red")}}.png' class='color'></image>
+      </button>
+    </block>
+
+  </view>
+
+  <view class='good' bindtap='pk'>精彩评论</view>
+  <block wx:if='{{list}}'>
+    <view  style='padding:22rpx 30rpx 24rpx 28rpx;border-bottom: 2rpx solid #efefef' wx:for='{{list}}' bindtap='pk'>
+      <view class='flex justify-between'>
+        <view class='flex justify-start align-end'>
+          <block wx:if='{{item.color == "blue"}}'>
+            <view class='name'>{{item.username}}</view>
+          </block>
+
+          <block wx:if='{{item.color == "red"}}'>
+            <view class='name' style='color:#ff5555'>{{item.username}}</view>
+          </block>
+
+          <block wx:if='{{item.color == "black"}}'>
+            <view class='name' style='color:#000'>{{item.username}}</view>
+          </block>
+
+
+          <view class='time'>{{item.create_time}}</view>
+        </view>
+        <view class='flex justify-start align-end'>
+          <view class='number'>{{item.praise_count}}</view>
+
+          <block wx:if='{{!is_login}}'>
+            <button open-type='getUserInfo' bindgetuserinfo='getuser' hover-class='none' data-type='4' data-index='{{index}}' data-commentId='{{item.id}}'>
+              <image src='/images/{{item.ispraise == 0 ? "icon-praise" : "detail-icon-blue"}}.png' class='like'></image>
+            </button>
+          </block>
+
+          <block wx:else>
+            <block wx:if='{{item.color == "blue"}}'>
+              <image src='/images/{{item.ispraise == 0 ? "icon-praise" : "detail-icon-blue"}}.png' class='like' data-index='{{index}}' catchtap='clickGood' data-id='{{pk.id}}' data-commentId='{{item.id}}'></image>
+            </block>
+
+            <block wx:if='{{item.color == "black"}}'>
+              <image src='/images/{{item.ispraise == 0 ? "icon-praise" : "detail-icon-green"}}.png' class='like' data-index='{{index}}' catchtap='clickGood' data-id='{{pk.id}}' data-commentId='{{item.id}}'></image>
+            </block>
+
+            <block wx:if='{{item.color == "red"}}'>
+              <image src='/images/{{item.ispraise == 0 ? "icon-praise" : "detail-icon-red"}}.png' class='like' data-index='{{index}}' catchtap='clickGood' data-id='{{pk.id}}' data-commentId='{{item.id}}'></image>
+            </block>
+          </block>
+        </view>
+      </view>
+      <view class='comments'>{{item.description}}</view>
+    </view>
+    <block wx:if="{{noMoreData || list.length == total}}">
+      <view style='width:750rpx;text-align:center;font-size:30rpx'>到底部了~</view>
+    </block>
+    <block wx:else>
+      <view style='width:750rpx;background:#efefef'>
+        <image src='/images/index-loding.gif' style='width:134rpx;height:40rpx;margin:0 auto'></image>
+      </view>
+    </block>
+  </block>
+  <block wx:else>
+    <view class='none'>暂无精彩评论，欢迎发表你的精彩评论！</view>
+  </block>
+  
+
+
+
+  <view class='suspension'>
+    <view class='inputtbox' wx:if='{{showInput}}' style='position: absolute;left:-150rpx;bottom:0'>
+      <input type='text' class='input' maxlength='200' bindinput='bindinput' bindblur='bindblur' focus='{{focus}}'></input>
+      <view class='submit' bindtap='submit' data-id='{{pk.id}}'>提交</view>
+    </view>
+    <image src='/images/comment.png' class='comment' bindtap='gotohome'></image>
+
+    <block wx:if='{{is_login}}'>
+      <image src='/images/detail-comments.png' class='share' catchtap='comments' data-id='{{id}}'></image>
+    </block>
+
+    <block wx:else>
+      <button open-type='getUserInfo' bindgetuserinfo='getuser' style='background:#fff;padding:0' data-type='1' hover-class='none' data-id='{{id}}'>
+        <image src='/images/detail-comments.png' class='share'></image>
+      </button>
+    </block>
+
+    <block wx:if='{{is_login}}'>
+        <image src='/images/answer-shares.png' class='comment' data-id='{{pk.id}}' bindtap='onTapShare'></image>
+    </block>
+
+    <block wx:else>
+      <button open-type='getUserInfo' bindgetuserinfo='getuser' data-id='{{pk.id}}' data-type='2' style='background:#fff;padding:0;' hover-class='none'>
+        <image src='/images/answer-shares.png' class='comment'></image>
+      </button>
+    </block>
+
+    <image src='/images/video.png' class='articlep' wx:if='{{showImg}}'></image>
+  </view>
+</view>
+

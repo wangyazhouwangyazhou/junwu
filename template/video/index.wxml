@@ -1,0 +1,45 @@
+ <import src="/template/video/video-item/index.wxml" />
+
+<template name="Video_1">
+  <view class="video_1__wrapper" style='background:#fff'>
+    <block wx:for="{{list}}" wx:key="{{item}}">
+      <template is="VideoItem_1" data="{{...item,index,noTap}}"></template>
+    </block>
+    <!--当分享时隐藏video，因为video层级最高-->
+     <block wx:if="{{share_view==false}}"> 
+       <video class="video_1_video" controls autoplay style="top:0px" src="{{videoUrl}}" wx:if="{{videoUrl}}"></video> 
+     </block> 
+  </view>
+</template>
+
+<template name="Video_2">
+  <view class="v-title" style='background:#fff;' wx:if="{{tag_relatelist.length>0}}">看了这些你还想看？</view>
+    <!-- <swiper class='viewlist'>
+      <swiper-item wx:for="{{tag_relatelist}}" next-margin="100rpx">
+        <view class="flex ">
+          <view class='video_2__item2' wx:for="{{item}}">
+            <view class="video_2__header" id="{{item.id}}" catchtap="{{!item.id || 'onTapVideoDetail'}}">
+              <image class="video_2__cover2" src="{{item.cover}}"></image>
+              <image class="video_2__icon" src="/images/video/icon-play.png" wx:if="{{!noPaly}}"></image>
+            </view>
+            <view class="video_2__title">123{{item.title}}</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper> -->
+    <swiper next-margin="50rpx" style="height: 300rpx;" current="{{current}}">
+        <swiper-item wx:for="{{tag_relatelist}}">
+          <view class="flex">
+            <block wx:for="{{item}}">
+              <view catchtap="{{!item.id || 'onTapVideoDetail'}}" id="{{item.id}}" style='position:relative;margin-right:7rpx'>
+                <image src="{{item.cover}}" style="width: 227rpx;height: 134rpx;"></image>
+                <image class="video_2__icon" src="/images/video/icon-play.png" wx:if="{{!noPaly}}"></image>
+                <view style="padding: 40rpx 0;text-align:center">
+                  <view style="font-size: 26rpx;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;line-height:40rpx;margin-top:4rpx;text-align:left;width: 227rpx">{{item.title}}</view>
+                </view>
+              </view>
+            </block>
+          </view>
+        </swiper-item>
+      </swiper>
+</template>

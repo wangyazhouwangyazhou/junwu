@@ -1,0 +1,84 @@
+/* common */
+[class^="listitem_"] {
+  --item-space: var(--space, 300rpx);
+
+  position: relative;
+  padding: var(--space);
+  background-color: #fff;
+
+  color: #333;
+  font-size: 32rpx;
+  margin-bottom: 6rpx;
+}
+
+[class^="listitem_"] .content{
+  width: 400rpx;
+}
+
+[class^="listitem_"] .title{
+  width: 100%;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+[class^="listitem_"] .tag{
+  color: #999;
+  font-size: 26rpx;
+  line-height: 36rpx;
+  text-align: right;
+}
+
+[class^="listitem_"] .time{
+  color: #999;
+  font-size: 24rpx;
+  line-height: 36rpx;
+}
+
+[class^="listitem_"] .cover{
+  width: 240rpx;
+  height: 170rpx;
+}
+
+[class^="listitem_"] .smallcover{
+  width: 220rpx;
+  height: 150rpx;
+}
+
+/* item1 */
+.listitem_1 .cover{
+  padding-right: calc(var(--item-space) / 1.5);
+}
+
+/* item2 */
+.listitem_2 .img-container {
+  padding: 10rpx 0;
+}
+
+/* listitem_banner */
+.listitem_banner{
+  width: 100%;
+  height: 430rpx;
+  padding: 0;
+  margin-bottom: 30rpx;
+}
+.listitem_banner image{
+  width: 100%;
+  height: 430rpx;
+}
+.listitem_banner .bottom-layer{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 var(--item-space);
+  color: #fff;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  background-color: rgba(0, 0, 0, 0.3);
+}

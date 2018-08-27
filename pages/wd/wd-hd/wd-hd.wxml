@@ -1,0 +1,136 @@
+<import src="/template/sharewd/sharewd.wxml" />
+<block wx:if='{{tab==1}}'>
+<view class='con-2'>
+  <view class="flex" style="padding: 0rpx 32rpx;">
+    <image class='item-head-img' src='{{answer.avatar}}'></image>
+    <view class='item-head-name'>
+      <text>{{answer.username}}</text>
+      <view class='item-head-time'>{{answer.create_time}}</view>
+    </view>
+  </view>
+  <view class='item-body' style="padding: 30rpx 30rpx 10rpx 30rpx;">
+    <!-- <view class='item-body-desc'>{{answer.description}}</view> -->
+
+    <block wx:for='{{answer.description}}'>
+      <block wx:if='{{item.type == "txt"}}'>
+        <view class='box'>
+          <view class='comment'>{{item.content}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='box'>
+          <block wx:if='{{item.width > 375}}'>
+            <image src='{{item.content}}' style='width:100%' mode='widthFix'  class='img'></image>
+          </block>
+          <block wx:else>
+            <image src='{{item.content}}' style='width:{{item.width}}px;height:{{item.height}}px' class='img'></image>
+          </block>
+        </view>
+      </block>
+    </block>
+  </view>
+  <!-- <view class="flex wrap" style="margin: 10rpx 20rpx;">
+    <image bindtap='previewimg' data-img='{{item}}' class='uploadimg' src='{{item}}' wx:for='{{answer.piclist}}' mode="aspectFill"></image>
+  </view> -->
+
+
+  <block wx:if='{{is_login}}'>
+    <view style="text-align:center;margin:40rpx;" data-id="{{answerId}}" bindtap="dianzan">
+      <image style="width:125rpx;height:125rpx;margin:0 auto;z-index: 99" src='/images/zan.png'></image>
+      <view style="font-size:28rpx;margin-top:10rpx;">已有{{praiseCount}}人点赞</view>    
+    </view>
+  </block>
+  <block wx:else>
+    <button open-type='getUserInfo' bindgetuserinfo='dianzan' style=''>
+      <image style="width:125rpx;height:125rpx;margin:0 auto;z-index: 99" src='/images/zan.png'></image>
+      <view style="font-size:28rpx;margin-top:10rpx;">已有{{praiseCount}}人点赞</view>    
+    </button>
+  </block>
+</view>
+
+<view class='bar'>
+  <view class='bar-txt'>评论{{answer.comment_count}}</view>
+</view>
+
+<view class='hd-con' wx:for='{{list}}' wx:key='{{index}}'>
+  <view class="flex" style="margin: 10rpx 30rpx 10rpx 30rpx;">
+    <view style="margin: 10rpx ;"><image class='item-head-img' src='{{item.avatar}}'></image></view>
+    <view style="margin: 10rpx 20rpx;font-size:32rpx;width: 90%;" data-flag='2'>
+      <view class="flex justify-between" style='align-items:center;height:50rpx'>
+        <text>{{item.username}}</text>
+          <block wx:if='{{is_login}}'>
+            <view style="color:#46aa40;font-size: 28rpx;" bindtap='answerTA' data-scrollTop="{{scrollTop}}" data-id="{{item.id}}" data-username="{{item.username}}">回复TA</view>
+          </block>
+          <block wx:else>
+            <button open-type='getUserInfo' bindgetuserinfo='answerTA' hover-class='none' style="background:#fff;color:#46aa40;font-size: 28rpx;">回复TA</button>
+          </block>
+      </view>
+      <view class='item-head-time'>{{item.create_time}}</view>
+      <view class='item-body' style="padding-top: 20rpx;">
+        <view class='item-body-desc' style="margin-left: -8rpx;">
+          <block wx:if="{{item.parent_comment.username}}">
+            回复<text style="color:#46aa40;">@{{item.parent_comment.username}}</text>：{{item.description}}
+          </block>
+          <block wx:else>
+            {{item.description}}
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view style="border-bottom: 3rpx solid #dedede;margin-left:130rpx;margin-top: -5rpx;" wx:if="{{list.length != index + 1}}"></view> -->
+</view>
+
+<view style='height:110rpx;'></view>
+
+
+<view class='bottom-bar'>
+    <!-- <view class='bottom-input' data-flag='1' bindtap='huifuclick' data-scrollTop="{{scrollTop}}" style='font-size:16px;'>评论TA</view>
+    <image class='bottom-more-share' bindtap='onTapShare' src='/images/icon-share2.png'></image>
+    <view bindtap="onTapMark">
+      <block wx:if='{{!question.is_favorite}}'>
+        <image class='bottom-more-mark' src='/images/icon-mark.png'></image>
+      </block>
+      <block wx:if='{{question.is_favorite}}'>
+        <image class='bottom-more-mark' src='/images/icon-mark-s.png'></image>
+      </block>
+    </view> -->
+  <input type='text' class='bottom-input' placeholder='回复' placeholder-style='font-size:24rpx;color:#999' bindinput='huifuclick' focus='{{focus}}'  value='{{value}}'></input>
+
+  <block wx:if='{{is_login}}'>
+    <view class='bthsub' bindtap='clickReply'>提交</view>
+  </block>
+  <block wx:else>
+    <button class='bthsub' open-type='getUserInfo' bindgetuserinfo='clickReply'>提交</button>
+  </block>
+  
+</view>
+
+</block>
+
+<!--
+<block wx:if="{{replyContent}}">
+  
+</block>
+<block wx:else>
+  <view class="replyContent">
+    <view class="flex">
+      <textarea auto-focus="1" show-confirm-bar="" fixed="true" placeholder="{{replayMessage}}@{{replyUsername}}" placeholder-style="margin:20rpx;" style="border: 2rpx solid #ccc;height: 200rpx;background-color: #fff;border-radius: 10rpx;" cursor-spacing="82" value="{{inputValue}}" bindinput="answerInput"></textarea>
+      <view style="margin-top: 140rpx;margin-left: 25rpx;color:#bdc3c7;" bindtap="answerTA">发送</view>
+    </view>
+  </view>
+</block>
+
+
+<view class="mask" hidden="{{maskHidden}}" bindtap="closeDiv"></view>
+-->
+
+<block wx:if='{{tab==3}}'>
+  <view class='input-con'>
+    <textarea  maxlength='-1' bindinput="answerInput" placeholder='{{replayMessage}}@{{replyUsername}}'></textarea >
+  </view>
+  <view class='ping-bt' style='margin-top: 20rpx;' bindtap='answerTA'>提交</view>
+  <view class='ping-bt' bindtap='inputcancel' style='background: #ccc;color:#fff;'>取消</view>
+</block>
+<!--分享-->
+<template is="Share_2" data="{{width,height,cover,shareTitle,share_view}}"></template> 

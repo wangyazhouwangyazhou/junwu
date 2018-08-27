@@ -1,0 +1,113 @@
+<import src="/template/praise/index.wxml" />
+<import src="/template/video/index.wxml" />
+<import src="/template/share/index.wxml" />
+<import src="/template/reply/index.wxml" /> 
+<import src="/template/reply/list.wxml" />
+
+<scroll-view class="content" style='height:{{screenHeight}}px;posistion:relative' bindscroll='scroll' scroll-y>
+  <view class="article">
+    <view class="title">{{detail.title}}</view>
+    <view class="date">{{detail.create_time}}</view>
+    <!-- <view class="content">
+      <rich-text nodes="{{detail.content}}"></rich-text>
+    </view> -->
+
+    <rich-text nodes="{{detail.content}}"></rich-text>
+
+
+    <view class='suspension'>
+      <image src='/images/comment.png' class='comment' bindtap='gotohome'></image>
+
+      <block wx:if='{{is_login}}'>
+        <image src='/images/shares.png' class='share' bindtap='onTapShare'></image>
+      </block>
+
+      <block wx:else>
+        <button open-type='getUserInfo' bindgetuserinfo='getuser' style='background:#fff;padding:0;margin:0 25rpx' hover-class='none' data-type='2'>
+          <image src='/images/shares.png' class='share'></image>
+        </button>
+      </block>
+
+      <block wx:if='{{is_login}}'>
+          <image src='/images/comments.png' class='comment' bindtap='pageToReply'></image>
+      </block>
+
+      <block wx:else>
+        <button open-type='getUserInfo' bindgetuserinfo='getuser' style='background:#fff;padding:0;margin:0 25rpx' hover-class='none' data-type='3'>
+          <image src='/images/comments.png' class='comment'></image>
+        </button>
+      </block>
+
+      <text class='commentNum'>{{commentCount}}</text>
+      <!-- <image src='/images/article.png' class='articlep' wx:if='{{showImg}}'></image> -->
+    </view>
+
+    <view style="margin: 90rpx 0rpx;">
+      <view class="flex justify-between" style="margin:0rpx 87rpx 20rpx 87rpx;">
+        <view style="border-radius: 10rpx;background-color: #FFFFFF;border:2rpx solid #C7C7C7;padding:10rpx 34rpx;min-width: 120rpx;">
+          <block wx:if="{{is_login}}">
+            <form bindsubmit="onTapPraise" report-submit="true" data-id='{{id}}' data-state='{{is_praise}}'>
+              <button formType="submit" style='line-height:1.2;background:rgba(0,0,0,0);'>
+                <view class="flex">
+                  <image src="/images/{{is_praise ? 'icon-praise_s' : 'icon-praise'}}.png" style="width: 31rpx;height: 36rpx;"/>
+                  <view style="font-size: 26rpx;color:#46aa40;margin:5rpx 10rpx;">{{praise_count || 0}}</view>
+                </view>
+              </button>
+            </form>
+          </block>
+
+          <block wx:else>
+            <button class='button_new_style' open-type='getUserInfo' bindgetuserinfo='getuser' data-type='6' style='line-height:1.2;background:rgba(0,0,0,0);'>
+              <view class="flex" style='justify-content:center'>
+                <image src="/images/{{is_praise ? 'icon-praise_s' : 'icon-praise'}}.png" style="width: 31rpx;height: 36rpx;"/>
+                <view style="font-size: 26rpx;color:#46aa40;margin:5rpx 10rpx;">{{praise_count || 0}}</view>
+              </view>
+            </button>
+          </block>
+
+        </view>
+        <view style="border-radius: 10rpx;background-color: #FFFFFF;border:2rpx solid #C7C7C7;padding:10rpx 34rpx;min-width: 120rpx;">
+
+          <block wx:if="{{is_login}}">
+            <view class="flex" bindtap="onTapMark">
+              <image style="width: 40rpx;height: 40rpx;" src="/images/{{is_favorite ? 'icon-mark-s' : 'icon-mark'}}.png"/>
+              <view style="font-size: 24rpx;margin:5rpx 10rpx;">收藏</view>
+            </view>
+          </block>
+
+          <block wx:else>
+            <button class='button_new_style' open-type='getUserInfo' bindgetuserinfo='getuser' data-type='1' style='line-height:1.2;background:rgba(0,0,0,0);'>
+            <view class="flex" bindtap="onTapMark">
+                <image style="width: 40rpx;height: 40rpx;" src="/images/{{is_favorite ? 'icon-mark-s' : 'icon-mark'}}.png"/>
+                <view style="font-size: 24rpx;margin:5rpx 10rpx;">收藏</view>
+              </view>
+            </button>
+          </block>
+
+        </view>
+      </view>
+    </view>
+  </view>
+    <view style='	font-size: 36rpx;color: #000000;text-align:center;background:#fff;margin-bottom: 4rpx;padding-bottom:10rpx'>评论区 ({{commentCount}})</view>
+
+  <template is="ReplyList" data="{{digestList, totalList, id, commentCount, imglist,is_login}}"></template> 
+
+
+  <view>
+    <template is="imgs" data="{{share_record}}"></template>
+  </view>  
+
+  <!-- <view style="font-size: 30rpx;background-color: #fff;" wx:if="{{tag_relatelist.length > 0}}">
+    <template is="Video_2" data="{{tag_relatelist,noPaly:1,title:'相关推荐',class:'a-list'}}"></template>
+  </view> -->
+
+  <view class="TAC">
+    <image src='/images/junwu-logo.png' style='margin-top:30rpx;margin-bottom:-15rpx;width:135rpx;height:40rpx;margin-left:310rpx;'></image>
+  </view>
+
+  <!-- <view style="padding-bottom: 150rpx;"></view> -->
+
+  <!-- <template is="Reply" data="{{is_favorite, is_share, isIphoneX, id, commentCount, is_login}}"></template>   -->
+</scroll-view>
+
+<!-- <template is="Share_1" data="{{width,height,cover,shareTitle,share_view}}"></template>  -->

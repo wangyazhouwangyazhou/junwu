@@ -1,0 +1,47 @@
+<template name="Reply">
+  <view style="position: fixed;background-color: #FFFFFF;height:90rpx;bottom:0;left: 0;width:100%;"  class="flex {{isIphoneX ? 'fix-iphonex-button' : ''}}"hidden="{{isShow}}">
+    
+
+    <block wx:if="{{is_login}}">
+      <input style="margin-left: 25rpx;padding:0rpx 20rpx;margin-top:14rpx;width:382rpx;height:62rpx;border-radius: 10rpx;border:2rpx solid #EFEFEF;margin-right: 40rpx;background-color: #f8f8f8;" name="replyMessage" data-id='{{id}}' placeholder="发表你的观点" disabled='true' bindtap="pageToReply" placeholder-style="color:#000000;font-size:24rpx;" disabled/>
+    </block>
+
+    <block wx:else>
+      <button class='button_new_style' open-type='getUserInfo' bindgetuserinfo='getuser' data-type='3'>
+        <input style="margin-left: 25rpx;padding:0rpx 20rpx;margin-top:14rpx;width:382rpx;height:62rpx;border-radius: 10rpx;border:2rpx solid #EFEFEF;margin-right: 40rpx;background-color: #f8f8f8;" name="replyMessage" data-id='{{id}}' placeholder="发表你的观点" disabled='true' placeholder-style="color:#000000;font-size:24rpx;" disabled/>
+      </button>
+    </block>
+    <image style="width: 53rpx;height: 48rpx;padding-top:22rpx;padding-right:42rpx;position: relative;" src="/images/reply.png">
+      <view style="position: absolute;top:28rpx;left:20rpx;color:#46aa40;font-size:20rpx;" bindtap="viewAllComment">{{commentCount}}</view>
+    </image>
+    <!--收藏-->
+    <block wx:if="{{is_login}}">
+      <view style='padding-top:22rpx;padding-right:42rpx;' bindtap='onTapMark'>
+        <form report-submit="true" data-id='{{id}}' data-state='{{is_favorite}}' bindsubmit="pushFormSubmit" report-submit>
+          <button formType="submit" data-type='1' style='line-height:1.2;padding-left:0px; padding-right:0px;background:rgba(0,0,0,0);'>
+            <image style="width: 53rpx;height: 49rpx;" src="/images/icon-mark-s.png" wx:if="{{is_favorite}}"></image>
+            <image style="width: 53rpx;height: 49rpx;" src="/images/icon-mark.png" wx:else></image>
+          </button>
+        </form>
+      </view>
+    </block>
+    <block wx:else>
+      <button class='button_new_style' open-type='getUserInfo' bindgetuserinfo='getuser' data-type='1' data-id='{{id}}'>
+        <view style='padding-top:22rpx;padding-right:42rpx;'>
+          <image style="width: 53rpx;height: 49rpx;" src="/images/icon-mark-s.png" wx:if="{{is_favorite}}"></image>
+          <image style="width: 53rpx;height: 49rpx;" src="/images/icon-mark.png" wx:else></image> 
+        </view>
+      </button>
+    </block>
+
+    <!--分享-->
+    <block wx:if="{{is_login}}">
+      <image style="width: 53rpx;height: 49rpx;padding-top:22rpx;" src="/images/icon-share2.png" bindtap="onTapShare" data-id="{{id}}" />
+    </block>
+    <block wx:else>
+      <button open-type='getUserInfo' bindgetuserinfo='getuser' class='button_new_style' data-type='2' data-id='{{id}}'>
+        <image style="width: 53rpx;height: 49rpx;padding-top:22rpx;" src="/images/icon-share2.png" data-id='{{id}}'/>
+      </button>
+    </block>
+  </view>
+</template>

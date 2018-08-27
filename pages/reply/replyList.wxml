@@ -1,0 +1,46 @@
+<view style="font-size: 30rpx;padding:25rpx;background-color: #fff;margin-bottom: 4rpx;">
+  <view style="margin: 20rpx 0 25rpx 0;margin-bottom: 4rpx;" class="flex">
+    <image src="{{comment.avatar}}" style="width: 62rpx;height: 62rpx;border-radius: 50%;margin-top:18rpx"/>
+    <view class="flex justify-between" style="width: 660rpx;padding-left: 16rpx;">
+      <view style="margin-top: 10rpx;">
+        <view style="font-size: 30rpx;">{{comment.username}}</view>
+        <view style="font-size: 24rpx;color:#868686;">{{comment.create_time}}</view>
+      </view>
+      <view class="flex" style="margin-top: 10rpx;" data-type="digest" id="{{index}}" bindtap="commentPraise">
+        <view style="font-size: 30rpx;color:{{comment.is_praise == 1 ? '#46aa40;' : '#868686'}};padding-right: 8rpx;">{{comment.praise_count}}</view>
+        <image src="/images/{{comment.is_praise == 1 ? 'icon-praise_s' : 'icon-praise'}}.png" style="width: 31rpx;height: 36rpx;"/>
+      </view>
+    </view>
+  </view>
+  <view style="margin:25rpx 0 25rpx 0;font-size: 30rpx;width:700rpx;">{{comment.description}}</view>
+  <image wx:if="{{!comment.cover == ''}}" src='{{comment.cover}}' style='width:{{comment.image_info.width}}rpx;height:{{comment.image_info.height}}rpx;' bindtap='previewImage' data-img='{{comment.original_cover}}'></image>
+</view>
+<view style="font-size: 30rpx;padding:25rpx;background-color: #fff;margin: 4rpx 0;padding:12rpx 12rpx 12rpx 0rpx;" class="flex">
+  <image src="/images/right-arrow.png" style="width: 24rpx;height: 24rpx;padding-right: 10rpx;margin-top:8rpx;"/>
+  <!-- <view>全部评论（{{commentCount}}）</view> -->
+  <view>回复区</view>
+</view>
+
+<view style="font-size: 30rpx;padding:25rpx;background-color: #fff;margin-bottom: 4rpx;"  wx:for="{{list}}">
+  <view style="margin: 25rpx 0 25rpx 0;margin-bottom: 4rpx;" class="flex">
+    <image src="{{item.avatar}}" style="width: 62rpx;height: 62rpx;border-radius: 50%;margin-top:18rpx"/>
+    <view class="flex justify-between" style="width: 660rpx;padding-left: 16rpx;">
+      <view style="margin-top: 10rpx;">
+        <view style="font-size: 30rpx;">{{item.username}}</view>
+        <view style="font-size: 24rpx;color:#868686;">{{item.create_time}}</view>
+      </view>
+      <view class="flex" style="margin-top: 10rpx;" data-type="total" id="{{index}}" bindtap="commentPraise">
+        <view style="font-size: 30rpx;color:{{item.is_praise == 1 ? '#46aa40;' : '#868686'}};padding-right: 8rpx;">{{item.praise_count}}</view>
+        <image src="/images/{{item.is_praise == 1 ? 'icon-praise_s' : 'icon-praise'}}.png" style="width: 31rpx;height: 36rpx;"/>
+      </view>
+    </view>
+  </view>
+  <view style="margin:25rpx 0 25rpx 0;font-size: 30rpx;width:690rpx;"><text wx:if="{{!item.reply_username == ''}}" style='margin:25rpx 0 25rpx 0;font-size: 30rpx;color:#46aa40'>@{{item.reply_username}}</text>{{item.description}}</view>
+  <view style='background-color: #efefef;width: 81rpx;height: 32rpx;font-size: 26rpx;line-height: 32rpx;text-align:center;color: #46aa40;' data-id='{{item.id}}' data-aid='{{comment.article_id}}' data-replay="{{item.username}}" data-pid='{{comment.id}}' bindtap='replyxx'>回复></view> 
+</view>
+
+<view style='	width: 749rpx;height: 90rpx;background:#fff;padding:0.1rpx;position:fixed;left:0;bottom:0'>
+  <input type='text' placeholder="回复楼主" disabled='true' style='padding-left:22rpx;color:#000;font-size:24rpx;width: 664rpx;height: 63rpx;background-color: #f8f8f8;border-radius: 10rpx;border: solid 2rpx #efefef;margin:14rpx 25rpx' data-id='{{id}}' data-list='{{list}}' data-aid='{{comment.article_id}}' bindtap='replyBoss'></input>
+</view>
+
+<view style='height:90rpx'></view>
